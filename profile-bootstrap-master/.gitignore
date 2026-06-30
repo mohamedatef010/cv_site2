@@ -1,0 +1,8 @@
+node_modules/
+.env
+data/
+*.log
+.DS_Store
+
+# Local draft from admin panel (browser only — not needed in repo)
+# Keep data.json in repo as initial template; on server use DATA_ROOT for live data.

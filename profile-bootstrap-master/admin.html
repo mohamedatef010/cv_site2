@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Website Manager</title>
+    <!-- Local stylesheets -->
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+    <style>
+        .lang-group {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            background: rgba(33, 150, 243, 0.02);
+            padding-top: 10px;
+            padding-bottom: 5px;
+            border-radius: 0 8px 8px 0;
+        }
+        .lang-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            background: var(--bg-primary);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            padding-top: 75%; /* 4:3 Aspect Ratio */
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item-delete {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .gallery-item-delete:hover {
+            background: var(--danger-hover);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Login Overlay -->
+    <div class="login-overlay" id="login-overlay">
+        <div class="login-card">
+            <div class="login-logo">Admin Panel</div>
+            <div class="login-subtitle">Sign in to manage your portfolio website</div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter username" required value="admin">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter password" required value="admin_password_123">
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="admin-container" id="admin-container" style="display: none;">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <i class="fa fa-cogs text-primary"></i> Site Manager <span>Admin</span>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-tab="dashboard">
+                    <a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Dashboard</a>
+                </li>
+                <li class="menu-item" data-tab="about">
+                    <a href="javascript:void(0)"><i class="fa fa-user"></i> About Me</a>
+                </li>
+                <li class="menu-item" data-tab="experience">
+                    <a href="javascript:void(0)"><i class="fa fa-briefcase"></i> Experience</a>
+                </li>
+                <li class="menu-item" data-tab="portfolio">
+                    <a href="javascript:void(0)"><i class="fa fa-th-large"></i> Portfolio</a>
+                </li>
+                <li class="menu-item" data-tab="skills">
+                    <a href="javascript:void(0)"><i class="fa fa-code"></i> Skills</a>
+                </li>
+                <li class="menu-item" data-tab="awards">
+                    <a href="javascript:void(0)"><i class="fa fa-trophy"></i> Awards</a>
+                </li>
+                <li class="menu-item" data-tab="testimonials">
+                    <a href="javascript:void(0)"><i class="fa fa-comments"></i> Testimonials</a>
+                </li>
+                <li class="menu-item" data-tab="why-me">
+                    <a href="javascript:void(0)"><i class="fa fa-star"></i> Why Me</a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="btn-logout">
+                    <i class="fa fa-sign-out"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="page-title">
+                    <h2 id="current-tab-title">Dashboard</h2>
+                    <p id="current-tab-subtitle">Overview of your website contents</p>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" target="_blank" class="btn btn-secondary">
+                        <i class="fa fa-eye"></i> View Website
+                    </a>
+                    <button class="btn btn-primary" onclick="saveChanges()">
+                        <i class="fa fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Home Tab -->
+            <section class="tab-panel active" id="tab-dashboard">
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 id="stat-experience">0</h3>
+                            <p>Experiences</p>
+                        </div>
+                        <div class="stat-icon"><i class="fa fa-briefcase"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 id="stat-portfolio">0</h3>
+                            <p>Portfolio items</p>
+                        </div>
+                        <div class="stat-icon"><i class="fa fa-th-large"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 id="stat-skills">0</h3>
+                            <p>Skills listed</p>
+                        </div>
+                        <div class="stat-icon"><i class="fa fa-code"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 id="stat-awards">0</h3>
+                            <p>Awards</p>
+                        </div>
+                        <div class="stat-icon"><i class="fa fa-trophy"></i></div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-title">Welcome to your Multilingual Site Manager!</div>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">
+                        This dashboard allows you to manage all aspects of your profile website in real-time. The site supports three languages: Arabic, English, and Russian. Every text field is split into three inputs so you can enter the translation for each language.
+                    </p>
+                    <div style="background: var(--bg-primary); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h5 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa fa-info-circle text-info"></i> Instructions
+                        </h5>
+                        <ul style="padding-left: 20px; color: var(--text-muted); font-size: 0.9rem;">
+                            <li style="margin-bottom: 6px;">Click <strong>Save Changes</strong> at the top right of the screen (or in the floating button) to persist updates to the website.</li>
+                            <li style="margin-bottom: 6px;">Image uploads are saved inside the <code>img/</code> directory (profile photos), <code>img/portfolio/</code> (project gallery), <code>img/awards/</code> (certificates), or <code>img/testimonials/</code> (client screenshots) automatically.</li>
+                            <li style="margin-bottom: 6px;">You can view the live site anytime by clicking <strong>View Website</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Me Tab -->
+            <section class="tab-panel" id="tab-about">
+                <div class="panel-card">
+                    <div class="panel-title">Personal Information</div>
+                    <form id="form-about">
+                        <!-- First Name (3 languages) -->
+                        <div class="lang-group">
+                            <div class="lang-label">First Name</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Arabic (العربية)</label>
+                                    <input type="text" id="about-first-name-ar" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>English</label>
+                                    <input type="text" id="about-first-name-en" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Russian (Русский)</label>
+                                    <input type="text" id="about-first-name-ru" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Last Name (3 languages) -->
+                        <div class="lang-group">
+                            <div class="lang-label">Last Name</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Arabic (العربية)</label>
+                                    <input type="text" id="about-last-name-ar" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>English</label>
+                                    <input type="text" id="about-last-name-en" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Russian (Русский)</label>
+                                    <input type="text" id="about-last-name-ru" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subheading (3 languages) -->
+                        <div class="lang-group">
+                            <div class="lang-label">Subheading</div>
+                            <div class="form-group">
+                                <label>Arabic (العربية)</label>
+                                <input type="text" id="about-subheading-ar" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>English</label>
+                                <input type="text" id="about-subheading-en" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Russian (Русский)</label>
+                                <input type="text" id="about-subheading-ru" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- About Description (3 languages) -->
+                        <div class="lang-group">
+                            <div class="lang-label">About Description</div>
+                            <div class="form-group">
+                                <label>Arabic (العربية)</label>
+                                <textarea id="about-description-ar" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>English</label>
+                                <textarea id="about-description-en" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Russian (Русский)</label>
+                                <textarea id="about-description-ru" class="form-control" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="panel-title" style="margin-top: 40px; font-size: 1.1rem;">Profile Pictures</div>
+                        <div class="form-row" style="margin-bottom: 24px;">
+                            <div class="form-group">
+                                <label>Profile Picture</label>
+                                <div class="image-upload-wrapper">
+                                    <img id="about-profile-preview" src="img/profile.jpg" class="image-preview" alt="Profile Preview">
+                                    <div class="image-upload-inputs">
+                                        <input type="file" id="about-profile-file" accept="image/*" style="display:none" onchange="handleImageUpload(this, 'about.profileImage', 'about-profile-preview')">
+                                        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('about-profile-file').click()">
+                                            <i class="fa fa-upload"></i> Upload Image
+                                        </button>
+                                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Recommended: Square ratio, e.g. 500x500px</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Header Logo (Circle)</label>
+                                <div class="image-upload-wrapper">
+                                    <img id="about-logo-preview" src="img/logo-s.png" class="image-preview" alt="Logo Preview">
+                                    <div class="image-upload-inputs">
+                                        <input type="file" id="about-logo-file" accept="image/*" style="display:none" onchange="handleImageUpload(this, 'about.logoS', 'about-logo-preview')">
+                                        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('about-logo-file').click()">
+                                            <i class="fa fa-upload"></i> Upload Image
+                                        </button>
+                                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Recommended: PNG format (transparent)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <label>About Background Banner</label>
+                            <div class="image-upload-wrapper">
+                                <img id="about-banner-preview" src="img/profile-banner.jpg" class="image-preview" alt="Banner Preview" style="max-width: 100%; max-height: 180px; object-fit: cover;">
+                                <div class="image-upload-inputs">
+                                    <input type="file" id="about-banner-file" accept="image/*" style="display:none" onchange="handleImageUpload(this, 'about.bannerImage', 'about-banner-preview')">
+                                    <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('about-banner-file').click()">
+                                        <i class="fa fa-upload"></i> Upload Image
+                                    </button>
+                                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Background behind name and icons (e.g. profile-banner.jpg). Recommended: wide landscape image.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-title" style="margin-top: 40px; font-size: 1.1rem;">روابط وسائل التواصل / Social Media Links</div>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 16px;">
+                            أدخل رابط كل منصة. تظهر الأيقونة فقط عند إضافة رابط، وعند الضغط عليها يُوجَّه الزائر مباشرة إليه. اترك الحقل فارغاً لإخفاء الأيقونة.
+                        </p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><img src="img/social/mailru-logo.png" alt="" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;"> Mail.ru — الرابط</label>
+                                <input type="url" id="about-social-mailru" class="form-control" placeholder="https://my.mail.ru/username">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fa fa-facebook"></i> Facebook — الرابط</label>
+                                <input type="url" id="about-social-facebook" class="form-control" placeholder="https://facebook.com/username">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fa fa-telegram"></i> Telegram — الرابط</label>
+                                <input type="url" id="about-social-telegram" class="form-control" placeholder="https://t.me/username">
+                            </div>
+                            <div class="form-group">
+                                <label><img src="img/social/max-logo.png" alt="" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;"> Max — الرابط</label>
+                                <input type="url" id="about-social-max" class="form-control" placeholder="https://max.ru/u/...">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fa fa-whatsapp"></i> WhatsApp — الرابط</label>
+                                <input type="url" id="about-social-whatsapp" class="form-control" placeholder="https://wa.me/966XXXXXXXXX">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Experience Tab -->
+            <section class="tab-panel" id="tab-experience">
+                <div class="panel-card">
+                    <div class="panel-title">
+                        <span>Work Experience Items</span>
+                        <button class="btn btn-success btn-sm" onclick="openExperienceModal(null)">
+                            <i class="fa fa-plus"></i> Add New
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="experience-table">
+                            <thead>
+                                <tr>
+                                    <th>Role / Title</th>
+                                    <th>Date Range</th>
+                                    <th>Card Color</th>
+                                    <th>Icon</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Tab -->
+            <section class="tab-panel" id="tab-portfolio">
+                <div class="panel-card">
+                    <div class="panel-title">
+                        <span>Portfolio Projects</span>
+                        <button class="btn btn-success btn-sm" onclick="openPortfolioModal(null)">
+                            <i class="fa fa-plus"></i> Add New Project
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="portfolio-table">
+                            <thead>
+                                <tr>
+                                    <th>Cover Image</th>
+                                    <th>Project Title</th>
+                                    <th>Category</th>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Tab -->
+            <section class="tab-panel" id="tab-skills">
+                <div class="panel-card">
+                    <div class="panel-title">Manage Skills</div>
+                    <div class="row">
+                        <!-- Left side: List of current skills -->
+                        <div class="col-md-7">
+                            <h5 style="margin-bottom: 20px;">Coding Skills & Percentages</h5>
+                            <div id="skills-list-container">
+                                <!-- Loaded dynamically -->
+                            </div>
+                        </div>
+                        <!-- Right side: Add new skill form -->
+                        <div class="col-md-5" style="border-left: 1px solid var(--border-color); padding-left: 30px;">
+                            <h5 style="margin-bottom: 20px;">Add New Skill</h5>
+                            <form id="form-new-skill" onsubmit="event.preventDefault(); addNewSkill();">
+                                <div class="lang-group">
+                                    <div class="lang-label">Skill Name</div>
+                                    <div class="form-group">
+                                        <label>Arabic (العربية)</label>
+                                        <input type="text" id="new-skill-name-ar" class="form-control" placeholder="مثال: جافا سكريبت" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>English</label>
+                                        <input type="text" id="new-skill-name-en" class="form-control" placeholder="e.g. JavaScript" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Russian (Русский)</label>
+                                        <input type="text" id="new-skill-name-ru" class="form-control" placeholder="например: JavaScript" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Skill Icon</label>
+                                    <div class="skill-icon-picker">
+                                        <div class="skill-icon-preview-box" id="new-skill-icon-preview" aria-hidden="true">
+                                            <i class="fa fa-code skill-icon-preview-icon"></i>
+                                        </div>
+                                        <input type="text" id="new-skill-icon" class="form-control" placeholder="e.g. fa-code" value="fa-code" required oninput="updateNewSkillIconPreview(this.value)">
+                                        <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin: 8px 0 10px;">Choose an icon below or type a Font Awesome class (e.g. fa-html5)</small>
+                                        <div class="skill-icon-choices" id="skill-icon-choices"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Percentage Proficiency (0-100%)</label>
+                                    <input type="number" id="new-skill-percentage" class="form-control" min="0" max="100" value="80" required>
+                                </div>
+                                <div class="lang-group">
+                                    <div class="lang-label">Simple Explanation (shown when clicked)</div>
+                                    <div class="form-group">
+                                        <label>Arabic (العربية)</label>
+                                        <textarea id="new-skill-desc-ar" class="form-control" rows="2" placeholder="شرح مبسط بالعامية..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>English</label>
+                                        <textarea id="new-skill-desc-en" class="form-control" rows="2" placeholder="Simple plain-language explanation..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Russian (Русский)</label>
+                                        <textarea id="new-skill-desc-ru" class="form-control" rows="2" placeholder="Простое объяснение..."></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">
+                                    <i class="fa fa-plus"></i> Add Skill
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Awards Tab -->
+            <section class="tab-panel" id="tab-awards">
+                <div class="panel-card">
+                    <div class="panel-title">
+                        <span>Awards & Certifications</span>
+                        <button class="btn btn-success btn-sm" onclick="openAwardModal(null)">
+                            <i class="fa fa-plus"></i> Add New Award
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="awards-table">
+                            <thead>
+                                <tr>
+                                    <th>Award Title</th>
+                                    <th>Date</th>
+                                    <th>Certificate</th>
+                                    <th>Description</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Tab -->
+            <section class="tab-panel" id="tab-testimonials">
+                <div class="panel-card">
+                    <div class="panel-title">Testimonials Section Settings</div>
+                    <form id="form-testimonials-settings">
+                        <div class="lang-group">
+                            <div class="lang-label">Section Heading</div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Arabic</label><input type="text" id="testimonials-heading-ar" class="form-control"></div>
+                                <div class="form-group"><label>English</label><input type="text" id="testimonials-heading-en" class="form-control"></div>
+                                <div class="form-group"><label>Russian</label><input type="text" id="testimonials-heading-ru" class="form-control"></div>
+                            </div>
+                        </div>
+                        <div class="lang-group">
+                            <div class="lang-label">Section Subtitle</div>
+                            <div class="form-group"><label>Arabic</label><textarea id="testimonials-subtitle-ar" class="form-control"></textarea></div>
+                            <div class="form-group"><label>English</label><textarea id="testimonials-subtitle-en" class="form-control"></textarea></div>
+                            <div class="form-group"><label>Russian</label><textarea id="testimonials-subtitle-ru" class="form-control"></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-card" style="margin-top: 24px;">
+                    <div class="panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Client Testimonials</span>
+                        <button class="btn btn-success btn-sm" onclick="openTestimonialModal(null)">
+                            <i class="fa fa-plus"></i> Add Testimonial
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="testimonials-table">
+                            <thead>
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Role</th>
+                                    <th>Rating</th>
+                                    <th>Screenshot</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Me Tab -->
+            <section class="tab-panel" id="tab-why-me">
+                <div class="panel-card">
+                    <div class="panel-title">Why Me Section Settings</div>
+                    <form id="form-why-me-settings">
+                        <div class="lang-group">
+                            <div class="lang-label">Section Heading</div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Arabic</label><input type="text" id="why-me-heading-ar" class="form-control"></div>
+                                <div class="form-group"><label>English</label><input type="text" id="why-me-heading-en" class="form-control"></div>
+                                <div class="form-group"><label>Russian</label><input type="text" id="why-me-heading-ru" class="form-control"></div>
+                            </div>
+                        </div>
+                        <div class="lang-group">
+                            <div class="lang-label">Section Subtitle</div>
+                            <div class="form-group"><label>Arabic</label><textarea id="why-me-subtitle-ar" class="form-control"></textarea></div>
+                            <div class="form-group"><label>English</label><textarea id="why-me-subtitle-en" class="form-control"></textarea></div>
+                            <div class="form-group"><label>Russian</label><textarea id="why-me-subtitle-ru" class="form-control"></textarea></div>
+                        </div>
+                        <div class="lang-group">
+                            <div class="lang-label">Intro Paragraph</div>
+                            <div class="form-group"><label>Arabic</label><textarea id="why-me-intro-ar" class="form-control"></textarea></div>
+                            <div class="form-group"><label>English</label><textarea id="why-me-intro-en" class="form-control"></textarea></div>
+                            <div class="form-group"><label>Russian</label><textarea id="why-me-intro-ru" class="form-control"></textarea></div>
+                        </div>
+                        <div class="lang-group">
+                            <div class="lang-label">Comparison Table Headers</div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Feature (AR)</label><input type="text" id="why-me-header-feature-ar" class="form-control"></div>
+                                <div class="form-group"><label>Feature (EN)</label><input type="text" id="why-me-header-feature-en" class="form-control"></div>
+                                <div class="form-group"><label>Feature (RU)</label><input type="text" id="why-me-header-feature-ru" class="form-control"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Me (AR)</label><input type="text" id="why-me-header-me-ar" class="form-control"></div>
+                                <div class="form-group"><label>Me (EN)</label><input type="text" id="why-me-header-me-en" class="form-control"></div>
+                                <div class="form-group"><label>Me (RU)</label><input type="text" id="why-me-header-me-ru" class="form-control"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Others (AR)</label><input type="text" id="why-me-header-others-ar" class="form-control"></div>
+                                <div class="form-group"><label>Others (EN)</label><input type="text" id="why-me-header-others-en" class="form-control"></div>
+                                <div class="form-group"><label>Others (RU)</label><input type="text" id="why-me-header-others-ru" class="form-control"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-card" style="margin-top: 24px;">
+                    <div class="panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Comparison Rows</span>
+                        <button class="btn btn-success btn-sm" onclick="openWhyMeRowModal(null)">
+                            <i class="fa fa-plus"></i> Add Row
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="why-me-rows-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Me</th>
+                                    <th>Others</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-card" style="margin-top: 24px;">
+                    <div class="panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Extra Highlights</span>
+                        <button class="btn btn-success btn-sm" onclick="openWhyMeHighlightModal(null)">
+                            <i class="fa fa-plus"></i> Add Highlight
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="why-me-highlights-table">
+                            <thead>
+                                <tr>
+                                    <th>Icon</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Floating Unsaved Changes Notification -->
+    <div class="floating-save-indicator" id="unsaved-indicator" style="display: none;">
+        <span class="save-status-text"><i class="fa fa-exclamation-triangle text-warning"></i> You have unsaved changes!</span>
+        <button class="btn-save-floating" onclick="saveChanges()">Save Now</button>
+    </div>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Experience Modal -->
+    <div class="modal-overlay" id="modal-experience">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h3 id="exp-modal-title">Add Work Experience</h3>
+                <button class="modal-close" onclick="closeModal('modal-experience')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-experience">
+                    <input type="hidden" id="exp-edit-id">
+                    
+                    <!-- Title (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Role / Position Title</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <input type="text" id="exp-title-ar" class="form-control" required placeholder="مثال: مطور ويب أول">
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <input type="text" id="exp-title-en" class="form-control" required placeholder="e.g. Senior Web Developer">
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <input type="text" id="exp-title-ru" class="form-control" required placeholder="например: Старший веб-разработчик">
+                        </div>
+                    </div>
+
+                    <!-- Date Range (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Date Range Text</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <input type="text" id="exp-date-ar" class="form-control" required placeholder="مثال: مارس 2019 - الحالي">
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <input type="text" id="exp-date-en" class="form-control" required placeholder="e.g. March 2019 - Present">
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <input type="text" id="exp-date-ru" class="form-control" required placeholder="например: Март 2019 - Настоящее время">
+                        </div>
+                    </div>
+
+                    <!-- Description (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Role Description</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <textarea id="exp-description-ar" class="form-control" required placeholder="اكتب تفاصيل وإنجازات الدور الوظيفي..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <textarea id="exp-description-en" class="form-control" required placeholder="Describe responsibilities and accomplishments..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <textarea id="exp-description-ru" class="form-control" required placeholder="Опишите ваши обязанности и достижения..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Border Card Color Theme</label>
+                            <select id="exp-color" class="form-control">
+                                <option value="primary">Primary (Blue)</option>
+                                <option value="success">Success (Green)</option>
+                                <option value="warning">Warning (Yellow)</option>
+                                <option value="info">Info (Teal)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>FontAwesome Icon Name</label>
+                            <input type="text" id="exp-icon" class="form-control" placeholder="e.g. fa-globe" value="fa-briefcase">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-experience')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitExperienceForm()">Save Item</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal -->
+    <div class="modal-overlay" id="modal-portfolio">
+        <div class="admin-modal" style="max-width: 650px;">
+            <div class="modal-header">
+                <h3 id="port-modal-title">Add Portfolio Project</h3>
+                <button class="modal-close" onclick="closeModal('modal-portfolio')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-portfolio">
+                    <input type="hidden" id="port-edit-id">
+                    
+                    <!-- Title (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Project Title</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <input type="text" id="port-title-ar" class="form-control" required placeholder="مثال: موقع التجارة الإلكترونية">
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <input type="text" id="port-title-en" class="form-control" required placeholder="e.g. E-Commerce Website">
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <input type="text" id="port-title-ru" class="form-control" required placeholder="например: Сайт электронной коммерции">
+                        </div>
+                    </div>
+
+                    <!-- Category Tag -->
+                    <div class="form-group">
+                        <label>Category Tag</label>
+                        <select id="port-category" class="form-control">
+                            <option value="consulting">Web Design</option>
+                            <option value="finance">Mobile Apps</option>
+                            <option value="marketing">Graphics Design</option>
+                        </select>
+                    </div>
+
+                    <!-- Client (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Client</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Arabic (العربية)</label>
+                                <input type="text" id="port-client-ar" class="form-control" placeholder="مثال: شركة تيكس سوفت">
+                            </div>
+                            <div class="form-group">
+                                <label>English</label>
+                                <input type="text" id="port-client-en" class="form-control" placeholder="e.g. Techs Soft">
+                            </div>
+                            <div class="form-group">
+                                <label>Russian (Русский)</label>
+                                <input type="text" id="port-client-ru" class="form-control" placeholder="например: Techs Soft">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Project Date</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Arabic (العربية)</label>
+                                <input type="text" id="port-date-ar" class="form-control" placeholder="مثال: أبريل 2018">
+                            </div>
+                            <div class="form-group">
+                                <label>English</label>
+                                <input type="text" id="port-date-en" class="form-control" placeholder="e.g. April 2018">
+                            </div>
+                            <div class="form-group">
+                                <label>Russian (Русский)</label>
+                                <input type="text" id="port-date-ru" class="form-control" placeholder="например: Апрель 2018">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Service Provided</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Arabic (العربية)</label>
+                                <input type="text" id="port-service-ar" class="form-control" placeholder="مثال: تطوير الويب">
+                            </div>
+                            <div class="form-group">
+                                <label>English</label>
+                                <input type="text" id="port-service-en" class="form-control" placeholder="e.g. Web Development">
+                            </div>
+                            <div class="form-group">
+                                <label>Russian (Русский)</label>
+                                <input type="text" id="port-service-ru" class="form-control" placeholder="например: Веб-разработка">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Time (3 languages) - NEW -->
+                    <div class="lang-group">
+                        <div class="lang-label">Delivery Time</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Arabic (العربية)</label>
+                                <input type="text" id="port-delivery-ar" class="form-control" placeholder="مثال: شهرين">
+                            </div>
+                            <div class="form-group">
+                                <label>English</label>
+                                <input type="text" id="port-delivery-en" class="form-control" placeholder="e.g. 2 Months">
+                            </div>
+                            <div class="form-group">
+                                <label>Russian (Русский)</label>
+                                <input type="text" id="port-delivery-ru" class="form-control" placeholder="например: 2 месяца">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Detailed Description</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <textarea id="port-description-ar" class="form-control" required placeholder="اكتب تفاصيل دراسة حالة المشروع..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <textarea id="port-description-en" class="form-control" required placeholder="Describe the project case study..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <textarea id="port-description-ru" class="form-control" required placeholder="Опишите детали кейса проекта..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Images & Videos Gallery Manager -->
+                    <div class="form-group">
+                        <label style="font-weight: 600;">Project Images & Videos Gallery</label>
+                        <div class="gallery-container" id="port-images-list">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                        <div class="d-flex align-items-center gap-3" style="flex-wrap: wrap; gap: 10px;">
+                            <input type="file" id="port-image-file" accept="image/*" style="display:none" onchange="handleModalImageUpload(this)">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('port-image-file').click()">
+                                <i class="fa fa-upload"></i> Upload Image to Gallery
+                            </button>
+                            <input type="file" id="port-video-file" accept="video/mp4,video/webm,video/quicktime,video/x-msvideo,video/x-matroska,.mp4,.webm,.mov,.avi,.mkv" style="display:none" onchange="handleModalVideoUpload(this)">
+                            <button type="button" class="btn btn-info btn-sm" onclick="document.getElementById('port-video-file').click()">
+                                <i class="fa fa-video-camera"></i> Upload Video to Gallery
+                            </button>
+                            <small class="text-muted ml-3">Files will be stored in <code>img/portfolio/</code></small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-portfolio')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitPortfolioForm()">Save Project</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Award Modal -->
+    <div class="modal-overlay" id="modal-award">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h3 id="award-modal-title">Add Certificate / Award</h3>
+                <button class="modal-close" onclick="closeModal('modal-award')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-award">
+                    <input type="hidden" id="award-edit-id">
+                    
+                    <!-- Title (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Award / Certification Title</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <input type="text" id="award-title-ar" class="form-control" required placeholder="مثال: مهندس معتمد من سحابة جوجل">
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <input type="text" id="award-title-en" class="form-control" required placeholder="e.g. Google Cloud Certified Architect">
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <input type="text" id="award-title-ru" class="form-control" required placeholder="например: Сертифицированный архитектор Google Cloud">
+                        </div>
+                    </div>
+
+                    <!-- Date Received (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Date Received</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <input type="text" id="award-date-ar" class="form-control" required placeholder="مثال: أبريل 2017 - مارس 2018">
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <input type="text" id="award-date-en" class="form-control" required placeholder="e.g. April 2017 - March 2018">
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <input type="text" id="award-date-ru" class="form-control" required placeholder="например: Апр 2017 - Мар 2018">
+                        </div>
+                    </div>
+
+                    <!-- Description (3 languages) -->
+                    <div class="lang-group">
+                        <div class="lang-label">Description Summary</div>
+                        <div class="form-group">
+                            <label>Arabic (العربية)</label>
+                            <textarea id="award-description-ar" class="form-control" required placeholder="ملخص تفاصيل الجائزة..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>English</label>
+                            <textarea id="award-description-en" class="form-control" required placeholder="Summary details..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Russian (Русский)</label>
+                            <textarea id="award-description-ru" class="form-control" required placeholder="Краткое описание..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Image -->
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>Certificate Image (Optional)</label>
+                        <div class="image-upload-wrapper">
+                            <img id="award-certificate-preview" src="" class="image-preview" alt="Certificate Preview" style="display: none; max-width: 220px; max-height: 160px; object-fit: contain; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 6px;">
+                            <div class="image-upload-inputs">
+                                <input type="file" id="award-certificate-file" accept="image/*" style="display:none" onchange="handleAwardImageUpload(this)">
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('award-certificate-file').click()">
+                                    <i class="fa fa-upload"></i> Upload Certificate
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" id="award-certificate-remove" style="display:none" onclick="removeAwardCertificate()">
+                                    <i class="fa fa-trash"></i> Remove
+                                </button>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Upload a photo or scan of the certificate. Saved to <code>img/awards/</code>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-award')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitAwardForm()">Save Award</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial Modal -->
+    <div class="modal-overlay" id="modal-testimonial">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h3 id="testimonial-modal-title">Add Client Testimonial</h3>
+                <button class="modal-close" onclick="closeModal('modal-testimonial')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-testimonial">
+                    <input type="hidden" id="testimonial-edit-id">
+                    <div class="lang-group">
+                        <div class="lang-label">Client Name</div>
+                        <div class="form-group"><label>Arabic</label><input type="text" id="testimonial-name-ar" class="form-control" required></div>
+                        <div class="form-group"><label>English</label><input type="text" id="testimonial-name-en" class="form-control" required></div>
+                        <div class="form-group"><label>Russian</label><input type="text" id="testimonial-name-ru" class="form-control"></div>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Role / Company</div>
+                        <div class="form-group"><label>Arabic</label><input type="text" id="testimonial-role-ar" class="form-control" required></div>
+                        <div class="form-group"><label>English</label><input type="text" id="testimonial-role-en" class="form-control" required></div>
+                        <div class="form-group"><label>Russian</label><input type="text" id="testimonial-role-ru" class="form-control"></div>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Testimonial Quote</div>
+                        <div class="form-group"><label>Arabic</label><textarea id="testimonial-quote-ar" class="form-control" required></textarea></div>
+                        <div class="form-group"><label>English</label><textarea id="testimonial-quote-en" class="form-control" required></textarea></div>
+                        <div class="form-group"><label>Russian</label><textarea id="testimonial-quote-ru" class="form-control"></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating (1-5 stars)</label>
+                        <input type="number" id="testimonial-rating" class="form-control" min="1" max="5" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label>Screenshot / Review Image (Optional)</label>
+                        <div class="image-upload-wrapper">
+                            <img id="testimonial-image-preview" src="" class="image-preview" alt="Preview" style="display:none; max-width:220px; max-height:160px; object-fit:contain; border-radius:8px; border:1px solid var(--border-color); padding:6px;">
+                            <div class="image-upload-inputs">
+                                <input type="file" id="testimonial-image-file" accept="image/*" style="display:none" onchange="handleTestimonialImageUpload(this)">
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('testimonial-image-file').click()"><i class="fa fa-upload"></i> Upload Screenshot</button>
+                                <button type="button" class="btn btn-danger btn-sm" id="testimonial-image-remove" style="display:none" onclick="removeTestimonialImage()"><i class="fa fa-trash"></i> Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-testimonial')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitTestimonialForm()">Save Testimonial</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Me Row Modal -->
+    <div class="modal-overlay" id="modal-why-me-row">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h3 id="why-me-row-modal-title">Add Comparison Row</h3>
+                <button class="modal-close" onclick="closeModal('modal-why-me-row')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-why-me-row">
+                    <input type="hidden" id="why-me-row-edit-id">
+                    <div class="lang-group">
+                        <div class="lang-label">Feature Name</div>
+                        <div class="form-group"><label>Arabic</label><input type="text" id="why-me-row-feature-ar" class="form-control" required></div>
+                        <div class="form-group"><label>English</label><input type="text" id="why-me-row-feature-en" class="form-control" required></div>
+                        <div class="form-group"><label>Russian</label><input type="text" id="why-me-row-feature-ru" class="form-control"></div>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Your Value (Me)</div>
+                        <div class="form-group"><label>Arabic</label><input type="text" id="why-me-row-me-ar" class="form-control" required></div>
+                        <div class="form-group"><label>English</label><input type="text" id="why-me-row-me-en" class="form-control" required></div>
+                        <div class="form-group"><label>Russian</label><input type="text" id="why-me-row-me-ru" class="form-control"></div>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Others Value</div>
+                        <div class="form-group"><label>Arabic</label><input type="text" id="why-me-row-others-ar" class="form-control" required></div>
+                        <div class="form-group"><label>English</label><input type="text" id="why-me-row-others-en" class="form-control" required></div>
+                        <div class="form-group"><label>Russian</label><input type="text" id="why-me-row-others-ru" class="form-control"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label><input type="checkbox" id="why-me-row-me-positive" checked> Me is positive</label></div>
+                        <div class="form-group"><label><input type="checkbox" id="why-me-row-others-positive"> Others is positive</label></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-why-me-row')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitWhyMeRowForm()">Save Row</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Me Highlight Modal -->
+    <div class="modal-overlay" id="modal-why-me-highlight">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h3 id="why-me-highlight-modal-title">Add Highlight</h3>
+                <button class="modal-close" onclick="closeModal('modal-why-me-highlight')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-why-me-highlight">
+                    <input type="hidden" id="why-me-highlight-edit-id">
+                    <div class="form-group">
+                        <label>FontAwesome Icon</label>
+                        <input type="text" id="why-me-highlight-icon" class="form-control" placeholder="fa-rocket" value="fa-star">
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Title</div>
+                        <div class="form-group"><label>Arabic</label><input type="text" id="why-me-highlight-title-ar" class="form-control" required></div>
+                        <div class="form-group"><label>English</label><input type="text" id="why-me-highlight-title-en" class="form-control" required></div>
+                        <div class="form-group"><label>Russian</label><input type="text" id="why-me-highlight-title-ru" class="form-control"></div>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Description</div>
+                        <div class="form-group"><label>Arabic</label><textarea id="why-me-highlight-desc-ar" class="form-control" required></textarea></div>
+                        <div class="form-group"><label>English</label><textarea id="why-me-highlight-desc-en" class="form-control" required></textarea></div>
+                        <div class="form-group"><label>Russian</label><textarea id="why-me-highlight-desc-ru" class="form-control"></textarea></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-why-me-highlight')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitWhyMeHighlightForm()">Save Highlight</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <script>
+        // Store website state locally
+        let siteData = {};
+        let originalSiteData = {};
+        let isModified = false;
+        let tempPortImages = []; // Temp holder for current portfolio image upload array
+        let tempAwardImage = ''; // Temp holder for current award certificate image path
+        let tempTestimonialImage = '';
+
+        const ADMIN_TOKEN_KEY = 'adminToken';
+        const DRAFT_STORAGE_KEY = 'profileAdminDraft';
+        const AUTO_SAVE_DELAY_MS = 15000;
+        let autoSaveTimer = null;
+        let formSyncTimer = null;
+        let isAutoSaving = false;
+
+        // Persist login across browser restarts; migrate legacy sessionStorage token
+        let token = localStorage.getItem(ADMIN_TOKEN_KEY) || sessionStorage.getItem(ADMIN_TOKEN_KEY) || '';
+        if (token && !localStorage.getItem(ADMIN_TOKEN_KEY)) {
+            localStorage.setItem(ADMIN_TOKEN_KEY, token);
+            sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+        }
+
+        function saveLocalDraft() {
+            try {
+                syncFormInputs();
+                localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({
+                    data: siteData,
+                    savedAt: Date.now(),
+                    isModified: isModified
+                }));
+            } catch (err) {
+                console.warn('Could not save local draft:', err);
+            }
+        }
+
+        function clearLocalDraft() {
+            localStorage.removeItem(DRAFT_STORAGE_KEY);
+        }
+
+        function readLocalDraft() {
+            try {
+                const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+                if (!raw) return null;
+                const draft = JSON.parse(raw);
+                if (!draft || !draft.data || typeof draft.data !== 'object') return null;
+                return draft;
+            } catch (err) {
+                console.warn('Could not read local draft:', err);
+                return null;
+            }
+        }
+
+        function debouncedFormSync() {
+            clearTimeout(formSyncTimer);
+            formSyncTimer = setTimeout(function () {
+                syncFormInputs();
+                saveLocalDraft();
+            }, 250);
+        }
+
+        function onFormFieldChange() {
+            isModified = true;
+            updateUnsavedIndicator();
+            debouncedFormSync();
+            scheduleAutoSave();
+        }
+
+        function bindFormChangeListeners(formSelector) {
+            document.querySelectorAll(formSelector + ' input, ' + formSelector + ' textarea').forEach(function (el) {
+                if (el.dataset.changeBound === 'true') return;
+                el.dataset.changeBound = 'true';
+                el.addEventListener('input', onFormFieldChange);
+                el.addEventListener('change', onFormFieldChange);
+            });
+        }
+
+        function scheduleAutoSave() {
+            if (!token || !isModified) return;
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(function () {
+                if (isModified && token) {
+                    saveChanges({ silent: true, isAuto: true });
+                }
+            }, AUTO_SAVE_DELAY_MS);
+        }
+
+        window.addEventListener('beforeunload', function (e) {
+            if (isModified) {
+                saveLocalDraft();
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'hidden' && isModified) {
+                saveLocalDraft();
+                if (token) {
+                    saveChanges({ silent: true, isAuto: true });
+                }
+            }
+        });
+
+        // Toast notifications
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const item = document.createElement('div');
+            item.className = `toast-item ${type}`;
+            
+            let icon = 'fa-info-circle';
+            if (type === 'success') icon = 'fa-check-circle';
+            else if (type === 'error') icon = 'fa-times-circle';
+            else if (type === 'warning') icon = 'fa-exclamation-triangle';
+
+            item.innerHTML = `<i class="fa ${icon}"></i> <span>${message}</span>`;
+            container.appendChild(item);
+            
+            // Trigger animation
+            setTimeout(() => item.classList.add('show'), 50);
+            
+            // Remove after 4 seconds
+            setTimeout(() => {
+                item.classList.remove('show');
+                setTimeout(() => item.remove(), 300);
+            }, 4000);
+        }
+
+        // Check authentication status on start
+        function checkAuth() {
+            const loginOverlay = document.getElementById('login-overlay');
+            const adminContainer = document.getElementById('admin-container');
+            
+            if (token) {
+                loginOverlay.classList.add('hidden');
+                adminContainer.style.display = 'flex';
+                loadData();
+            } else {
+                loginOverlay.classList.remove('hidden');
+                adminContainer.style.display = 'none';
+            }
+        }
+
+        // Handle Login Submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('Incorrect credentials!');
+                return res.json();
+            })
+            .then(data => {
+                token = data.token;
+                localStorage.setItem(ADMIN_TOKEN_KEY, token);
+                sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+                showToast('Successfully logged in!', 'success');
+                checkAuth();
+            })
+            .catch(err => {
+                showToast(err.message, 'error');
+            });
+        });
+
+        // Handle Logout
+        document.getElementById('btn-logout').addEventListener('click', function() {
+            localStorage.removeItem(ADMIN_TOKEN_KEY);
+            sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+            clearTimeout(autoSaveTimer);
+            token = '';
+            showToast('Logged out successfully.');
+            checkAuth();
+        });
+
+        // Load website data
+        function loadData() {
+            fetch('/api/data')
+            .then(res => res.json())
+            .then(data => {
+                const draft = readLocalDraft();
+                if (draft && draft.isModified) {
+                    siteData = draft.data;
+                    isModified = true;
+                    showToast('تم استعادة التعديلات غير المحفوظة من النسخة الاحتياطية.', 'warning');
+                } else {
+                    siteData = data;
+                    isModified = false;
+                }
+                originalSiteData = JSON.parse(JSON.stringify(data));
+                updateUnsavedIndicator();
+
+                // Populate Forms
+                populateAboutForm(siteData.about);
+                ensureNewSections(siteData);
+                populateTestimonialsSettings(siteData.testimonials);
+                populateWhyMeSettings(siteData.whyMe);
+
+                // Populate Lists
+                renderExperienceTable(siteData.experience);
+                renderPortfolioTable(siteData.portfolio);
+                renderSkillsList(siteData.skills);
+                renderAwardsTable(siteData.awards);
+                renderTestimonialsTable(siteData.testimonials.items);
+                renderWhyMeRowsTable(siteData.whyMe.rows);
+                renderWhyMeHighlightsTable(siteData.whyMe.highlights);
+                initSkillsManager();
+                renderSkillIconChoices();
+
+                // Update Stats
+                updateStats();
+                if (isModified) {
+                    scheduleAutoSave();
+                }
+                showToast('Website content loaded successfully.', 'info');
+            })
+            .catch(err => {
+                console.error(err);
+                showToast('Failed to load website contents from server.', 'error');
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('stat-experience').innerText = siteData.experience ? siteData.experience.length : 0;
+            document.getElementById('stat-portfolio').innerText = siteData.portfolio ? siteData.portfolio.length : 0;
+            document.getElementById('stat-skills').innerText = siteData.skills ? siteData.skills.length : 0;
+            document.getElementById('stat-awards').innerText = siteData.awards ? siteData.awards.length : 0;
+        }
+
+        function markAsModified() {
+            isModified = true;
+            updateUnsavedIndicator();
+            saveLocalDraft();
+            scheduleAutoSave();
+        }
+
+        function updateUnsavedIndicator() {
+            const indicator = document.getElementById('unsaved-indicator');
+            if (isModified) {
+                indicator.style.display = 'flex';
+            } else {
+                indicator.style.display = 'none';
+            }
+        }
+
+        // Save entire website changes
+        function saveChanges(options) {
+            const opts = options || {};
+            const silent = opts.silent === true;
+            const isAuto = opts.isAuto === true;
+
+            if (isAutoSaving) return;
+
+            syncFormInputs();
+
+            isAutoSaving = true;
+
+            fetch('/api/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(siteData)
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('Unauthorised or server issue');
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    if (!silent) {
+                        showToast('Website changes saved and published!', 'success');
+                    }
+                    isModified = false;
+                    originalSiteData = JSON.parse(JSON.stringify(siteData));
+                    updateUnsavedIndicator();
+                    clearLocalDraft();
+                } else if (!silent) {
+                    showToast(data.message || 'فشل الحفظ على السيرفر.', 'error');
+                }
+            })
+            .catch(err => {
+                if (!silent) {
+                    showToast('فشل الحفظ. تأكد أن السيرفر يعمل وأن مجلد البيانات قابل للكتابة.', 'error');
+                } else {
+                    console.warn('Auto-save failed:', err);
+                }
+            })
+            .finally(function () {
+                isAutoSaving = false;
+            });
+        }
+
+        // Synchronize general input forms to siteData before saving
+        function syncFormInputs() {
+            if (!siteData.about) siteData.about = {};
+            if (!siteData.about.socials) siteData.about.socials = {};
+            if (!siteData.testimonials) siteData.testimonials = { heading: {}, subtitle: {}, items: [] };
+            if (!siteData.whyMe) siteData.whyMe = { heading: {}, subtitle: {}, intro: {}, tableHeaders: {}, rows: [], highlights: [] };
+            if (!siteData.ui) siteData.ui = {};
+
+            // About
+            siteData.about.firstName = {
+                ar: document.getElementById('about-first-name-ar').value,
+                en: document.getElementById('about-first-name-en').value,
+                ru: document.getElementById('about-first-name-ru').value
+            };
+            siteData.about.lastName = {
+                ar: document.getElementById('about-last-name-ar').value,
+                en: document.getElementById('about-last-name-en').value,
+                ru: document.getElementById('about-last-name-ru').value
+            };
+            siteData.about.subheading = {
+                ar: document.getElementById('about-subheading-ar').value,
+                en: document.getElementById('about-subheading-en').value,
+                ru: document.getElementById('about-subheading-ru').value
+            };
+            siteData.about.description = {
+                ar: document.getElementById('about-description-ar').value,
+                en: document.getElementById('about-description-en').value,
+                ru: document.getElementById('about-description-ru').value
+            };
+            siteData.about.socials = {
+                mailRu: document.getElementById('about-social-mailru').value,
+                facebook: document.getElementById('about-social-facebook').value,
+                telegram: document.getElementById('about-social-telegram').value,
+                max: document.getElementById('about-social-max').value,
+                whatsapp: document.getElementById('about-social-whatsapp').value
+            };
+
+            siteData.testimonials.heading = {
+                ar: document.getElementById('testimonials-heading-ar').value,
+                en: document.getElementById('testimonials-heading-en').value,
+                ru: document.getElementById('testimonials-heading-ru').value
+            };
+            siteData.testimonials.subtitle = {
+                ar: document.getElementById('testimonials-subtitle-ar').value,
+                en: document.getElementById('testimonials-subtitle-en').value,
+                ru: document.getElementById('testimonials-subtitle-ru').value
+            };
+
+            siteData.whyMe.heading = {
+                ar: document.getElementById('why-me-heading-ar').value,
+                en: document.getElementById('why-me-heading-en').value,
+                ru: document.getElementById('why-me-heading-ru').value
+            };
+            siteData.whyMe.subtitle = {
+                ar: document.getElementById('why-me-subtitle-ar').value,
+                en: document.getElementById('why-me-subtitle-en').value,
+                ru: document.getElementById('why-me-subtitle-ru').value
+            };
+            siteData.whyMe.intro = {
+                ar: document.getElementById('why-me-intro-ar').value,
+                en: document.getElementById('why-me-intro-en').value,
+                ru: document.getElementById('why-me-intro-ru').value
+            };
+            siteData.whyMe.tableHeaders = {
+                feature: {
+                    ar: document.getElementById('why-me-header-feature-ar').value,
+                    en: document.getElementById('why-me-header-feature-en').value,
+                    ru: document.getElementById('why-me-header-feature-ru').value
+                },
+                me: {
+                    ar: document.getElementById('why-me-header-me-ar').value,
+                    en: document.getElementById('why-me-header-me-en').value,
+                    ru: document.getElementById('why-me-header-me-ru').value
+                },
+                others: {
+                    ar: document.getElementById('why-me-header-others-ar').value,
+                    en: document.getElementById('why-me-header-others-en').value,
+                    ru: document.getElementById('why-me-header-others-ru').value
+                }
+            };
+
+            if (siteData.ui) {
+                siteData.ui.testimonialsHeading = siteData.testimonials.heading;
+                siteData.ui.whyMeHeading = siteData.whyMe.heading;
+            }
+        }
+
+        // Handle File uploads via Multer API
+        function handleImageUpload(inputElement, dataFieldPath, previewId) {
+            const file = inputElement.files[0];
+            if (!file) {
+                showToast('No file selected.', 'warning');
+                return;
+            }
+
+            if (!file.type.startsWith('image/')) {
+                showToast('Please select an image file.', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            showToast('Uploading image: ' + file.name + '...', 'info');
+
+            fetch('/api/upload', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(errData => {
+                        throw new Error(errData.message || 'Upload failed.');
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast('Image uploaded successfully!', 'success');
+                    
+                    updateNestedObjectValue(siteData, dataFieldPath, data.imagePath);
+                    document.getElementById(previewId).src = data.imagePath + '?v=' + Date.now();
+                    markAsModified();
+                } else {
+                    showToast(data.message || 'Upload failed.', 'error');
+                }
+            })
+            .catch(err => {
+                console.error('Upload error:', err);
+                showToast('Upload failed: ' + err.message, 'error');
+            })
+            .finally(() => {
+                inputElement.value = '';
+            });
+        }
+
+        // Handle Portfolio Modal image upload
+        function handleModalImageUpload(inputElement) {
+            const file = inputElement.files[0];
+            if (!file) {
+                showToast('No file selected.', 'warning');
+                return;
+            }
+
+            if (!file.type.startsWith('image/')) {
+                showToast('Please select an image file.', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            showToast('Uploading portfolio image: ' + file.name + '...', 'info');
+
+            fetch('/api/upload?folder=portfolio', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(errData => {
+                        throw new Error(errData.message || 'Upload failed.');
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast('Image uploaded successfully!', 'success');
+                    tempPortImages.push(data.imagePath);
+                    renderPortImagesManager();
+                } else {
+                    showToast(data.message || 'Upload failed.', 'error');
+                }
+            })
+            .catch(err => {
+                console.error('Portfolio upload error:', err);
+                showToast('Upload failed: ' + err.message, 'error');
+            })
+            .finally(() => {
+                inputElement.value = '';
+            });
+        }
+
+        // Handle Portfolio Modal video upload
+        function handleModalVideoUpload(inputElement) {
+            const file = inputElement.files[0];
+            if (!file) {
+                showToast('No file selected.', 'warning');
+                return;
+            }
+
+            if (!file.type.startsWith('video/')) {
+                showToast('Please select a video file (MP4, WebM, MOV, AVI, MKV).', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            showToast('Uploading portfolio video: ' + file.name + '... (this may take a moment)', 'info');
+
+            fetch('/api/upload?folder=portfolio', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(errData => {
+                        throw new Error(errData.message || 'Upload failed.');
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast('Video uploaded successfully!', 'success');
+                    tempPortImages.push(data.imagePath);
+                    renderPortImagesManager();
+                } else {
+                    showToast(data.message || 'Upload failed.', 'error');
+                }
+            })
+            .catch(err => {
+                console.error('Portfolio video upload error:', err);
+                showToast('Upload failed: ' + err.message, 'error');
+            })
+            .finally(() => {
+                inputElement.value = '';
+            });
+        }
+
+        // Helper to check if a file path is a video
+        function isVideoFile(filePath) {
+            if (!filePath) return false;
+            const videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.mkv'];
+            const lowerPath = filePath.toLowerCase();
+            return videoExtensions.some(ext => lowerPath.endsWith(ext));
+        }
+
+        // Render images and videos inside the portfolio manager grid
+        function renderPortImagesManager() {
+            const container = document.getElementById('port-images-list');
+            container.innerHTML = '';
+            if (tempPortImages.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 15px;">No images or videos in project gallery. Please upload at least one file.</div>';
+                return;
+            }
+
+            tempPortImages.forEach((img, index) => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                if (isVideoFile(img)) {
+                    div.innerHTML = `
+                        <video src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" muted></video>
+                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:24px;text-shadow:0 2px 4px rgba(0,0,0,0.7);"><i class="fa fa-play-circle"></i></div>
+                        <button type="button" class="gallery-item-delete" onclick="deletePortImageByIndex(${index})" title="Delete video">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    `;
+                } else {
+                    div.innerHTML = `
+                        <img src="${img}" alt="Project image ${index + 1}">
+                        <button type="button" class="gallery-item-delete" onclick="deletePortImageByIndex(${index})" title="Delete image">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    `;
+                }
+                container.appendChild(div);
+            });
+        }
+
+        function deletePortImageByIndex(index) {
+            tempPortImages.splice(index, 1);
+            renderPortImagesManager();
+        }
+
+        function updateAwardCertificatePreview() {
+            const preview = document.getElementById('award-certificate-preview');
+            const removeBtn = document.getElementById('award-certificate-remove');
+            if (!preview || !removeBtn) return;
+
+            if (tempAwardImage) {
+                preview.src = tempAwardImage + '?v=' + Date.now();
+                preview.style.display = 'block';
+                removeBtn.style.display = 'inline-flex';
+            } else {
+                preview.removeAttribute('src');
+                preview.style.display = 'none';
+                removeBtn.style.display = 'none';
+            }
+        }
+
+        function handleAwardImageUpload(inputElement) {
+            const file = inputElement.files[0];
+            if (!file) {
+                showToast('No file selected.', 'warning');
+                return;
+            }
+
+            if (!file.type.startsWith('image/')) {
+                showToast('Please select an image file.', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            showToast('Uploading certificate: ' + file.name + '...', 'info');
+
+            fetch('/api/upload?folder=awards', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(errData => {
+                        throw new Error(errData.message || 'Upload failed.');
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast('Certificate uploaded successfully!', 'success');
+                    tempAwardImage = data.imagePath;
+                    updateAwardCertificatePreview();
+                } else {
+                    showToast(data.message || 'Upload failed.', 'error');
+                }
+            })
+            .catch(err => {
+                console.error('Award certificate upload error:', err);
+                showToast('Upload failed: ' + err.message, 'error');
+            })
+            .finally(() => {
+                inputElement.value = '';
+            });
+        }
+
+        function removeAwardCertificate() {
+            tempAwardImage = '';
+            updateAwardCertificatePreview();
+        }
+
+        // Helper to set nested fields, e.g. "about.profileImage"
+        function updateNestedObjectValue(obj, path, value) {
+            const keys = path.split('.');
+            let current = obj;
+            for (let i = 0; i < keys.length - 1; i++) {
+                current = current[keys[i]];
+            }
+            current[keys[keys.length - 1]] = value;
+        }
+
+        // --- POPULATE FORMS ---
+        function populateAboutForm(about) {
+            if (!about) return;
+            
+            // Handle localized objects
+            document.getElementById('about-first-name-ar').value = about.firstName?.ar || '';
+            document.getElementById('about-first-name-en').value = about.firstName?.en || '';
+            document.getElementById('about-first-name-ru').value = about.firstName?.ru || '';
+            
+            document.getElementById('about-last-name-ar').value = about.lastName?.ar || '';
+            document.getElementById('about-last-name-en').value = about.lastName?.en || '';
+            document.getElementById('about-last-name-ru').value = about.lastName?.ru || '';
+
+            document.getElementById('about-subheading-ar').value = about.subheading?.ar || '';
+            document.getElementById('about-subheading-en').value = about.subheading?.en || '';
+            document.getElementById('about-subheading-ru').value = about.subheading?.ru || '';
+
+            document.getElementById('about-description-ar').value = about.description?.ar || '';
+            document.getElementById('about-description-en').value = about.description?.en || '';
+            document.getElementById('about-description-ru').value = about.description?.ru || '';
+
+            document.getElementById('about-profile-preview').src = about.profileImage || 'img/profile.jpg';
+            document.getElementById('about-logo-preview').src = about.logoS || 'img/logo-s.png';
+            document.getElementById('about-banner-preview').src = about.bannerImage || 'img/profile-banner.jpg';
+
+            if (about.socials) {
+                document.getElementById('about-social-mailru').value = about.socials.mailRu || '';
+                document.getElementById('about-social-facebook').value = about.socials.facebook || '';
+                document.getElementById('about-social-telegram').value = about.socials.telegram || '';
+                document.getElementById('about-social-max').value = about.socials.max || '';
+                document.getElementById('about-social-whatsapp').value = about.socials.whatsapp || '';
+            }
+            
+            bindFormChangeListeners('#form-about');
+        }
+
+        function ensureNewSections(data) {
+            if (!data.testimonials) data.testimonials = { heading: {}, subtitle: {}, items: [] };
+            if (!data.testimonials.items) data.testimonials.items = [];
+            if (!data.whyMe) data.whyMe = { heading: {}, subtitle: {}, intro: {}, tableHeaders: {}, rows: [], highlights: [] };
+            if (!data.whyMe.rows) data.whyMe.rows = [];
+            if (!data.whyMe.highlights) data.whyMe.highlights = [];
+            if (!data.workflow) data.workflow = { heading: {}, subtitle: {}, steps: [] };
+            if (!data.workflow.steps) data.workflow.steps = [];
+            if (!data.ui) data.ui = {};
+        }
+
+        function populateTestimonialsSettings(testimonials) {
+            if (!testimonials) return;
+            document.getElementById('testimonials-heading-ar').value = testimonials.heading?.ar || '';
+            document.getElementById('testimonials-heading-en').value = testimonials.heading?.en || '';
+            document.getElementById('testimonials-heading-ru').value = testimonials.heading?.ru || '';
+            document.getElementById('testimonials-subtitle-ar').value = testimonials.subtitle?.ar || '';
+            document.getElementById('testimonials-subtitle-en').value = testimonials.subtitle?.en || '';
+            document.getElementById('testimonials-subtitle-ru').value = testimonials.subtitle?.ru || '';
+            bindFormChangeListeners('#form-testimonials-settings');
+        }
+
+        function populateWhyMeSettings(whyMe) {
+            if (!whyMe) return;
+            document.getElementById('why-me-heading-ar').value = whyMe.heading?.ar || '';
+            document.getElementById('why-me-heading-en').value = whyMe.heading?.en || '';
+            document.getElementById('why-me-heading-ru').value = whyMe.heading?.ru || '';
+            document.getElementById('why-me-subtitle-ar').value = whyMe.subtitle?.ar || '';
+            document.getElementById('why-me-subtitle-en').value = whyMe.subtitle?.en || '';
+            document.getElementById('why-me-subtitle-ru').value = whyMe.subtitle?.ru || '';
+            document.getElementById('why-me-intro-ar').value = whyMe.intro?.ar || '';
+            document.getElementById('why-me-intro-en').value = whyMe.intro?.en || '';
+            document.getElementById('why-me-intro-ru').value = whyMe.intro?.ru || '';
+            document.getElementById('why-me-header-feature-ar').value = whyMe.tableHeaders?.feature?.ar || '';
+            document.getElementById('why-me-header-feature-en').value = whyMe.tableHeaders?.feature?.en || '';
+            document.getElementById('why-me-header-feature-ru').value = whyMe.tableHeaders?.feature?.ru || '';
+            document.getElementById('why-me-header-me-ar').value = whyMe.tableHeaders?.me?.ar || '';
+            document.getElementById('why-me-header-me-en').value = whyMe.tableHeaders?.me?.en || '';
+            document.getElementById('why-me-header-me-ru').value = whyMe.tableHeaders?.me?.ru || '';
+            document.getElementById('why-me-header-others-ar').value = whyMe.tableHeaders?.others?.ar || '';
+            document.getElementById('why-me-header-others-en').value = whyMe.tableHeaders?.others?.en || '';
+            document.getElementById('why-me-header-others-ru').value = whyMe.tableHeaders?.others?.ru || '';
+            bindFormChangeListeners('#form-why-me-settings');
+        }
+
+        // --- RENDER TABLES ---
+        function renderExperienceTable(list) {
+            const tbody = document.querySelector('#experience-table tbody');
+            tbody.innerHTML = '';
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center" style="color:var(--text-muted)">No experiences added yet.</td></tr>';
+                return;
+            }
+
+            list.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${item.title?.en || item.title?.ar || 'Untitled'}</strong></td>
+                    <td>${item.date?.en || '-'}</td>
+                    <td><span class="badge badge-${item.color}">${item.color}</span></td>
+                    <td><i class="fa ${item.icon}"></i> <code>${item.icon}</code></td>
+                    <td class="table-actions" style="text-align: right;">
+                        <button class="btn btn-secondary btn-sm" onclick="openExperienceModal('${item.id}')"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteExperience('${item.id}')"><i class="fa fa-trash"></i> Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderPortfolioTable(list) {
+            const tbody = document.querySelector('#portfolio-table tbody');
+            tbody.innerHTML = '';
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center" style="color:var(--text-muted)">No projects added yet.</td></tr>';
+                return;
+            }
+
+            list.forEach(item => {
+                const cover = (item.images && item.images.length > 0) ? item.images[0] : 'img/portfolio/p-1.jpg';
+                tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img src="${cover}" class="table-img" alt="cover"></td>
+                    <td><strong>${item.title?.en || item.title?.ar || 'Untitled'}</strong></td>
+                    <td><span class="badge badge-info">${item.category}</span></td>
+                    <td>${item.client?.en || '-'}</td>
+                    <td>${item.service?.en || '-'}</td>
+                    <td class="table-actions" style="text-align: right;">
+                        <button class="btn btn-secondary btn-sm" onclick="openPortfolioModal('${item.id}')"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deletePortfolio('${item.id}')"><i class="fa fa-trash"></i> Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function normalizeSkillIcon(icon) {
+            if (!icon || typeof icon !== 'string') return 'fa-code';
+            let value = icon.trim();
+            if (!value) return 'fa-code';
+            value = value.replace(/^fa\s+fa-/, 'fa-').replace(/^fa\s+/, 'fa-');
+            if (!value.startsWith('fa-')) {
+                value = 'fa-' + value.replace(/^fa-?/, '');
+            }
+            return value;
+        }
+
+        function getSkillDisplayName(name) {
+            if (!name) return 'Untitled Skill';
+            if (typeof name === 'string') return name;
+            return name.en || name.ar || name.ru || 'Untitled Skill';
+        }
+
+        function getSkillSecondaryName(name) {
+            if (!name || typeof name === 'string') return '';
+            const primary = name.en || name.ar || name.ru || '';
+            const secondary = name.ar && name.ar !== primary ? name.ar : (name.ru && name.ru !== primary ? name.ru : '');
+            return secondary;
+        }
+
+        function renderSkillIconMarkup(icon, extraClass) {
+            const normalized = normalizeSkillIcon(icon);
+            return `<i class="fa ${normalized} ${extraClass || ''}"></i>`;
+        }
+
+        function updateNewSkillIconPreview(iconValue) {
+            const preview = document.getElementById('new-skill-icon-preview');
+            if (!preview) return;
+            preview.innerHTML = renderSkillIconMarkup(iconValue, 'skill-icon-preview-icon');
+        }
+
+        const SKILL_ICON_CHOICES = [
+            'fa-code', 'fa-html5', 'fa-css3', 'fa-database', 'fa-server', 'fa-globe',
+            'fa-mobile', 'fa-android', 'fa-apple', 'fa-windows', 'fa-linux',
+            'fa-git', 'fa-github', 'fa-cloud', 'fa-terminal', 'fa-cogs',
+            'fa-wrench', 'fa-bolt', 'fa-puzzle-piece', 'fa-laptop', 'fa-rocket',
+            'fa-briefcase', 'fa-sitemap', 'fa-plug', 'fa-microchip', 'fa-file-code-o'
+        ];
+
+        function renderSkillIconChoices() {
+            const container = document.getElementById('skill-icon-choices');
+            const iconInput = document.getElementById('new-skill-icon');
+            if (!container || !iconInput) return;
+
+            container.innerHTML = SKILL_ICON_CHOICES.map(function (icon) {
+                return `
+                    <button type="button" class="skill-icon-choice-btn" data-icon="${icon}" title="${icon}">
+                        ${renderSkillIconMarkup(icon, 'skill-icon-choice-icon')}
+                    </button>
+                `;
+            }).join('');
+
+            container.querySelectorAll('.skill-icon-choice-btn').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const icon = button.getAttribute('data-icon');
+                    iconInput.value = icon;
+                    updateNewSkillIconPreview(icon);
+                    container.querySelectorAll('.skill-icon-choice-btn').forEach(function (btn) {
+                        btn.classList.toggle('active', btn === button);
+                    });
+                });
+            });
+        }
+
+        function initSkillsManager() {
+            const container = document.getElementById('skills-list-container');
+            if (!container || container.dataset.bound === 'true') return;
+            container.dataset.bound = 'true';
+
+            container.addEventListener('click', function (event) {
+                const deleteBtn = event.target.closest('[data-skill-delete]');
+                if (deleteBtn) {
+                    event.preventDefault();
+                    deleteSkill(deleteBtn.getAttribute('data-skill-delete'));
+                }
+            });
+
+            container.addEventListener('input', function (event) {
+                const range = event.target.closest('[data-skill-range]');
+                if (range) {
+                    updateSkillValue(range.getAttribute('data-skill-range'), range.value, range);
+                }
+
+                const iconInput = event.target.closest('[data-skill-icon-input]');
+                if (iconInput) {
+                    updateSkillIcon(iconInput.getAttribute('data-skill-icon-input'), iconInput.value, iconInput);
+                }
+
+                const descInput = event.target.closest('[data-skill-desc-input]');
+                if (descInput) {
+                    updateSkillDescription(
+                        descInput.getAttribute('data-skill-desc-input'),
+                        descInput.getAttribute('data-skill-desc-lang'),
+                        descInput.value
+                    );
+                }
+            });
+        }
+
+        function renderSkillsList(list) {
+            const container = document.getElementById('skills-list-container');
+            container.innerHTML = '';
+
+            if (!Array.isArray(list) || list.length === 0) {
+                container.innerHTML = '<p class="text-center" style="color:var(--text-muted); padding: 20px;">No skills added yet.</p>';
+                return;
+            }
+
+            list.forEach(function (item) {
+                if (!item.id) {
+                    item.id = 'skill_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+                }
+
+                const div = document.createElement('div');
+                div.className = 'skill-row-edit';
+                const displayName = getSkillDisplayName(item.name);
+                const secondaryName = getSkillSecondaryName(item.name);
+                const secondaryMarkup = secondaryName
+                    ? ` <span style="font-weight: normal; font-size: 0.75rem; color: var(--text-muted);">(${secondaryName})</span>`
+                    : '';
+                const normalizedIcon = normalizeSkillIcon(item.icon);
+
+                div.innerHTML = `
+                    <div class="skill-row-info">
+                        <div class="skill-row-icon">${renderSkillIconMarkup(normalizedIcon, 'skill-row-icon-display')}</div>
+                        <div class="skill-row-details">
+                            <h4>${displayName}${secondaryMarkup}</h4>
+                            <div class="skill-row-icon-edit">
+                                <label>Icon</label>
+                                <input type="text" class="form-control form-control-sm" value="${normalizedIcon}" data-skill-icon-input="${item.id}" placeholder="fa-code">
+                            </div>
+                            <div style="display:flex; align-items:center; gap: 12px; margin-top: 10px;">
+                                <input type="range" class="form-control" style="padding: 0; border: none; background: transparent; flex-grow:1;" min="0" max="100" value="${item.percentage}" data-skill-range="${item.id}">
+                                <span data-skill-percent-label style="font-weight: 600; width: 40px; text-align:right;">${item.percentage}%</span>
+                            </div>
+                            <div class="skill-desc-edit" style="margin-top: 12px;">
+                                <label style="font-size: 0.75rem; color: var(--text-muted);">Simple explanation</label>
+                                <textarea class="form-control form-control-sm" rows="2" data-skill-desc-input="${item.id}" data-skill-desc-lang="ar" placeholder="Arabic explanation">${item.description?.ar || ''}</textarea>
+                                <textarea class="form-control form-control-sm" rows="2" style="margin-top: 6px;" data-skill-desc-input="${item.id}" data-skill-desc-lang="en" placeholder="English explanation">${item.description?.en || ''}</textarea>
+                                <textarea class="form-control form-control-sm" rows="2" style="margin-top: 6px;" data-skill-desc-input="${item.id}" data-skill-desc-lang="ru" placeholder="Russian explanation">${item.description?.ru || ''}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm skill-delete-btn" data-skill-delete="${item.id}" style="padding: 10px;" title="Delete skill">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderAwardsTable(list) {
+            const tbody = document.querySelector('#awards-table tbody');
+            tbody.innerHTML = '';
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center" style="color:var(--text-muted)">No awards listed.</td></tr>';
+                return;
+            }
+
+            list.forEach(item => {
+                const certCell = item.certificateImage
+                    ? `<img src="${item.certificateImage}" alt="Certificate" style="width: 48px; height: 48px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color);">`
+                    : '<span style="color:var(--text-muted); font-size:0.85rem;">—</span>';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${item.title?.en || item.title?.ar}</strong></td>
+                    <td>${item.date?.en || '-'}</td>
+                    <td>${certCell}</td>
+                    <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.description?.en || '-'}</td>
+                    <td class="table-actions" style="text-align: right;">
+                        <button class="btn btn-secondary btn-sm" onclick="openAwardModal('${item.id}')"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteAward('${item.id}')"><i class="fa fa-trash"></i> Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderTestimonialsTable(list) {
+            const tbody = document.querySelector('#testimonials-table tbody');
+            tbody.innerHTML = '';
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center" style="color:var(--text-muted)">No testimonials yet.</td></tr>';
+                return;
+            }
+            list.forEach(item => {
+                const imgCell = item.image
+                    ? `<img src="${item.image}" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:6px;">`
+                    : '<span style="color:var(--text-muted);">—</span>';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${item.clientName?.en || item.clientName?.ar || '-'}</strong></td>
+                    <td>${item.role?.en || '-'}</td>
+                    <td>${item.rating || 5} ★</td>
+                    <td>${imgCell}</td>
+                    <td class="table-actions" style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" onclick="openTestimonialModal('${item.id}')"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTestimonial('${item.id}')"><i class="fa fa-trash"></i> Delete</button>
+                    </td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderWhyMeRowsTable(list) {
+            const tbody = document.querySelector('#why-me-rows-table tbody');
+            tbody.innerHTML = '';
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center" style="color:var(--text-muted)">No comparison rows yet.</td></tr>';
+                return;
+            }
+            list.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${item.feature?.en || item.feature?.ar || '-'}</strong></td>
+                    <td>${item.meValue?.en || '-'}</td>
+                    <td>${item.othersValue?.en || '-'}</td>
+                    <td class="table-actions" style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" onclick="openWhyMeRowModal('${item.id}')"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteWhyMeRow('${item.id}')"><i class="fa fa-trash"></i> Delete</button>
+                    </td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderWhyMeHighlightsTable(list) {
+            const tbody = document.querySelector('#why-me-highlights-table tbody');
+            tbody.innerHTML = '';
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center" style="color:var(--text-muted)">No highlights yet.</td></tr>';
+                return;
+            }
+            list.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><i class="fa ${item.icon || 'fa-star'}"></i> <code>${item.icon || 'fa-star'}</code></td>
+                    <td><strong>${item.title?.en || item.title?.ar || '-'}</strong></td>
+                    <td style="max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${item.description?.en || '-'}</td>
+                    <td class="table-actions" style="text-align:right;">
+                        <button class="btn btn-secondary btn-sm" onclick="openWhyMeHighlightModal('${item.id}')"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteWhyMeHighlight('${item.id}')"><i class="fa fa-trash"></i> Delete</button>
+                    </td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateTestimonialImagePreview() {
+            const preview = document.getElementById('testimonial-image-preview');
+            const removeBtn = document.getElementById('testimonial-image-remove');
+            if (!preview || !removeBtn) return;
+            if (tempTestimonialImage) {
+                preview.src = tempTestimonialImage + '?v=' + Date.now();
+                preview.style.display = 'block';
+                removeBtn.style.display = 'inline-flex';
+            } else {
+                preview.removeAttribute('src');
+                preview.style.display = 'none';
+                removeBtn.style.display = 'none';
+            }
+        }
+
+        function handleTestimonialImageUpload(inputElement) {
+            const file = inputElement.files[0];
+            if (!file || !file.type.startsWith('image/')) {
+                showToast('Please select an image file.', file ? 'error' : 'warning');
+                inputElement.value = '';
+                return;
+            }
+            const formData = new FormData();
+            formData.append('image', file);
+            fetch('/api/upload?folder=testimonials', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` },
+                body: formData
+            }).then(res => res.ok ? res.json() : res.json().then(e => { throw new Error(e.message); }))
+            .then(data => {
+                if (data.success) {
+                    tempTestimonialImage = data.imagePath;
+                    updateTestimonialImagePreview();
+                    showToast('Screenshot uploaded!', 'success');
+                }
+            }).catch(err => showToast('Upload failed: ' + err.message, 'error'))
+            .finally(() => { inputElement.value = ''; });
+        }
+
+        function removeTestimonialImage() {
+            tempTestimonialImage = '';
+            updateTestimonialImagePreview();
+        }
+
+        function openTestimonialModal(id) {
+            document.getElementById('form-modal-testimonial').reset();
+            tempTestimonialImage = '';
+            if (id) {
+                const item = siteData.testimonials.items.find(x => x.id === id);
+                document.getElementById('testimonial-modal-title').innerText = 'Edit Testimonial';
+                document.getElementById('testimonial-edit-id').value = item.id;
+                document.getElementById('testimonial-name-ar').value = item.clientName?.ar || '';
+                document.getElementById('testimonial-name-en').value = item.clientName?.en || '';
+                document.getElementById('testimonial-name-ru').value = item.clientName?.ru || '';
+                document.getElementById('testimonial-role-ar').value = item.role?.ar || '';
+                document.getElementById('testimonial-role-en').value = item.role?.en || '';
+                document.getElementById('testimonial-role-ru').value = item.role?.ru || '';
+                document.getElementById('testimonial-quote-ar').value = item.quote?.ar || '';
+                document.getElementById('testimonial-quote-en').value = item.quote?.en || '';
+                document.getElementById('testimonial-quote-ru').value = item.quote?.ru || '';
+                document.getElementById('testimonial-rating').value = item.rating || 5;
+                tempTestimonialImage = item.image || '';
+            } else {
+                document.getElementById('testimonial-modal-title').innerText = 'Add Client Testimonial';
+                document.getElementById('testimonial-edit-id').value = '';
+            }
+            updateTestimonialImagePreview();
+            showModal('modal-testimonial');
+        }
+
+        function submitTestimonialForm() {
+            const id = document.getElementById('testimonial-edit-id').value;
+            if (!document.getElementById('testimonial-name-ar').value || !document.getElementById('testimonial-name-en').value) {
+                showToast('Please fill client name in Arabic & English.', 'warning');
+                return;
+            }
+            const obj = {
+                id: id || ('test_' + Date.now()),
+                clientName: {
+                    ar: document.getElementById('testimonial-name-ar').value,
+                    en: document.getElementById('testimonial-name-en').value,
+                    ru: document.getElementById('testimonial-name-ru').value
+                },
+                role: {
+                    ar: document.getElementById('testimonial-role-ar').value,
+                    en: document.getElementById('testimonial-role-en').value,
+                    ru: document.getElementById('testimonial-role-ru').value
+                },
+                quote: {
+                    ar: document.getElementById('testimonial-quote-ar').value,
+                    en: document.getElementById('testimonial-quote-en').value,
+                    ru: document.getElementById('testimonial-quote-ru').value
+                },
+                rating: parseInt(document.getElementById('testimonial-rating').value, 10) || 5
+            };
+            if (tempTestimonialImage) obj.image = tempTestimonialImage;
+            if (id) {
+                siteData.testimonials.items[siteData.testimonials.items.findIndex(x => x.id === id)] = obj;
+            } else {
+                siteData.testimonials.items.push(obj);
+            }
+            closeModal('modal-testimonial');
+            renderTestimonialsTable(siteData.testimonials.items);
+            markAsModified();
+            showToast('Testimonial saved.');
+        }
+
+        function deleteTestimonial(id) {
+            if (!confirm('Delete this testimonial?')) return;
+            siteData.testimonials.items = siteData.testimonials.items.filter(x => x.id !== id);
+            renderTestimonialsTable(siteData.testimonials.items);
+            markAsModified();
+            showToast('Testimonial deleted.', 'info');
+        }
+
+        function openWhyMeRowModal(id) {
+            document.getElementById('form-modal-why-me-row').reset();
+            if (id) {
+                const item = siteData.whyMe.rows.find(x => x.id === id);
+                document.getElementById('why-me-row-modal-title').innerText = 'Edit Comparison Row';
+                document.getElementById('why-me-row-edit-id').value = item.id;
+                document.getElementById('why-me-row-feature-ar').value = item.feature?.ar || '';
+                document.getElementById('why-me-row-feature-en').value = item.feature?.en || '';
+                document.getElementById('why-me-row-feature-ru').value = item.feature?.ru || '';
+                document.getElementById('why-me-row-me-ar').value = item.meValue?.ar || '';
+                document.getElementById('why-me-row-me-en').value = item.meValue?.en || '';
+                document.getElementById('why-me-row-me-ru').value = item.meValue?.ru || '';
+                document.getElementById('why-me-row-others-ar').value = item.othersValue?.ar || '';
+                document.getElementById('why-me-row-others-en').value = item.othersValue?.en || '';
+                document.getElementById('why-me-row-others-ru').value = item.othersValue?.ru || '';
+                document.getElementById('why-me-row-me-positive').checked = item.mePositive !== false;
+                document.getElementById('why-me-row-others-positive').checked = item.othersPositive === true;
+            } else {
+                document.getElementById('why-me-row-modal-title').innerText = 'Add Comparison Row';
+                document.getElementById('why-me-row-edit-id').value = '';
+                document.getElementById('why-me-row-me-positive').checked = true;
+            }
+            showModal('modal-why-me-row');
+        }
+
+        function submitWhyMeRowForm() {
+            const id = document.getElementById('why-me-row-edit-id').value;
+            const obj = {
+                id: id || ('why_' + Date.now()),
+                feature: {
+                    ar: document.getElementById('why-me-row-feature-ar').value,
+                    en: document.getElementById('why-me-row-feature-en').value,
+                    ru: document.getElementById('why-me-row-feature-ru').value
+                },
+                meValue: {
+                    ar: document.getElementById('why-me-row-me-ar').value,
+                    en: document.getElementById('why-me-row-me-en').value,
+                    ru: document.getElementById('why-me-row-me-ru').value
+                },
+                othersValue: {
+                    ar: document.getElementById('why-me-row-others-ar').value,
+                    en: document.getElementById('why-me-row-others-en').value,
+                    ru: document.getElementById('why-me-row-others-ru').value
+                },
+                mePositive: document.getElementById('why-me-row-me-positive').checked,
+                othersPositive: document.getElementById('why-me-row-others-positive').checked
+            };
+            if (id) {
+                siteData.whyMe.rows[siteData.whyMe.rows.findIndex(x => x.id === id)] = obj;
+            } else {
+                siteData.whyMe.rows.push(obj);
+            }
+            closeModal('modal-why-me-row');
+            renderWhyMeRowsTable(siteData.whyMe.rows);
+            markAsModified();
+            showToast('Comparison row saved.');
+        }
+
+        function deleteWhyMeRow(id) {
+            if (!confirm('Delete this row?')) return;
+            siteData.whyMe.rows = siteData.whyMe.rows.filter(x => x.id !== id);
+            renderWhyMeRowsTable(siteData.whyMe.rows);
+            markAsModified();
+        }
+
+        function openWhyMeHighlightModal(id) {
+            document.getElementById('form-modal-why-me-highlight').reset();
+            if (id) {
+                const item = siteData.whyMe.highlights.find(x => x.id === id);
+                document.getElementById('why-me-highlight-modal-title').innerText = 'Edit Highlight';
+                document.getElementById('why-me-highlight-edit-id').value = item.id;
+                document.getElementById('why-me-highlight-icon').value = item.icon || 'fa-star';
+                document.getElementById('why-me-highlight-title-ar').value = item.title?.ar || '';
+                document.getElementById('why-me-highlight-title-en').value = item.title?.en || '';
+                document.getElementById('why-me-highlight-title-ru').value = item.title?.ru || '';
+                document.getElementById('why-me-highlight-desc-ar').value = item.description?.ar || '';
+                document.getElementById('why-me-highlight-desc-en').value = item.description?.en || '';
+                document.getElementById('why-me-highlight-desc-ru').value = item.description?.ru || '';
+            } else {
+                document.getElementById('why-me-highlight-modal-title').innerText = 'Add Highlight';
+                document.getElementById('why-me-highlight-edit-id').value = '';
+            }
+            showModal('modal-why-me-highlight');
+        }
+
+        function submitWhyMeHighlightForm() {
+            const id = document.getElementById('why-me-highlight-edit-id').value;
+            const obj = {
+                id: id || ('hl_' + Date.now()),
+                icon: document.getElementById('why-me-highlight-icon').value || 'fa-star',
+                title: {
+                    ar: document.getElementById('why-me-highlight-title-ar').value,
+                    en: document.getElementById('why-me-highlight-title-en').value,
+                    ru: document.getElementById('why-me-highlight-title-ru').value
+                },
+                description: {
+                    ar: document.getElementById('why-me-highlight-desc-ar').value,
+                    en: document.getElementById('why-me-highlight-desc-en').value,
+                    ru: document.getElementById('why-me-highlight-desc-ru').value
+                }
+            };
+            if (id) {
+                siteData.whyMe.highlights[siteData.whyMe.highlights.findIndex(x => x.id === id)] = obj;
+            } else {
+                siteData.whyMe.highlights.push(obj);
+            }
+            closeModal('modal-why-me-highlight');
+            renderWhyMeHighlightsTable(siteData.whyMe.highlights);
+            markAsModified();
+            showToast('Highlight saved.');
+        }
+
+        function deleteWhyMeHighlight(id) {
+            if (!confirm('Delete this highlight?')) return;
+            siteData.whyMe.highlights = siteData.whyMe.highlights.filter(x => x.id !== id);
+            renderWhyMeHighlightsTable(siteData.whyMe.highlights);
+            markAsModified();
+        }
+
+        // --- MODAL UTILITIES ---
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        // --- CRUD OPERATIONS: EXPERIENCE ---
+        function openExperienceModal(id) {
+            const form = document.getElementById('form-modal-experience');
+            form.reset();
+
+            if (id) {
+                document.getElementById('exp-modal-title').innerText = 'Edit Work Experience';
+                const item = siteData.experience.find(x => x.id === id);
+                document.getElementById('exp-edit-id').value = item.id;
+                
+                document.getElementById('exp-title-ar').value = item.title?.ar || '';
+                document.getElementById('exp-title-en').value = item.title?.en || '';
+                document.getElementById('exp-title-ru').value = item.title?.ru || '';
+                
+                document.getElementById('exp-date-ar').value = item.date?.ar || '';
+                document.getElementById('exp-date-en').value = item.date?.en || '';
+                document.getElementById('exp-date-ru').value = item.date?.ru || '';
+                
+                document.getElementById('exp-description-ar').value = item.description?.ar || '';
+                document.getElementById('exp-description-en').value = item.description?.en || '';
+                document.getElementById('exp-description-ru').value = item.description?.ru || '';
+
+                document.getElementById('exp-color').value = item.color;
+                document.getElementById('exp-icon').value = item.icon;
+            } else {
+                document.getElementById('exp-modal-title').innerText = 'Add Work Experience';
+                document.getElementById('exp-edit-id').value = '';
+                document.getElementById('exp-color').value = 'primary';
+                document.getElementById('exp-icon').value = 'fa-briefcase';
+            }
+
+            showModal('modal-experience');
+        }
+
+        function submitExperienceForm() {
+            const id = document.getElementById('exp-edit-id').value;
+            const titleAr = document.getElementById('exp-title-ar').value;
+            const titleEn = document.getElementById('exp-title-en').value;
+            const titleRu = document.getElementById('exp-title-ru').value;
+            
+            const dateAr = document.getElementById('exp-date-ar').value;
+            const dateEn = document.getElementById('exp-date-en').value;
+            const dateRu = document.getElementById('exp-date-ru').value;
+
+            const descAr = document.getElementById('exp-description-ar').value;
+            const descEn = document.getElementById('exp-description-en').value;
+            const descRu = document.getElementById('exp-description-ru').value;
+
+            const color = document.getElementById('exp-color').value;
+            const icon = document.getElementById('exp-icon').value;
+
+            if (!titleAr || !titleEn || !dateAr || !dateEn || !descAr || !descEn) {
+                showToast('Please fill out Arabic and English translations.', 'warning');
+                return;
+            }
+
+            const expObject = {
+                id: id || ('exp_' + Date.now()),
+                title: { ar: titleAr, en: titleEn, ru: titleRu },
+                date: { ar: dateAr, en: dateEn, ru: dateRu },
+                description: { ar: descAr, en: descEn, ru: descRu },
+                color,
+                icon
+            };
+
+            if (id) {
+                const index = siteData.experience.findIndex(x => x.id === id);
+                siteData.experience[index] = expObject;
+                showToast('Experience updated.');
+            } else {
+                siteData.experience.push(expObject);
+                showToast('Experience added.');
+            }
+
+            closeModal('modal-experience');
+            renderExperienceTable(siteData.experience);
+            updateStats();
+            markAsModified();
+        }
+
+        function deleteExperience(id) {
+            if (confirm('Are you sure you want to delete this experience?')) {
+                siteData.experience = siteData.experience.filter(x => x.id !== id);
+                renderExperienceTable(siteData.experience);
+                updateStats();
+                markAsModified();
+                showToast('Experience deleted.', 'info');
+            }
+        }
+
+        // --- CRUD OPERATIONS: PORTFOLIO ---
+        function openPortfolioModal(id) {
+            const form = document.getElementById('form-modal-portfolio');
+            form.reset();
+
+            if (id) {
+                document.getElementById('port-modal-title').innerText = 'Edit Portfolio Project';
+                const item = siteData.portfolio.find(x => x.id === id);
+                document.getElementById('port-edit-id').value = item.id;
+                
+                document.getElementById('port-title-ar').value = item.title?.ar || '';
+                document.getElementById('port-title-en').value = item.title?.en || '';
+                document.getElementById('port-title-ru').value = item.title?.ru || '';
+
+                document.getElementById('port-category').value = item.category || 'consulting';
+
+                document.getElementById('port-client-ar').value = item.client?.ar || '';
+                document.getElementById('port-client-en').value = item.client?.en || '';
+                document.getElementById('port-client-ru').value = item.client?.ru || '';
+
+                document.getElementById('port-date-ar').value = item.date?.ar || '';
+                document.getElementById('port-date-en').value = item.date?.en || '';
+                document.getElementById('port-date-ru').value = item.date?.ru || '';
+
+                document.getElementById('port-service-ar').value = item.service?.ar || '';
+                document.getElementById('port-service-en').value = item.service?.en || '';
+                document.getElementById('port-service-ru').value = item.service?.ru || '';
+
+                document.getElementById('port-delivery-ar').value = item.deliveryTime?.ar || '';
+                document.getElementById('port-delivery-en').value = item.deliveryTime?.en || '';
+                document.getElementById('port-delivery-ru').value = item.deliveryTime?.ru || '';
+
+                document.getElementById('port-description-ar').value = item.description?.ar || '';
+                document.getElementById('port-description-en').value = item.description?.en || '';
+                document.getElementById('port-description-ru').value = item.description?.ru || '';
+
+                // Copy project images array to tempPortImages
+                tempPortImages = item.images ? [...item.images] : [];
+            } else {
+                document.getElementById('port-modal-title').innerText = 'Add Portfolio Project';
+                document.getElementById('port-edit-id').value = '';
+                tempPortImages = [];
+            }
+
+            renderPortImagesManager();
+            showModal('modal-portfolio');
+        }
+
+        function submitPortfolioForm() {
+            const id = document.getElementById('port-edit-id').value;
+            const titleAr = document.getElementById('port-title-ar').value;
+            const titleEn = document.getElementById('port-title-en').value;
+            const titleRu = document.getElementById('port-title-ru').value;
+
+            const category = document.getElementById('port-category').value;
+
+            const clientAr = document.getElementById('port-client-ar').value;
+            const clientEn = document.getElementById('port-client-en').value;
+            const clientRu = document.getElementById('port-client-ru').value;
+
+            const dateAr = document.getElementById('port-date-ar').value;
+            const dateEn = document.getElementById('port-date-en').value;
+            const dateRu = document.getElementById('port-date-ru').value;
+
+            const serviceAr = document.getElementById('port-service-ar').value;
+            const serviceEn = document.getElementById('port-service-en').value;
+            const serviceRu = document.getElementById('port-service-ru').value;
+
+            const delivAr = document.getElementById('port-delivery-ar').value;
+            const delivEn = document.getElementById('port-delivery-en').value;
+            const delivRu = document.getElementById('port-delivery-ru').value;
+
+            const descAr = document.getElementById('port-description-ar').value;
+            const descEn = document.getElementById('port-description-en').value;
+            const descRu = document.getElementById('port-description-ru').value;
+
+            if (!titleAr || !titleEn || !descAr || !descEn) {
+                showToast('Please fill out Title and Description in Arabic & English.', 'warning');
+                return;
+            }
+
+            if (tempPortImages.length === 0) {
+                showToast('Please upload at least one project image or video.', 'warning');
+                return;
+            }
+
+            const portObject = {
+                id: id || ('port_' + Date.now()),
+                title: { ar: titleAr, en: titleEn, ru: titleRu },
+                category,
+                images: tempPortImages,
+                client: { ar: clientAr, en: clientEn, ru: clientRu },
+                date: { ar: dateAr, en: dateEn, ru: dateRu },
+                service: { ar: serviceAr, en: serviceEn, ru: serviceRu },
+                deliveryTime: { ar: delivAr, en: delivEn, ru: delivRu },
+                description: { ar: descAr, en: descEn, ru: descRu }
+            };
+
+            if (id) {
+                const index = siteData.portfolio.findIndex(x => x.id === id);
+                siteData.portfolio[index] = portObject;
+                showToast('Project updated.');
+            } else {
+                siteData.portfolio.push(portObject);
+                showToast('Project added.');
+            }
+
+            closeModal('modal-portfolio');
+            renderPortfolioTable(siteData.portfolio);
+            updateStats();
+            markAsModified();
+        }
+
+        function deletePortfolio(id) {
+            if (confirm('Are you sure you want to delete this portfolio project?')) {
+                siteData.portfolio = siteData.portfolio.filter(x => x.id !== id);
+                renderPortfolioTable(siteData.portfolio);
+                updateStats();
+                markAsModified();
+                showToast('Project deleted.', 'info');
+            }
+        }
+
+        // --- CRUD OPERATIONS: SKILLS ---
+        function updateSkillValue(id, value, inputEl) {
+            if (!Array.isArray(siteData.skills)) siteData.skills = [];
+            const skill = siteData.skills.find(function (x) { return x.id === id; });
+            if (skill) {
+                skill.percentage = parseInt(value, 10);
+                const label = inputEl && inputEl.parentElement
+                    ? inputEl.parentElement.querySelector('[data-skill-percent-label]')
+                    : null;
+                if (label) label.innerText = value + '%';
+                markAsModified();
+            }
+        }
+
+        function updateSkillIcon(id, iconValue, inputEl) {
+            if (!Array.isArray(siteData.skills)) siteData.skills = [];
+            const skill = siteData.skills.find(function (x) { return x.id === id; });
+            if (!skill) return;
+
+            skill.icon = normalizeSkillIcon(iconValue);
+            if (inputEl) inputEl.value = skill.icon;
+
+            const row = inputEl ? inputEl.closest('.skill-row-edit') : null;
+            const iconBox = row ? row.querySelector('.skill-row-icon') : null;
+            if (iconBox) {
+                iconBox.innerHTML = renderSkillIconMarkup(skill.icon, 'skill-row-icon-display');
+            }
+
+            markAsModified();
+        }
+
+        function updateSkillDescription(id, lang, value) {
+            if (!Array.isArray(siteData.skills)) siteData.skills = [];
+            const skill = siteData.skills.find(function (x) { return x.id === id; });
+            if (!skill) return;
+
+            if (!skill.description || typeof skill.description !== 'object') {
+                skill.description = { ar: '', en: '', ru: '' };
+            }
+
+            skill.description[lang] = value;
+            markAsModified();
+        }
+
+        function deleteSkill(id) {
+            if (!Array.isArray(siteData.skills)) {
+                siteData.skills = [];
+                return;
+            }
+
+            if (!confirm('Are you sure you want to delete this skill?')) return;
+
+            siteData.skills = siteData.skills.filter(function (x) { return x.id !== id; });
+            renderSkillsList(siteData.skills);
+            updateStats();
+            markAsModified();
+            showToast('Skill deleted.', 'info');
+        }
+
+        function addNewSkill() {
+            if (!Array.isArray(siteData.skills)) siteData.skills = [];
+
+            const nameAr = document.getElementById('new-skill-name-ar').value.trim();
+            const nameEn = document.getElementById('new-skill-name-en').value.trim();
+            const nameRu = document.getElementById('new-skill-name-ru').value.trim();
+            const descAr = document.getElementById('new-skill-desc-ar').value.trim();
+            const descEn = document.getElementById('new-skill-desc-en').value.trim();
+            const descRu = document.getElementById('new-skill-desc-ru').value.trim();
+            const icon = normalizeSkillIcon(document.getElementById('new-skill-icon').value);
+            const percentage = parseInt(document.getElementById('new-skill-percentage').value, 10);
+
+            if (!nameAr || !nameEn || !icon) {
+                showToast('Please fill out Skill Name in Arabic and English.', 'warning');
+                return;
+            }
+
+            const id = 'skill_' + Date.now();
+            siteData.skills.push({
+                id,
+                name: { ar: nameAr, en: nameEn, ru: nameRu },
+                description: { ar: descAr, en: descEn, ru: descRu },
+                icon,
+                percentage
+            });
+
+            document.getElementById('form-new-skill').reset();
+            document.getElementById('new-skill-icon').value = 'fa-code';
+            document.getElementById('new-skill-percentage').value = '80';
+            updateNewSkillIconPreview('fa-code');
+            document.querySelectorAll('.skill-icon-choice-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-icon') === 'fa-code');
+            });
+
+            renderSkillsList(siteData.skills);
+            updateStats();
+            markAsModified();
+            showToast('Skill added!', 'success');
+        }
+
+        // --- CRUD OPERATIONS: AWARDS ---
+        function openAwardModal(id) {
+            const form = document.getElementById('form-modal-award');
+            form.reset();
+            tempAwardImage = '';
+
+            if (id) {
+                document.getElementById('award-modal-title').innerText = 'Edit Certificate / Award';
+                const item = siteData.awards.find(x => x.id === id);
+                document.getElementById('award-edit-id').value = item.id;
+                
+                document.getElementById('award-title-ar').value = item.title?.ar || '';
+                document.getElementById('award-title-en').value = item.title?.en || '';
+                document.getElementById('award-title-ru').value = item.title?.ru || '';
+
+                document.getElementById('award-date-ar').value = item.date?.ar || '';
+                document.getElementById('award-date-en').value = item.date?.en || '';
+                document.getElementById('award-date-ru').value = item.date?.ru || '';
+
+                document.getElementById('award-description-ar').value = item.description?.ar || '';
+                document.getElementById('award-description-en').value = item.description?.en || '';
+                document.getElementById('award-description-ru').value = item.description?.ru || '';
+
+                tempAwardImage = item.certificateImage || '';
+            } else {
+                document.getElementById('award-modal-title').innerText = 'Add Certificate / Award';
+                document.getElementById('award-edit-id').value = '';
+            }
+
+            updateAwardCertificatePreview();
+            showModal('modal-award');
+        }
+
+        function submitAwardForm() {
+            const id = document.getElementById('award-edit-id').value;
+            const titleAr = document.getElementById('award-title-ar').value;
+            const titleEn = document.getElementById('award-title-en').value;
+            const titleRu = document.getElementById('award-title-ru').value;
+
+            const dateAr = document.getElementById('award-date-ar').value;
+            const dateEn = document.getElementById('award-date-en').value;
+            const dateRu = document.getElementById('award-date-ru').value;
+
+            const descAr = document.getElementById('award-description-ar').value;
+            const descEn = document.getElementById('award-description-en').value;
+            const descRu = document.getElementById('award-description-ru').value;
+
+            if (!titleAr || !titleEn || !dateAr || !dateEn || !descAr || !descEn) {
+                showToast('Please fill out Award Title and Description in Arabic & English.', 'warning');
+                return;
+            }
+
+            const awardObj = {
+                id: id || ('award_' + Date.now()),
+                title: { ar: titleAr, en: titleEn, ru: titleRu },
+                date: { ar: dateAr, en: dateEn, ru: dateRu },
+                description: { ar: descAr, en: descEn, ru: descRu }
+            };
+
+            if (tempAwardImage) {
+                awardObj.certificateImage = tempAwardImage;
+            }
+
+            if (id) {
+                const index = siteData.awards.findIndex(x => x.id === id);
+                siteData.awards[index] = awardObj;
+                showToast('Award/Certificate updated.');
+            } else {
+                siteData.awards.push(awardObj);
+                showToast('Award/Certificate added.');
+            }
+
+            closeModal('modal-award');
+            renderAwardsTable(siteData.awards);
+            updateStats();
+            markAsModified();
+        }
+
+        function deleteAward(id) {
+            if (confirm('Are you sure you want to delete this award/certificate?')) {
+                siteData.awards = siteData.awards.filter(x => x.id !== id);
+                renderAwardsTable(siteData.awards);
+                updateStats();
+                markAsModified();
+                showToast('Award deleted.', 'info');
+            }
+        }
+
+        // --- TAB SWITCHING SYSTEM ---
+        document.querySelectorAll('.sidebar-menu .menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-menu .menu-item').forEach(x => x.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
+
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`tab-${tabId}`).classList.add('active');
+
+                const titleMap = {
+                    dashboard: { title: 'Dashboard', subtitle: 'Overview of your website contents' },
+                    about: { title: 'About Me', subtitle: 'Manage your profile details and social links' },
+                    experience: { title: 'Experience', subtitle: 'Manage your previous work experience timeline' },
+                    portfolio: { title: 'Portfolio Grid', subtitle: 'Add, Edit or Remove projects from the grid' },
+                    skills: { title: 'Skills Inventory', subtitle: 'Add skills and define your proficiency levels' },
+                    awards: { title: 'Awards & Certifications', subtitle: 'List academic and professional achievements' },
+                    testimonials: { title: 'Client Testimonials', subtitle: 'Manage client reviews and screenshot testimonials' },
+                    'why-me': { title: 'Why Me', subtitle: 'Comparison table and convincing highlights' }
+                };
+
+                document.getElementById('current-tab-title').innerText = titleMap[tabId].title;
+                document.getElementById('current-tab-subtitle').innerText = titleMap[tabId].subtitle;
+            });
+        });
+
+        checkAuth();
+    </script>
+</body>
+</html>

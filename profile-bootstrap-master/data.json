@@ -1,0 +1,1058 @@
+{
+  "about": {
+    "firstName": {
+      "ar": "محمد عاطف ",
+      "en": "Mohamed Atef ",
+      "ru": "мохамед атеф"
+    },
+    "lastName": {
+      "ar": "مرعي",
+      "en": "Marie",
+      "ru": "Марей"
+    },
+    "subheading": {
+      "ar": "مهندس برمجيات | مطور تطبيقات ومواقع إلكترونية",
+      "en": "Software Engineer | Full Stack Developer",
+      "ru": "Инженер-программист | Full Stack разработчик"
+    },
+    "description": {
+      "ar": "أنا محمد عاطف، مهندس برمجيات بخبرة تتجاوز 5 سنوات في تطوير  البرمجيات، متخصصة في بناء مواقع الويب، تطبيقات الهواتف الذكية، والأنظمة البرمجية المتكاملة. أمتلك شغفًا كبيرًا بالتكنولوجيا وأسعى دائمًا إلى تطوير مهاراتي ومواكبة أحدث التقنيات.\n\nخلال مسيرتي المهنية قمت بتطوير العديد من المشاريع الناجحة، بدءًا من المواقع التعريفية والمتاجر الإلكترونية وحتى الأنظمة الإدارية المعقدة وتطبيقات الهواتف الذكية، مع التركيز على الأداء، الأمان، وتجربة المستخدم.\n\nمن أبرز إنجازاتي الفوز بجائزة أفضل مشروع برمجي لشركة روس أتوم (Rosatom) لعام 2025، بالإضافة إلى تطوير نظام متكامل للمكتب الدولي لإدارة شؤون الطلاب الأجانب في جامعة باومان الحكومية التقنية (BMSTU)، والذي لا يزال مستخدمًا حتى اليوم.\n\nكما تخرجت من جامعة باومان الحكومية التقنية بتقديرات أكاديمية متميزة، وشاركت في العديد من الدورات التدريبية المتخصصة في هندسة البرمجيات، وهندسة الشبكات، وأمن المعلومات، والتقنيات الحديثة.",
+      "en": "I am Mohamed Atef, a Software Engineer with more than 5 years of professional experience in software development, specializing in modern web applications, mobile applications, and enterprise systems.\n\nThroughout my career, I have successfully delivered numerous software projects ranging from corporate websites and e-commerce platforms to large-scale management systems and cross-platform mobile applications. My primary focus is building secure, scalable, and high-performance solutions with outstanding user experiences.\n\nOne of my proudest achievements was receiving the Best Software Project Award from Rosatom in 2025. I also designed and developed a complete management system for the International Office of Bauman Moscow State Technical University (BMSTU), which continues to be actively used today.\n\nI graduated from Bauman Moscow State Technical University with excellent academic performance and have completed numerous professional courses covering software engineering, networking, databases, cloud technologies, and modern development practices.",
+      "ru": "Меня зовут Мохамед Атеф. Я инженер-программист с опытом работы более 5 лет в области разработки программного обеспечения. Специализируюсь на создании современных веб-приложений, мобильных приложений и корпоративных информационных систем.\n\nЗа годы профессиональной деятельности я успешно реализовал множество проектов — от корпоративных сайтов и интернет-магазинов до сложных информационных систем и мобильных приложений. При разработке уделяю особое внимание производительности, безопасности и удобству пользователей.\n\nОдним из моих главных достижений стало получение награды «Лучший программный проект Rosatom 2025». Кроме того, я разработал полноценную информационную систему для Международного офиса МГТУ им. Н. Э. Баумана, которая успешно используется в настоящее время.\n\nЯ окончил Московский государственный технический университет имени Н. Э. Баумана с высокими академическими результатами и прошёл множество профессиональных курсов по программной инженерии, сетевым технологиям, базам данных и современным IT-технологиям."
+    },
+    "profileImage": "img/1000096683_jpg_1782614976570.jpeg",
+    "bannerImage": "img/1000096683_jpg__3__1782615210910.jpeg",
+    "logoS": "img/ChatGPT_Image_28_________2026__1782598670998.png",
+    "logoWhite": "img/logo-white.png",
+    "socials": {
+      "mailRu": "mohamedatef0100@mail.ru",
+      "facebook": "#",
+      "telegram": "mohamedatef010",
+      "max": "+79363330407",
+      "whatsapp": "+79363330407"
+    }
+  },
+  "experience": [
+    {
+      "id": "exp_1",
+      "title": {
+        "ar": "مهندس برمجيات",
+        "en": "Software Engineer",
+        "ru": "Инженер-программист"
+      },
+      "date": {
+        "ar": "2020 - حتى الآن",
+        "en": "January 2020 – Present",
+        "ru": "Январь 2020 — настоящее время"
+      },
+      "description": {
+        "ar": "💼 مهندس برمجيات\n\nأكثر من خمس سنوات من الخبرة في تطوير البرمجيات، وبناء مواقع الويب الحديثة، وتطبيقات الهواتف الذكية، والأنظمة الإدارية المتكاملة باستخدام أحدث التقنيات مع التركيز على الأداء والأمان وقابلية التوسع.",
+        "en": "💼 Software Engineer\nOver the past five years, I have designed and developed modern web applications, mobile applications, and enterprise systems using the latest technologies. My expertise covers Full Stack Development, UI/UX implementation, database architecture, API development, server deployment, networking, and cloud infrastructure. I am passionate about building secure, scalable, and high-performance digital solutions that provide exceptional user experiences.",
+        "ru": "💼 Инженер-программист (Software Engineer)\n\nБолее 5 лет профессионального опыта в разработке программного обеспечения. Специализируюсь на создании современных веб-приложений, мобильных приложений и корпоративных информационных систем. Имею глубокие знания в области Full Stack разработки, проектирования баз данных, разработки API, UI/UX, администрирования серверов, сетевых технологий и облачной инфраструктуры. Создаю безопасные, масштабируемые и высокопроизводительные программные решения."
+      },
+      "color": "info",
+      "icon": "fa-globe"
+    },
+    {
+      "id": "exp_2",
+      "title": {
+        "ar": "أفضل مشروع برمجي - روس أتوم",
+        "en": "Best Software Project Award – Rosatom",
+        "ru": "Лучший программный проект — Rosatom"
+      },
+      "date": {
+        "ar": "2025",
+        "en": "2025",
+        "ru": "2025"
+      },
+      "description": {
+        "ar": "الحصول على جائزة أفضل مشروع برمجي من شركة Rosatom تقديرًا لتطوير مشروع برمجي متميز من الناحية التقنية والعملية.",
+        "en": "Received the Best Software Project Award from Rosatom for developing an innovative software solution recognized for its technical excellence, system architecture, and real-world impact.",
+        "ru": "Награждён премией «Лучший программный проект Rosatom 2025» за разработку инновационного программного решения, отличающегося высоким качеством архитектуры, производительностью и практической ценностью."
+      },
+      "color": "warning",
+      "icon": "fa-laptop"
+    },
+    {
+      "id": "exp_3",
+      "title": {
+        "ar": "نظام إدارة المكتب الدولي",
+        "en": "International Office Management System",
+        "ru": "Система управления Международным офисом"
+      },
+      "date": {
+        "ar": "2024 - حتى الآن",
+        "en": "2024 – Present",
+        "ru": "2024 — настоящее время"
+      },
+      "description": {
+        "ar": "تصميم وتطوير نظام متكامل لإدارة المكتب الدولي بجامعة باومان الحكومية، والذي يتم استخدامه حاليًا لإدارة شؤون الطلاب الأجانب والعمليات الإدارية.",
+        "en": "Designed and developed a comprehensive management system for the International Office at Bauman Moscow State Technical University (BMSTU). The system streamlines the management of international students, administrative workflows, and documentation, and is actively used by the university today.",
+        "ru": "Спроектировал и разработал комплексную информационную систему для Международного офиса МГТУ им. Н. Э. Баумана. Система автоматизирует управление иностранными студентами, документооборотом и административными процессами и успешно используется университетом в настоящее время."
+      },
+      "color": "primary",
+      "icon": "fa-camera"
+    },
+    {
+      "id": "exp_4",
+      "title": {
+        "ar": "مطور Full Stack مستقل",
+        "en": "Freelance Full Stack Developer",
+        "ru": "Full Stack разработчик (Фриланс)"
+      },
+      "date": {
+        "ar": "2022 - حتى الآن",
+        "en": "2022 – Present",
+        "ru": "2022 — настоящее время"
+      },
+      "description": {
+        "ar": "تنفيذ العديد من المشاريع البرمجية لعملاء من روسيا ومختلف الدول العربية، شملت تطوير مواقع الويب، وتطبيقات الهواتف الذكية، والمتاجر الإلكترونية، والأنظمة الإدارية، والحلول البرمجية المخصصة لمختلف الأنشطة التجارية. كما قدمت خدمات تحليل وحل المشكلات التقنية، وتحسين أداء المواقع، وإصلاح الأخطاء البرمجية، وتطوير الأنظمة القائمة، مع التركيز على الأداء، والأمان، وتجربة المستخدم (UI/UX)، وتحسين محركات البحث (SEO).",
+        "en": "Successfully delivered software solutions for clients across Russia and the Arab world, including modern websites, mobile applications, e-commerce platforms, management systems, and custom software solutions. I also specialize in troubleshooting, optimizing website performance, fixing complex technical issues, upgrading existing systems, and improving security, user experience (UI/UX), and SEO.",
+        "ru": "Успешно реализовал множество проектов для клиентов из России и арабских стран, включая разработку современных веб-сайтов, мобильных приложений, интернет-магазинов, систем управления и индивидуальных программных решений. Также занимаюсь диагностикой и устранением технических проблем, оптимизацией производительности сайтов, исправлением ошибок, модернизацией существующих проектов, повышением безопасности, удобства использования (UI/UX) и SEO-оптимизацией."
+      },
+      "color": "success",
+      "icon": "fa-area-chart"
+    },
+    {
+      "id": "exp_1782757589825",
+      "title": {
+        "ar": "مطور Full Stack وتطبيقات الهواتف",
+        "en": "Full Stack Web & Mobile Developer",
+        "ru": "Full Stack веб & разработка моб-приложения ( Android )"
+      },
+      "date": {
+        "ar": "2021 - حتى الآن",
+        "en": "2021 – Present",
+        "ru": "2021 — настоящее время"
+      },
+      "description": {
+        "ar": "تطوير تطبيقات ويب وتطبيقات هواتف متكاملة، تشمل تصميم الواجهات، وبرمجة الأنظمة الخلفية، وقواعد البيانات، وواجهات API، وإدارة الخوادم، ونشر المشاريع وصيانتها.",
+        "en": "Developing complete web and mobile applications from concept to deployment, including responsive front-end interfaces, scalable back-end systems, RESTful APIs, database design, cloud hosting, server administration, and continuous maintenance using modern software engineering practices.",
+        "ru": "Разрабатываю полнофункциональные веб- и мобильные приложения — от проектирования пользовательского интерфейса до серверной логики, REST API, проектирования баз данных, развёртывания на серверах и дальнейшей технической поддержки. Использую современные технологии и лучшие практики программной инженерии для создания надёжных цифровых решений."
+      },
+      "color": "primary",
+      "icon": "fa-briefcase"
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "port_1782692178321",
+      "title": {
+        "ar": "نظام إدارة محتوى ذكي للمطاعم العصرية — تحكم كامل في موقعك دون كتابة سطر برمجي واحد",
+        "en": "Smart CMS for Modern Restaurants — Full Control Over Your Website Without a Single Line of Code",
+        "ru": "Умная CMS для современного ресторана — полное управление сайтом без единой строки кода"
+      },
+      "category": "consulting",
+      "images": [
+        "img/portfolio/Screenshot__144__1782760719338.png",
+        "img/portfolio/Screenshot__143__1782760747541.png",
+        "img/portfolio/Screenshot__142__1782760762442.png",
+        "img/portfolio/Screenshot__141__1782760776253.png",
+        "img/portfolio/Screenshot__139__1782760798148.png",
+        "img/portfolio/Screenshot__138__1782760809163.png",
+        "img/portfolio/Screenshot__136__1782760828593.png",
+        "img/portfolio/Screenshot__134__1782760841538.png",
+        "img/portfolio/WhatsApp_Video_2026-06-30_at_4_1782782343227.mp4"
+      ],
+      "client": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "date": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "service": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "deliveryTime": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "description": {
+        "ar": "حلم صاحب المطعم أن يدير موقعه الإلكتروني بنفسه — دون وسطاء، ودون انتظار، ودون مصاريف إضافية. لم يكن يبحث عن موقع جميل فحسب، بل عن منصة حية تتنفس مع إيقاع مطعمه: تتغير بتغير قائمة الطعام، وتعكس عروض اليوم، وتحافظ على الطابع الفريد للمكان.\n\nأراد صاحب المطعم أن يكون الموقع واعياً بالزمن، لا مجرد واجهة جامدة. أن يفهم الزائر فور دخوله: هل المطعم مفتوح الآن؟ هل يمكنه الطلب؟ أم أن عليه العودة لاحقاً؟\n\nلهذا، أضفتُ وحدة ذكية تقرأ اليوم، والساعة، والدقيقة من جهاز المستخدم، ثم تقارنها تلقائياً بجدول العمل الذي يحدده صاحب المطعم بنفسه من لوحة التحكم. لا حاجة لأي تحديث يدوي — كل شيء يحدث في لحظة، وبهدوء تام، دون أن يشعر الزائر بأي تعقيد. الموقع أصبح يفهم الوقت، كما يفهمه صاحبه تماماً.",
+        "en": "The restaurant owner dreamed of managing his website entirely on his own — with no middlemen, no waiting, and no extra costs. He wasn't just looking for a beautiful site; he wanted a living platform that breathes with the rhythm of his business: one that updates with the changing menu, reflects daily specials, and preserves the unique character of his restaurant.\n\nHe wanted the website to be aware of time, not just a static display. He wanted every visitor to know instantly: is the restaurant open right now? Can they place an order, or should they come back later?\n\nThat's why I added an intelligent module that reads the current day, hour, and minute from the user's device and automatically checks them against the working hours set by the restaurant owner in the dashboard. No manual updates needed — everything happens instantly and seamlessly, completely invisible to the guest. The website now understands time, just as its owner does.\n\n",
+        "ru": "Владелец ресторана мечтал управлять своим сайтом самостоятельно — без посредников, без ожидания и без лишних расходов. Ему нужен был не просто красивый сайт, а живая платформа, которая дышит вместе с его бизнесом: меняется с обновлением меню, отражает ежедневные акции и сохраняет уникальный стиль заведения.\n\nВладелец ресторана хотел, чтобы сайт не просто информировал, а чувствовал время. Чтобы посетитель сразу понимал: открыто ли заведение прямо сейчас, можно ли сделать заказ или стоит вернуться позже.\n\nЯ добавил интеллектуальный модуль, который определяет текущий день, час и минуту на устройстве пользователя и автоматически сверяет их с графиком работы, заданным администратором в панели управления. Никакого ручного обновления — всё происходит мгновенно и незаметно для гостя."
+      }
+    },
+    {
+      "id": "port_1782761760043",
+      "title": {
+        "ar": "المنصة الرقمية لإدارة شؤون الطلاب الأجانب في جامعة بومان التقنية الحكومية بموسكو",
+        "en": "Digital Platform for the Department of International Student Services (Bauman Moscow State Technical University)",
+        "ru": "Цифровая платформа для Управления по работе с иностранными студентами (МГТУ им. Н.Э. Баумана)"
+      },
+      "category": "consulting",
+      "images": [
+        "img/portfolio/Screenshot__71__1782761532916.png",
+        "img/portfolio/Screenshot__72__1782761538363.png",
+        "img/portfolio/Screenshot__73__1782761543424.png",
+        "img/portfolio/Screenshot__74__1782761551000.png",
+        "img/portfolio/Screenshot__75__1782761556801.png",
+        "img/portfolio/Screenshot__76__1782761569730.png",
+        "img/portfolio/Screenshot__80__1782761595619.png",
+        "img/portfolio/Screenshot_20260426_205401_com_1782761633776.jpeg",
+        "img/portfolio/Screenshot_20260426_205355_com_1782761641739.jpeg",
+        "img/portfolio/Screenshot_20260426_205408_com_1782761647964.jpeg",
+        "img/portfolio/Screenshot_20260426_205432_com_1782761654748.jpeg",
+        "img/portfolio/Screenshot_20260426_210312_com_1782761663199.jpeg",
+        "img/portfolio/Screenshot_20260426_205631_com_1782761668831.jpeg",
+        "img/portfolio/Screenshot_20260426_205635_com_1782761673719.jpeg",
+        "img/portfolio/Screenshot_20260426_210258_com_1782761679899.jpeg",
+        "img/portfolio/Screenshot_20260426_210253_com_1782761685839.jpeg",
+        "img/portfolio/Screenshot_20260426_205709_com_1782761690493.jpeg",
+        "img/portfolio/Screenshot_20260426_210238_com_1782761694739.jpeg",
+        "img/portfolio/Screenshot_20260426_205838_com_1782761704301.jpeg",
+        "img/portfolio/Screenshot_20260426_205738_com_1782761713676.jpeg",
+        "img/portfolio/Screenshot_20260426_205944_com_1782761719999.jpeg",
+        "img/portfolio/Screenshot_20260426_210222_com_1782761735580.jpeg",
+        "img/portfolio/Screenshot_20260426_210226_com_1782761741879.jpeg",
+        "img/portfolio/Screenshot_20260426_210246_com_1782761750444.jpeg",
+        "img/portfolio/Screenshot_20260426_210315_com_1782761758854.jpeg",
+        "img/portfolio/Screenshot__77__1782761923009.png",
+        "img/portfolio/Screenshot__78__1782761928377.png",
+        "img/portfolio/lv_0_20260429011329_1782781329725.mp4"
+      ],
+      "client": {
+        "ar": "المكتب الدولي للطلاب الاجانب",
+        "en": "International Office",
+        "ru": "Международный отдел"
+      },
+      "date": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "service": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "deliveryTime": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "description": {
+        "ar": "تُعد جامعة بومان الحكومية التقنية في موسكو واحدة من أبرز الجامعات التقنية في روسيا، وتستقبل سنويًا طلابًا من جميع أنحاء العالم. في السابق، كان موظفو قسم الطلاب الأجانب يغرقون في الأوراق: العشرات من اللغات، والمئات من بطاقات الهجرة، والتأشيرات، ووثائق التأمين، وتصاريح الإقامة المؤقتة. لكل وثيقة تاريخ صلاحية خاص بها، وكان تتبع كل ذلك يدويًا شبه مستحيل. كان بعض الطلاب يفوتون المواعيد النهائية، مما يتسبب في مشاكل في التسجيل الهجري، بينما كان الموظفون يقضون ساعات في البحث عن المعلومات وسط ملفات متفرقة وجداول إكسيل.\n\nكانت المهمة التي أوكلت إليّ هي إنشاء نظام بيئي متكامل يربط الإدارة والطلاب في فضاء رقمي واحد، ويعمل على أتمتة مراقبة الوثائق، ويجعل التواصل شفافًا وسريعًا ومريحًا للطرفين.\n\nتنفس موظفو قسم الطلاب الأجانب الصعداء. بدلاً من الفوضى — نظام. بدلاً من مئات النوافذ المفتوحة — منصة واحدة مريحة. بدلاً من التأخير والمواعيد الفائتة — رقابة آلية.\n\nالنتائج:\n\nانخفاض زمن معالجة الطلب الواحد بنسبة 70%.\n\nاختفاء تام للوثائق منتهية الصلاحية بفضل نظام التنبيه المبكر.\n\nالطلاب يشعرون بالرعاية — إذ يتلقون تذكيرات بلغة مفهومة ويعرفون أن وثائقهم تحت المراقبة.\n\nشفافية الدفع — جميع الإيصالات مسجلة، ولا يضيع أي مبلغ.\n\nسهولة التواصل — تُحل المسائل داخل المنصة، دون الحاجة إلى مراسلات طويلة في تطبيقات المراسلة.",
+        "en": "Bauman Moscow State Technical University is one of Russia’s leading technical universities, attracting students from all over the world every year. In the past, the international student office staff were drowning in paperwork: dozens of languages, hundreds of migration cards, visas, insurance policies, and temporary residence permits. Each document had its own expiration date, and tracking everything manually was nearly impossible. Some students missed deadlines, which led to migration registration issues, while staff spent hours searching for information across scattered folders and Excel spreadsheets.\n\nMy task was to create a unified ecosystem that would bring administration and students together in one digital space, automate document control, and make communication transparent, fast, and convenient for both sides.\n\nThe international student office staff breathed a sigh of relief. Instead of chaos — order. Instead of a hundred open tabs — one user-friendly system. Instead of missed deadlines — automated control.\n\nResults:\n\n70% reduction in time spent processing each request.\n\nComplete elimination of expired documents, thanks to an early-warning notification system.\n\nStudents feel cared for — they receive reminders in a language they understand and know their documents are under control.\n\nPayment transparency — all receipts are recorded, and no payment is ever lost.\n\nSeamless communication — all issues are resolved within the platform, without lengthy back-and-forth messaging.",
+        "ru": "МГТУ им. Баумана — один из ведущих технических вузов России, куда ежегодно приезжают учиться студенты со всего мира. Раньше сотрудники отдела по работе с иностранными обучающимися тонули в бумагах: десятки языков, сотни миграционных карт, виз, страховок, разрешений на временное проживание. Каждый документ имел свой срок действия, и отслеживать всё вручную было практически невозможно. Часть студентов теряла дедлайны, возникали проблемы с миграционным учётом, а сотрудники тратили часы на поиск информации по разрозненным папкам и Excel-таблицам.\n\nПередо мной стояла задача создать единую экосистему, которая соединит администрацию и студентов в одном цифровом поле, автоматизирует контроль документов и сделает коммуникацию прозрачной, быстрой и удобной для обеих сторон.\n\nСотрудники отдела иностранных студентов вздохнули с облегчением. Вместо хаоса — порядок. Вместо сотни открытых вкладок — одна удобная система. Вместо опозданий и просрочек — автоматический контроль.\n\nСокращение времени на обработку одного запроса — на 70%.\n\nПолное исчезновение просроченных документов благодаря системе ранних уведомлений.\n\nСтуденты чувствуют заботу — они получают напоминания на понятном языке и знают, что их документы под контролем.\n\nПрозрачность оплаты — все чеки фиксируются, ни один платёж не теряется.\n\nУдобство коммуникации — вопросы решаются внутри платформы, без долгой переписки в мессенджерах."
+      }
+    },
+    {
+      "id": "port_1782762187006",
+      "title": {
+        "ar": "منصة لنشر الأجهزة المستعملة (المعدات) مع نظام إدارة محتوى (CMS) ونظام تقييم المستخدمين",
+        "en": "System for Listing Used Devices (Equipment) with a Content Management System (CMS) and a User Rating System",
+        "ru": "Система для размещения подержанных устройств (оборудования) с системой управления (CMS) и системой оценок пользователей"
+      },
+      "category": "consulting",
+      "images": [
+        "img/portfolio/Screenshot__275__1782762107203.png",
+        "img/portfolio/Screenshot__277__1782762119145.png",
+        "img/portfolio/Screenshot__276__1782762127591.png"
+      ],
+      "client": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "date": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "service": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "deliveryTime": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "description": {
+        "ar": "منصة متكاملة مع خلفية (باك إند) مخصصة بالكامل وواجهة برمجة تطبيقات (API) موثقة بالكامل عبر Swagger (OpenAPI)، مما يتيح دمج أي جزء أمامي (فرونت إند) بسهولة في المستقبل. المنصة مزودة بنظام احترافي لإدارة المحتوى (CMS) للتحكم الكامل في البيانات دون الحاجة إلى دعم فني.\n\nالميزات التقنية:\n1. الخلفية (باك إند):\n\nتطوير واجهات برمجة تطبيقات RESTful مع توثيق كامل عبر Swagger (OpenAPI).\n\nبنية آمنة وقابلة للتوسع (Node.js / Laravel / Django).\n\nنظام مصادقة وحماية (JWT أو OAuth2).\n\nإدارة فعالة لقواعد البيانات (PostgreSQL / MySQL / MongoDB).\n\n2. نظام إدارة المحتوى (CMS):\n\nلوحة تحكم مخصصة بالكامل (أو حلول جاهزة مثل Strapi أو Sanity.io)، تتيح:\n\nإدارة المستخدمين، والإعلانات، والتقييمات، والفئات.\n\nإضافة المحتوى وتحريره وحذفه بسهولة.\n\nتخصيص الأدوار وصلاحيات الوصول (مدير، محرر، مستخدم).\n\n3. نظام نشر الأجهزة المستعملة:\n\nعرض الأجهزة مع صور، ووصف، وسعر، وحالة، وموقع.\n\nبحث متقدم وتصفية عبر API.\n\nإمكانية إضافة إعلانات للمستخدمين المسجلين مع رفع صور متعددة.\n\n4. نظام تقييم المستخدمين:\n\nإمكانية وضع تقييمات وكتابة مراجعات.\n\nعرض متوسط التقييم وعدد المراجعات.\n\nAPI لتحديث التقييمات فورياً.",
+        "en": "A full-fledged platform with a completely custom backend and a fully documented API via Swagger (OpenAPI), allowing easy integration of any frontend part in the future. The platform is equipped with a professional Content Management System (CMS) for complete control over data without the need for technical support.\n\nTechnical Features:\n1. Backend:\n\nDevelopment of RESTful API with full documentation via Swagger (OpenAPI).\n\nSecure and scalable architecture (Node.js / Laravel / Django).\n\nAuthentication and security system (JWT or OAuth2).\n\nEfficient database management (PostgreSQL / MySQL / MongoDB).\n\n2. Content Management System (CMS):\n\nFully custom dashboard (or ready-made solutions such as Strapi or Sanity.io), allowing:\n\nManagement of users, listings, reviews, and categories.\n\nEasy adding, editing, and deleting of content.\n\nConfiguration of roles and access permissions (Admin, Editor, User).\n\n3. Used Device Listing System:\n\nDisplay of devices with photos, description, price, condition, and location.\n\nAdvanced search and filtering via API.\n\nAbility for registered users to add listings with multiple image uploads.\n\n4. User Rating System:\n\nAbility to rate and leave reviews.\n\nDisplay of average rating and number of reviews.\n\nAPI for instant rating updates.",
+        "ru": "Полноценная платформа с полностью кастомным бэкендом и документированным API через Swagger (OpenAPI), что позволяет легко интегрировать любую фронтенд-часть в будущем. Платформа оснащена профессиональной системой управления контентом (CMS) для полного контроля над данными без необходимости технической поддержки.\n\nТехнические особенности:\n\n1. Бэкенд:\n\nРазработка RESTful API с полной документацией через Swagger (OpenAPI).\n\nБезопасная и масштабируемая архитектура (Node.js / Laravel / Django).\n\nСистема аутентификации и защиты (JWT или OAuth2).\n\nЭффективное управление базами данных (PostgreSQL / MySQL / MongoDB).\n\n2. Система управления контентом (CMS):\n\nПолностью кастомная панель управления (либо готовые решения, такие как Strapi или Sanity.io), позволяющая:\n\nУправлять пользователями, объявлениями, отзывами и категориями.\n\nЛегко добавлять, редактировать и удалять контент.\n\nНастраивать роли и права доступа (админ, редактор, пользователь).\n\n3. Система размещения подержанных устройств:\n\nОтображение устройств с фото, описанием, ценой, состоянием и локацией.\n\nРасширенный поиск и фильтрация через API.\n\nВозможность добавлять объявления для зарегистрированных пользователей с загрузкой нескольких изображений.\n\n4. Система оценки пользователей:\n\nВозможность ставить оценки и оставлять отзывы.\n\nОтображение среднего рейтинга и количества отзывов.\n\nAPI для мгновенного обновления рейтингов."
+      }
+    },
+    {
+      "id": "port_1782762464235",
+      "title": {
+        "ar": "منصة تفاعلية اجتماعية لتبادل وصفات الطبخ",
+        "en": "Interactive Social Recipe-Sharing Platform",
+        "ru": "Интерактивная социальная платформа для обмена кулинарными рецептами"
+      },
+      "category": "consulting",
+      "images": [
+        "img/portfolio/Screenshot__145__1782762384928.png",
+        "img/portfolio/Screenshot__146__1782762395000.png",
+        "img/portfolio/Screenshot__147__1782762405460.png",
+        "img/portfolio/Screenshot__148__1782762413115.png",
+        "img/portfolio/Screenshot__149__1782762429798.png",
+        "img/portfolio/Screenshot__150__1782762438719.png",
+        "img/portfolio/Screenshot__151__1782762448250.png",
+        "img/portfolio/Screenshot__152__1782762460765.png"
+      ],
+      "client": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "date": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "service": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "deliveryTime": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "description": {
+        "ar": "في عالم اليوم، لم يعد الطهي مجرد إعداد للطعام، بل أصبح نشاطًا اجتماعيًا متكاملاً. يبحث الناس عن الإلهام، ويتبادلون الخبرات، ويتواصلون حول الطعام. لكن المنصات الحالية إما مشبعة بالإعلانات، أو غير ملائمة لتبادل الوصفات بشكل منظم.\n\nالهدف من هذا المشروع هو إنشاء منصة سهلة الاستخدام، تفاعلية، وجذابة بصريًا، حيث يمكن للمستخدمين نشر الوصفات، وتحميل الصور ومقاطع الفيديو، وتقييمها، والتعليق عليها، وحفظ الأطباق المفضلة في قائمة المفضلة. تجمع المنصة بين عشاق الطهي والطهاة المحترفين والمدونين في فضاء رقمي واحد.",
+        "en": "In today's world, cooking is no longer just about preparing food — it has become a full-fledged social activity. People seek inspiration, share experiences, and connect around food. However, existing platforms are either overloaded with advertisements or inconvenient for structured recipe sharing.\n\nThe goal of this project is to create a user-friendly, interactive, and visually appealing platform where users can publish recipes, upload photos and videos, rate, comment, and save favorite dishes to a wishlist. The system brings together cooking enthusiasts, professional chefs, and food bloggers in a single digital space.",
+        "ru": "В современном мире кулинария — это не просто приготовление еды, а полноценная социальная активность. Люди ищут вдохновение, делятся опытом и общаются вокруг еды. Однако существующие платформы либо перегружены рекламой, либо неудобны для структурированного обмена рецептами.\n\nЦель проекта — создание удобной, интерактивной и визуально привлекательной платформы, где пользователи могут публиковать рецепты, загружать фото и видео, оценивать, комментировать и сохранять понравившиеся блюда в избранное. Система объединяет любителей кулинарии, профессиональных поваров и блогеров в едином цифровом пространстве."
+      }
+    },
+    {
+      "id": "port_1782779658234",
+      "title": {
+        "ar": "تطوير أداة تفاعلية للتواصل والتفاعل بين طلاب الجامعات الرائدة التابعة لروساتوم، بهدف نشر المعرفة حول الاستخدام السلمي للتقنيات النووية.",
+        "en": "Development of an interactive tool for communication and interaction between students of Rosatom’s flagship universities, to popularize knowledge about the peaceful use of nuclear technologies.",
+        "ru": "Разработка интерактивного инструмента для общения и взаимодействия между студентами ведущих университетов Росатома с целью популяризации знаний о мирном использовании ядерных технологий."
+      },
+      "category": "consulting",
+      "images": [
+        "img/portfolio/Video_Project_4_1782780105196.mp4"
+      ],
+      "client": {
+        "ar": "روس اتوم",
+        "en": "Rosatom",
+        "ru": "Росатом"
+      },
+      "date": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "service": {
+        "ar": "موقع ويب مرتبط مع تيليجرام بوت",
+        "en": "",
+        "ru": ""
+      },
+      "deliveryTime": {
+        "ar": "",
+        "en": "",
+        "ru": ""
+      },
+      "description": {
+        "ar": "مشروع RosNet\nهو منصة رقمية متكاملة تجمع بين:\n\nموقع ويب تفاعلي يعرض المحتوى التعليمي، الأخبار، والفعاليات المتعلقة بالاستخدام السلمي للتقنيات النووية.\n\nروبوت تيليجرام (Telegram Bot) مرتبط مباشرةً بالموقع، بحيث يمكن للطلاب التفاعل مع المنصة عبر تطبيق تيليجرام دون الحاجة لفتح المتصفح.\n\nآلية الربط:\n\nيتيح البوت استقبال الأسئلة والاستفسارات من الطلاب، ويجيب عنها تلقائياً باستخدام قاعدة بيانات الموقع.\n\nيمكن للبوت إرسال إشعارات فورية للطلاب بآخر المستجدات (مواعيد الفعاليات، محتوى جديد، تذكيرات).\n\nيوفر البوت روابط سريعة لأقسام الموقع (مثل: المكتبة، المنتدى، المشاريع).\n\nيستطيع الطلاب عبر البوت تقديم مقترحاتهم أو مشاركة مشاريعهم، وتظهر هذه المشاركات مباشرة على الموقع.\n\nالهدف:\nتسهيل الوصول إلى المعرفة النووية السلمية وتعزيز التفاعل بين الطلاب حول العالم، مع توفير قناة تواصل سريعة ومألوفة (تيليجرام) إلى جانب الموقع الرسمي.\n\nالخطط المستقبلية:\n\nتطوير تطبيق جوال متكامل.\n\nإضافة مزايا للبوت مثل الاختبارات التفاعلية والمسابقات العلمية.\n\nدمج البوت مع أنظمة الجامعات لتقديم جداول المحاضرات والمواعيد الأكاديمية.",
+        "en": "RosNet Project\nis an integrated digital platform combining:\n\nAn interactive website offering educational content, news, and events about the peaceful use of nuclear technologies.\n\nA Telegram bot directly linked to the website, allowing students to interact with the platform via Telegram without needing to open a browser.\n\nIntegration mechanism:\n\nThe bot receives students' questions and automatically answers them using the website’s database.\n\nIt sends instant notifications about latest updates (events, new content, reminders).\n\nIt provides quick links to website sections (library, forum, projects).\n\nStudents can submit suggestions or share their projects through the bot, and these submissions appear directly on the website.\n\nObjective:\nTo facilitate access to peaceful nuclear knowledge and enhance interaction among students worldwide, offering a fast and familiar communication channel (Telegram) alongside the official website.\n\nFuture plans:\n\nDeveloping a full-featured mobile application.\n\nAdding interactive features to the bot (e.g., quizzes, science competitions).\n\nIntegrating the bot with university systems to share lecture schedules and academic calendars.",
+        "ru": "Проект RosNet\n— это интегрированная цифровая платформа, объединяющая:\n\nИнтерактивный веб-сайт с образовательным контентом, новостями и мероприятиями о мирном использовании ядерных технологий.\n\nТелеграм-бота, напрямую связанного с сайтом, что позволяет студентам взаимодействовать с платформой через Telegram без необходимости открывать браузер.\n\nМеханизм интеграции:\n\nБот принимает вопросы студентов и автоматически отвечает на них, используя базу данных сайта.\n\nОтправляет мгновенные уведомления о последних обновлениях (события, новый контент, напоминания).\n\nПредоставляет быстрые ссылки на разделы сайта (библиотека, форум, проекты).\n\nСтуденты могут отправлять предложения или делиться своими проектами через бота, и эти материалы отображаются на сайте.\n\nЦель:\nОблегчить доступ к знаниям о мирном атоме и усилить взаимодействие между студентами по всему миру, предлагая быстрый и привычный канал связи (Telegram) наряду с официальным сайтом.\n\nПланы на будущее:\n\nРазработка полноценного мобильного приложения.\n\nДобавление интерактивных функций для бота (например, викторины, научные конкурсы).\n\nИнтеграция бота с университетскими системами для предоставления расписаний лекций и академических календарей."
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill_1",
+      "name": {
+        "ar": "تطوير مواقع الويب الحديثة",
+        "en": "Modern Web Development",
+        "ru": "Современная веб-разработка"
+      },
+      "description": {
+        "ar": "يعني أبني لك موقع على النت يشتغل على الكمبيوتر والموبايل، يكون سريع وشكله حديث — زي موقع شركة أو متجر إلكتروني.",
+        "en": "I build websites that work on computers and phones — fast, modern, and easy to use, like a company site or online shop.",
+        "ru": "Создаю сайты для компьютера и телефона — быстрые и современные, как сайт компании или интернет-магазин."
+      },
+      "icon": "fa-globe",
+      "percentage": 95
+    },
+    {
+      "id": "skill_2",
+      "name": {
+        "ar": "تطوير تطبيقات Android و iOS",
+        "en": "Android & iOS App Development",
+        "ru": "Разработка приложений Android и iOS"
+      },
+      "description": {
+        "ar": "أسوي تطبيقات للجوال تشتغل على الأندرويد والآيفون — زي تطبيقات الطلب والحجز والتوصيل.",
+        "en": "I make mobile apps for Android and iPhone — like ordering, booking, or delivery apps.",
+        "ru": "Делаю приложения для Android и iPhone — заказ, бронирование, доставка и т.д."
+      },
+      "icon": "fa-mobile",
+      "percentage": 90
+    },
+    {
+      "id": "skill_3",
+      "name": {
+        "ar": "تطوير الواجهة الأمامية",
+        "en": "Front-End Development",
+        "ru": "Front-End разработка"
+      },
+      "description": {
+        "ar": "الجزء اللي أنت تشوفه وتلمسه — الألوان، الأزرار، القوائم، وكل شي ظاهر قدامك في الموقع أو التطبيق.",
+        "en": "The part you see and click — colors, buttons, menus, everything visible on the screen.",
+        "ru": "То, что вы видите и нажимаете — цвета, кнопки, меню, всё на экране."
+      },
+      "icon": "fa-html5",
+      "percentage": 95
+    },
+    {
+      "id": "skill_4",
+      "name": {
+        "ar": "تطوير الواجهة الخلفية",
+        "en": "Back-End Development",
+        "ru": "Back-End разработка"
+      },
+      "description": {
+        "ar": "الشغل اللي ما تشوفه — تسجيل الدخول، حفظ البيانات، معالجة الطلبات، وكل اللي يصير ورا الكواليس.",
+        "en": "The hidden work behind the scenes — login, saving data, processing orders, and making everything run.",
+        "ru": "Невидимая работа «за кулисами» — вход, сохранение данных, обработка заказов."
+      },
+      "icon": "fa-server",
+      "percentage": 92
+    },
+    {
+      "id": "skill_5",
+      "name": {
+        "ar": "تصميم قواعد البيانات",
+        "en": "Database Design",
+        "ru": "Проектирование баз данных"
+      },
+      "description": {
+        "ar": "أرتّب مكان حفظ المعلومات (عملاء، منتجات، طلبات) بحيث يكون منظم وسهل نجيب منه البيانات بدون فوضى.",
+        "en": "I organize where information is stored (customers, products, orders) so it's tidy and easy to find.",
+        "ru": "Организую хранение данных (клиенты, товары, заказы), чтобы всё было в порядке и легко найти."
+      },
+      "icon": "fa-database",
+      "percentage": 90
+    },
+    {
+      "id": "skill_6",
+      "name": {
+        "ar": "إدارة الخوادم والاستضافة",
+        "en": "Server & Hosting Management",
+        "ru": "Управление серверами и хостингом"
+      },
+      "description": {
+        "ar": "أخلي الموقع أو التطبيق شغّال على السيرفر 24 ساعة، وأتابع الاستضافة والدومين عشان ما يوقف.",
+        "en": "I keep your site or app running on the server around the clock and manage hosting so it stays online.",
+        "ru": "Держу сайт или приложение онлайн круглосуточно и слежу за хостингом и доменом."
+      },
+      "icon": "fa-cloud",
+      "percentage": 88
+    },
+    {
+      "id": "skill_7",
+      "name": {
+        "ar": "تصميم واجهات المستخدم UI/UX",
+        "en": "UI/UX Design",
+        "ru": "Дизайн UI/UX"
+      },
+      "description": {
+        "ar": "أصمم شكل الموقع وطريقة استخدامه عشان يكون سهل ومريح — ما يتعب المستخدم ولا يتشوش.",
+        "en": "I design how the site looks and feels so it's easy and pleasant — users don't get lost or frustrated.",
+        "ru": "Продумываю внешний вид и удобство, чтобы пользователям было просто и приятно."
+      },
+      "icon": "fa-paint-brush",
+      "percentage": 85
+    },
+    {
+      "id": "skill_8",
+      "name": {
+        "ar": "الشبكات والبنية التحتية",
+        "en": "Networks & Infrastructure",
+        "ru": "Сети и инфраструктура"
+      },
+      "description": {
+        "ar": "أضبط الشبكة والاتصال بين السيرفرات والأجهزة عشان كل شي يتواصل ويشتغل بدون انقطاع.",
+        "en": "I set up networks and connections between servers and devices so everything talks smoothly.",
+        "ru": "Настраиваю сеть и связь между серверами и устройствами, чтобы всё работало без сбоев."
+      },
+      "icon": "fa-sitemap",
+      "percentage": 87
+    },
+    {
+      "id": "skill_9",
+      "name": {
+        "ar": "تحسين الأداء والأمان",
+        "en": "Performance & Security Optimization",
+        "ru": "Оптимизация производительности и безопасности"
+      },
+      "description": {
+        "ar": "أخلي الموقع سريع وما يعلق، وأحميه من الاختراق والمشاكل الأمنية.",
+        "en": "I make sites fast and protect them from hacks and security problems.",
+        "ru": "Ускоряю сайты и защищаю от взлома и уязвимостей."
+      },
+      "icon": "fa-shield",
+      "percentage": 90
+    },
+    {
+      "id": "skill_10",
+      "name": {
+        "ar": "نشر وإدارة المشاريع على السيرفرات",
+        "en": "Server Deployment & Project Management",
+        "ru": "Развертывание и управление проектами на серверах"
+      },
+      "description": {
+        "ar": "أرفع المشروع على السيرفر وأشغّله للناس، وأتابع إنه يشتغل صح بعد ما ينزل live.",
+        "en": "I put the project on the server, launch it live, and make sure it runs properly.",
+        "ru": "Загружаю проект на сервер, запускаю его и проверяю, что всё работает."
+      },
+      "icon": "fa-rocket",
+      "percentage": 92
+    },
+    {
+      "id": "skill_11",
+      "name": {
+        "ar": "تحسين محركات البحث (SEO)",
+        "en": "Search Engine Optimization (SEO)",
+        "ru": "Поисковая оптимизация (SEO)"
+      },
+      "description": {
+        "ar": "أخلي موقعك يطلع في نتائج جوجل لما الناس تبحث، عشان يوصلك زوار أكثر بدون إعلانات بس.",
+        "en": "I help your site show up on Google when people search, so you get more visitors organically.",
+        "ru": "Помогаю сайту появляться в Google при поиске, чтобы приходило больше посетителей."
+      },
+      "icon": "fa-search",
+      "percentage": 85
+    },
+    {
+      "id": "skill_12",
+      "name": {
+        "ar": "تصميم أنظمة CMS",
+        "en": "CMS System Design",
+        "ru": "Проектирование CMS-систем"
+      },
+      "description": {
+        "ar": "أبني نظام تدير منه محتوى موقعك بنفسك — تضيف مقالات، صور، منتجات — بدون ما تستدعي مبرمج كل مرة.",
+        "en": "I build systems so you can update your site yourself — posts, images, products — without calling a developer every time.",
+        "ru": "Делаю системы, где вы сами добавляете статьи, фото и товары без программиста каждый раз."
+      },
+      "icon": "fa-cogs",
+      "percentage": 90
+    }
+  ],
+  "awards": [
+    {
+      "id": "award_1782842716861",
+      "title": {
+        "ar": "تدريب متقدم في التقنيات الرقمية وهندسة البرمجيات لأنظمة الطاقة النووية",
+        "en": "Advanced Training in Digital Technologies & Software Engineering for Nuclear Energy Systems",
+        "ru": "Повышение квалификации в области цифровых технологий и программной инженерии для ядерных энергетических систем"
+      },
+      "date": {
+        "ar": "2025",
+        "en": "2025",
+        "ru": "2025"
+      },
+      "description": {
+        "ar": "شهادة إتمام برنامج تدريبي متقدم في \"إدارة المعرفة والتقنيات الرقمية في قطاع الطاقة النووية\"، ضمن فعاليات مدرسة أوبنينسك الشتوية التقنية 2025، والتي نظمتها جامعة MEPhI (معهد موسكو للفيزياء الهندسية) – أحد أعرق المراكز البحثية عالمياً.\n\nلم يقتصر البرنامج على الجانب الفيزيائي التقليدي، بل ركز بشكل مكثف على التطبيقات التكنولوجية والبرمجية الحديثة، بما في ذلك:\n\nالنمذجة الرقمية والمحاكاة الحاسوبية للمفاعلات النووية.\n\nتحليل البيانات الضخمة الصادرة عن أنظمة المراقبة.\n\nتطبيقات الذكاء الاصطناعي وتعلم الآلة في تحسين كفاءة التشغيل والصيانة التنبؤية.\n\nإدارة قواعد البيانات وأنظمة المعلومات في المنشآت النووية.\n\nاستمر البرنامج 42 ساعة تدريبية مكثفة، وحصلت على الشهادة بتوقيع رئيس الجامعة البروفيسور أليكسي بانوف، مما يعكس مستوى تدريبياً عالياً يربط بين الهندسة النووية وعلوم البرمجة والبيانات.",
+        "en": "Certificate of completion of an advanced training program on \"Management of Knowledge and Digital Technologies in the Nuclear Energy Sector\", held as part of the Obninsk Tech Winter School 2025, organized by the National Research Nuclear University MEPhI (Moscow Engineering Physics Institute) – one of the world's leading research institutions in nuclear science and engineering.\n\nThe program went far beyond traditional nuclear physics, placing strong emphasis on cutting-edge technological and software applications, including:\n\nDigital modeling and computer simulation of nuclear reactors.\n\nBig data analytics from monitoring and control systems.\n\nAI and machine learning applications for operational efficiency and predictive maintenance.\n\nDatabase management and information systems for nuclear facilities.\n\nThe program comprised 42 intensive training hours, and the certificate is officially endorsed by the Rector, Prof. Alexey V. Panov – highlighting a high-level training that bridges nuclear engineering with software development and data science.",
+        "ru": "Сертификат об окончании программы повышения квалификации по теме «Управление знаниями и цифровыми технологиями в сфере атомной энергетики» в рамках Обнинской технической зимней школы 2025, организованной Национальным исследовательским ядерным университетом «МИФИ» – одним из ведущих мировых научных центров в области ядерных исследований.\n\nПрограмма вышла далеко за рамки традиционной ядерной физики и сделала акцент на современных технологических и программных решениях, включая:\n\nЦифровое моделирование и компьютерную симуляцию ядерных реакторов.\n\nАнализ больших данных с систем мониторинга и управления.\n\nПрименение ИИ и машинного обучения для повышения эффективности и предиктивного обслуживания.\n\nУправление базами данных и информационными системами на атомных объектах.\n\nПрограмма включала 42 академических часа интенсивного обучения. Сертификат утверждён ректором, проф. Алексеем В. Пановым, что подтверждает высокий уровень подготовки на стыке ядерной инженерии и программной разработки."
+      },
+      "certificateImage": "img/awards/Screenshot__388__1782842330702.png"
+    },
+    {
+      "id": "award_1782844031565",
+      "title": {
+        "ar": "خطاب تقدير للتميز الأكاديمي والقيادة الطلابية",
+        "en": "Letter of Appreciation for Academic Excellence & Student Leadership",
+        "ru": "Благодарственное письмо за академические успехи и студенческое лидерство"
+      },
+      "date": {
+        "ar": "2022",
+        "en": "2022",
+        "ru": "2022"
+      },
+      "description": {
+        "ar": "خطاب تقدير من جامعة بومان التقنية الروسية لدور القيادة الطلابية (ستاروستا)، والمسؤولية، والتميز الأكاديمي.\n\n\n",
+        "en": "Letter of Appreciation from Bauman Moscow State Technical University for student leadership (Group Starosta), responsibility, and academic excellence.\n\n",
+        "ru": "Благодарственное письмо от МГТУ им. Н.Э. Баумана за студенческое лидерство (староста), ответственность и отличную учёбу.\n\n"
+      },
+      "certificateImage": "img/awards/Screenshot__389__1782844023759.png"
+    },
+    {
+      "id": "award_1782844668485",
+      "title": {
+        "ar": "جائزة المركز الأول – مسابقة أوبنينسك التقنية الثلاثية 2025",
+        "en": "1st Place Award – Obninsk Technical Triathlon 2025",
+        "ru": "Диплом за 1 место – Обнинский технический триатлон 2025"
+      },
+      "date": {
+        "ar": "2025",
+        "en": "2025",
+        "ru": "2025"
+      },
+      "description": {
+        "ar": "جائزة المركز الأول في مسابقة أوبنينسك التقنية الثلاثية (Obninsk Technical Triathlon 2025)، التي نظمها معهد أوبنينسك للطاقة النووية (ОИНПЕ) – التابع لجامعة MEPhI الوطنية للبحوث النووية.\n\nتم تحقيق هذا الإنجاز كعضو في فريق \"Nuketown\"، حيث تم تقييم الأداء بناءً على:\n\nالكفاءة التقنية وحل المشكلات الهندسية المعقدة.\n\nالعمل الجماعي والتنسيق الفعال بين أعضاء الفريق.\n\nالسرعة والدقة في تنفيذ المهام المطلوبة ضمن بيئة تنافسية.\n\nتمنح هذه الجائزة من قبل نائب مدير المعهد، مما يعكس مستوى عالياً من المهارات التقنية والقدرة على الابتكار تحت الضغط، في واحدة من أبرز المسابقات الهندسية الطلابية في روسيا.",
+        "en": "1st Place Award in the Obninsk Technical Triathlon 2025, organized by the Obninsk Institute for Nuclear Power Engineering (OINPE) – a branch of the National Research Nuclear University MEPhI.\n\nThis achievement was earned as a member of Team \"Nuketown\", with performance evaluated on:\n\nTechnical competence and solving complex engineering challenges.\n\nTeam collaboration and effective coordination among members.\n\nSpeed and precision in executing assigned tasks under competitive conditions.\n\nAwarded by the Deputy Director of the Institute, this recognition demonstrates a high level of technical proficiency, innovative thinking under pressure, and excellence in one of Russia's most prominent student engineering competitions.",
+        "ru": "Диплом за 1 место в Обнинском техническом триатлоне 2025, организованном Обнинским институтом атомной энергетики (ОИНПЕ) – филиалом НИЯУ МИФИ.\n\nЭта награда была получена в составе команды \"Nuketown\", где оценка производилась по следующим критериям:\n\nТехническая компетентность и решение сложных инженерных задач.\n\nКомандная работа и эффективная координация между участниками.\n\nСкорость и точность выполнения поставленных задач в конкурентной среде.\n\nВручено заместителем директора института, что подтверждает высокий уровень технических навыков, способность к инновациям в условиях стресса и превосходство в одном из самых престижных студенческих инженерных соревнований России."
+      },
+      "certificateImage": "img/awards/Screenshot__391__1782844655194.png"
+    },
+    {
+      "id": "award_1782845022211",
+      "title": {
+        "ar": "المركز الأول – المسابقة الدولية هاك أتوم 2025",
+        "en": "1st Place – The Hack Atom 2025 International Tournament",
+        "ru": "1 место – Международный турнир Hack Atom 2025"
+      },
+      "date": {
+        "ar": "2025",
+        "en": "2025",
+        "ru": "2025"
+      },
+      "description": {
+        "ar": "جائزة المركز الأول في المسابقة الدولية هاك أتوم 2025 (The Hack Atom 2025) – وهي هاكاثون تقني متخصص في مجال البرمجة والتكنولوجيا النووية، نظمه معهد أوبنينسك للطاقة النووية (ОИНПЕ) – التابع لجامعة MEPhI الوطنية للبحوث النووية.\n\nتم تحقيق هذا الإنجاز كعضو في فريق \"Nuketitons\"، حيث تم تقييم المشاريع المقدمة بناءً على:\n\nالابتكار البرمجي وتطوير حلول تقنية مبتكرة.\n\nالكفاءة التقنية في تطبيق أدوات البرمجة وتحليل البيانات.\n\nالعمل الجماعي تحت ضغط زمني في بيئة تنافسية دولية.\n\nتمنح هذه الجائزة من قبل نائب مدير المعهد، مما يعكس قدرة عالية على تطوير حلول برمجية متقدمة في قطاع الطاقة النووية، والتميز في واحدة من أبرز المسابقات التقنية الدولية في روسيا.",
+        "en": "1st Place Award in The Hack Atom 2025 International Tournament – a specialized technical hackathon focused on software development and nuclear technology, organized by the Obninsk Institute for Nuclear Power Engineering (OINPE) – a branch of the National Research Nuclear University MEPhI.\n\nThis achievement was earned as a member of Team \"Nuketitons\", with submitted projects evaluated on:\n\nSoftware innovation and developing cutting-edge technical solutions.\n\nTechnical proficiency in applying programming tools and data analytics.\n\nTeam collaboration under time pressure in an international competitive environment.\n\nAwarded by the Deputy Director of the Institute, this recognition demonstrates advanced capabilities in developing software solutions for the nuclear energy sector and excellence in one of Russia's most prominent international technical competitions.",
+        "ru": "Диплом за 1 место в Международном турнире Hack Atom 2025 – специализированном хакатоне в области программной разработки и ядерных технологий, организованном Обнинским институтом атомной энергетики (ОИНПЕ) – филиалом НИЯУ МИФИ.\n\nЭта награда была получена в составе команды \"Nuketitons\", где представленные проекты оценивались по следующим критериям:\n\nПрограммные инновации и разработка передовых технических решений.\n\nТехническая компетентность в применении инструментов программирования и анализа данных.\n\nКомандная работа в условиях ограниченного времени в международной конкурентной среде.\n\nВручено заместителем директора института, что подтверждает высокий уровень навыков в разработке программных решений для ядерной энергетики и превосходство в одном из самых значимых международных технических соревнований России."
+      },
+      "certificateImage": "img/awards/Screenshot__392__1782845014887.png"
+    },
+    {
+      "id": "award_1782845858246",
+      "title": {
+        "ar": "شهادة مشاركة – النهائي العالمي لمسابقة هاك أتوم 2025",
+        "en": "Certificate of Participation – Global HackAtom 2025 Final",
+        "ru": "Сертификат участника – Глобальный финал HackAtom 2025"
+      },
+      "date": {
+        "ar": "2025",
+        "en": "2025",
+        "ru": "2025"
+      },
+      "description": {
+        "ar": "شهادة مشاركة في النهائي العالمي الأول لمسابقة هاك أتوم (Global HackAtom 2025 Final) – وهي مسابقة دولية رفيعة المستوى في مجال البرمجة والتكنولوجيا النووية، نظمتها شركة روساتوم الحكومية (Rosatom State Corporation) – أكبر شركة للطاقة النووية على مستوى العالم.\n\nتمثل هذه المشاركة تتويجاً للتميز في مسار تنافسي صارم، حيث تم اختيار المشاركين من بين آلاف المتقدمين من مختلف دول العالم للمنافسة في النهائي الذي أقيم في موسكو خلال الفترة من 24 إلى 30 سبتمبر 2025.\n\nتعكس هذه الشهادة:\n\nالكفاءة البرمجية والتقنية في مجال التكنولوجيا النووية.\n\nالقدرة التنافسية على المستوى العالمي.\n\nالالتزام والتميز في بيئة عمل دولية عالية الضغط.\n\nتمنح الشهادة من قبل نائب المدير العام للموارد البشرية في روساتوم، مما يضفي عليها قيمة كبيرة ويعكس الاعتراف الدولي بالمشاركة في هذا الحدث النوعي.",
+        "en": "Certificate of Participation in the first Global HackAtom 2025 Final – a prestigious international competition in software development and nuclear technology, organized by Rosatom State Corporation – the world's largest nuclear energy company.\n\nThis participation represents the culmination of a rigorous competitive journey, with participants selected from thousands of applicants across the globe to compete in the final held in Moscow from September 24–30, 2025.\n\nThis certificate reflects:\n\nProgramming and technical proficiency in nuclear technology applications.\n\nGlobal competitiveness at an international level.\n\nCommitment and excellence in a high-pressure international environment.\n\nAwarded by the Deputy Director General for Human Resources of Rosatom, this recognition carries significant weight and demonstrates internationally acknowledged participation in this landmark event.",
+        "ru": "Сертификат участника первого Глобального финала HackAtom 2025 – престижного международного соревнования в области программной разработки и ядерных технологий, организованного Госкорпорацией «Росатом» – крупнейшей в мире компанией в сфере атомной энергии.\n\nЭто участие стало результатом строгого конкурсного отбора, в котором участники были выбраны из тысяч заявителей со всего мира для соревнования в финале, проходившем в Москве с 24 по 30 сентября 2025 года.\n\nСертификат подтверждает:\n\nПрограммную и техническую компетентность в области ядерных технологий.\n\nГлобальную конкурентоспособность на международном уровне.\n\nПриверженность и превосходство в условиях международной конкуренции.\n\nВручён заместителем генерального директора по управлению персоналом Госкорпорации «Росатом», что придаёт сертификату особую значимость и подтверждает международное признание участия в этом знаковом событии."
+      },
+      "certificateImage": "img/awards/Screenshot__393__1782845845968.png"
+    },
+    {
+      "id": "award_1782846008294",
+      "title": {
+        "ar": "شهادة تأهيل – النهائي العالمي لمسابقة Global HackAtom 2025",
+        "en": "Qualification Certificate – Global HackAtom Grand Final 2025",
+        "ru": "Сертификат о квалификации – Глобальный финал HackAtom 2025"
+      },
+      "date": {
+        "ar": "2025",
+        "en": "2025",
+        "ru": "2025"
+      },
+      "description": {
+        "ar": "شهادة تأهيل رسمية للمشاركة في النهائي العالمي الكبير لمسابقة Global HackAtom 2025، التي نظمتها شركة روساتوم الحكومية (Rosatom State Corporation) – أكبر شركة للطاقة النووية في العالم – في موسكو خلال الفترة من 24 إلى 29 سبتمبر 2025.\n\nتمثل هذه الشهادة تأكيداً على اجتياز مراحل التصفيات المؤهلة والوصول إلى النهائي العالمي، حيث تم اختيار المشاركين بناءً على:\n\nالكفاءة التقنية والبرمجية في مجال التكنولوجيا النووية.\n\nالإبداع والابتكار في تقديم حلول تقنية متقدمة.\n\nالقدرة التنافسية على المستوى الدولي.\n\nتمنح هذه الشهادة من قبل شركة روساتوم، مما يعكس مستوى عالياً من التميز التقني والاعتراف الدولي بالقدرات البرمجية في أحد أهم القطاعات الاستراتيجية عالمياً.",
+        "en": "Official Qualification Certificate entitling participation in the Global HackAtom 2025 Grand Final, organized by Rosatom State Corporation – the world's largest nuclear energy company – in Moscow from September 24–29, 2025.\n\nThis certificate confirms successful qualification through preliminary stages and selection for the global final, with participants chosen based on:\n\nTechnical and software proficiency in nuclear technology applications.\n\nCreativity and innovation in delivering advanced technical solutions.\n\nInternational competitiveness at a global level.\n\nIssued by Rosatom State Corporation, this recognition reflects a high level of technical excellence and international acknowledgment of software development capabilities in one of the world's most strategic sectors.",
+        "ru": "Официальный сертификат о квалификации для участия в Глобальном финале HackAtom 2025, организованном Госкорпорацией «Росатом» – крупнейшей в мире компанией в сфере атомной энергии – в Москве с 24 по 29 сентября 2025 года.\n\nСертификат подтверждает успешное прохождение квалификационных этапов и выход в глобальный финал, где участники были отобраны на основе:\n\nТехнической и программной компетентности в области ядерных технологий.\n\nКреативности и инновационности в разработке передовых технических решений.\n\nМеждународной конкурентоспособности.\n\nВыдан Госкорпорацией «Росатом», что подтверждает высокий уровень технического мастерства и международное признание навыков в области программной разработки в одном из самых стратегических секторов мира."
+      },
+      "certificateImage": "img/awards/Screenshot__394__1782845995507.png"
+    },
+    {
+      "id": "award_1782846201123",
+      "title": {
+        "ar": "المركز الثالث – مسابقة أوبنينسك التقنية النووية الثلاثية 2024",
+        "en": "3rd Place – Obninsk Tech Nuclear Triathlon 2024",
+        "ru": "3 место – Обнинский технический ядерный триатлон 2024"
+      },
+      "date": {
+        "ar": "2024",
+        "en": "2024",
+        "ru": "2024"
+      },
+      "description": {
+        "ar": "جائزة المركز الثالث في مسابقة أوبنينسك التقنية النووية الثلاثية (Obninsk Tech Nuclear Triathlon 2024)، التي نظمتها مدرسة أوبنينسك الشتوية  2024 بالتعاون مع جامعة MEPhI الوطنية للبحوث النووية.\n\nتم تحقيق هذا الإنجاز كعضو في فريق \"Isotope Squad\"، حيث تم تقييم الأداء بناءً على:\n\nالكفاءة التقنية وحل المشكلات النووية والهندسية المعقدة.\n\nالعمل الجماعي والتنسيق الفعال بين أعضاء الفريق.\n\nالسرعة والدقة في تنفيذ المهام ضمن بيئة تنافسية أكاديمية مكثفة.\n\nتمنح هذه الجائزة من قبل مدرسة أوبنينسك التقنية، مما يعكس مستوى عالياً من المهارات التقنية والقدرة على الابتكار في واحدة من أبرز المسابقات الطلابية في روسيا في مجال التكنولوجيا النووية.",
+        "en": "3rd Place Award in the Obninsk Tech Nuclear Triathlon 2024, organized by Obninsk Tech Winter School 2024in collaboration with the National Research Nuclear University MEPhI.\n\nThis achievement was earned as a member of Team \"Isotope Squad\", with performance evaluated on:\n\nTechnical competence and solving complex nuclear and engineering challenges.\n\nTeam collaboration and effective coordination among members.\n\nSpeed and precision in executing tasks within an intensive competitive academic environment.\n\nAwarded by Obninsk Tech, this recognition demonstrates a high level of technical proficiency, innovative thinking, and excellence in one of Russia's most prominent student competitions in nuclear technology.",
+        "ru": "Диплом за 3 место в Обнинском техническом ядерном триатлоне 2024 , организованном Обнинской технической зимней школой 2024 в сотрудничестве с НИЯУ МИФИ.\n\nЭта награда была получена в составе команды \"Isotope Squad\", где оценка производилась по следующим критериям:\n\nТехническая компетентность и решение сложных ядерных и инженерных задач.\n\nКомандная работа и эффективная координация между участниками.\n\nСкорость и точность выполнения задач в условиях интенсивной академической конкуренции.\n\nВручено организаторами Обнинской технической школы, что подтверждает высокий уровень технических навыков, способность к инновациям и превосходство в одном из самых значимых студенческих соревнований России в области ядерных технологий."
+      },
+      "certificateImage": "img/awards/Screenshot__395__1782846199418.png"
+    }
+  ],
+  "ui": {
+    "navAbout": {
+      "ar": "نبذة عني",
+      "en": "About",
+      "ru": "Обо мне"
+    },
+    "navExperience": {
+      "ar": "الخبرات",
+      "en": "Experience",
+      "ru": "Опыт"
+    },
+    "navPortfolio": {
+      "ar": "الأعمال",
+      "en": "Portfolio",
+      "ru": "Портфолио"
+    },
+    "navSkills": {
+      "ar": "المهارات",
+      "en": "Skills",
+      "ru": "Навыки"
+    },
+    "navAwards": {
+      "ar": "الجوائز",
+      "en": "Awards",
+      "ru": "Награды"
+    },
+    "navTestimonials": {
+      "ar": "شهادات العملاء",
+      "en": "Testimonials",
+      "ru": "Отзывы"
+    },
+    "navWhyMe": {
+      "ar": "لماذا أنا",
+      "en": "Why Me",
+      "ru": "Почему я"
+    },
+    "navWorkflow": {
+      "ar": "خطة العمل",
+      "en": "Workflow",
+      "ru": "План работы"
+    },
+    "experienceHeading": {
+      "ar": "الخبرات",
+      "en": "Experience",
+      "ru": "Опыт"
+    },
+    "portfolioHeading": {
+      "ar": "معرض الأعمال",
+      "en": "Portfolio",
+      "ru": "Портфолио"
+    },
+    "skillsHeading": {
+      "ar": "المهارات",
+      "en": "Skills",
+      "ru": "Навыки"
+    },
+    "awardsHeading": {
+      "ar": "الجوائز والشهادات",
+      "en": "Awards",
+      "ru": "Награды"
+    },
+    "testimonialsHeading": {
+      "ar": "شهادات العملاء",
+      "en": "Client Testimonials",
+      "ru": "Отзывы клиентов"
+    },
+    "workflowHeading": {
+      "ar": "خطة العمل",
+      "en": "Workflow Plan",
+      "ru": "План работы"
+    },
+    "whyMeHeading": {
+      "ar": "لماذا أنا؟",
+      "en": "Why Me?",
+      "ru": "Почему я?"
+    },
+    "clientLabel": {
+      "ar": "العميل",
+      "en": "Client",
+      "ru": "Клиент"
+    },
+    "dateLabel": {
+      "ar": "التاريخ",
+      "en": "Date",
+      "ru": "Дата"
+    },
+    "serviceLabel": {
+      "ar": "الخدمة",
+      "en": "Service",
+      "ru": "Услуга"
+    },
+    "deliveryLabel": {
+      "ar": "التسليم",
+      "en": "Delivery",
+      "ru": "Срок"
+    },
+    "closeBtn": {
+      "ar": "إغلاق",
+      "en": "Close",
+      "ru": "Закрыть"
+    }
+  },
+  "testimonials": {
+    "heading": {
+      "ar": "شهادات العملاء",
+      "en": "Client Testimonials",
+      "ru": "Отзывы клиентов"
+    },
+    "subtitle": {
+      "ar": "كلام العملاء عني أقوى بكثير من كلامي عن نفسي — إليك بعض تجاربهم الحقيقية.",
+      "en": "What clients say about me speaks louder than self-promotion — here are real experiences.",
+      "ru": "Отзывы клиентов говорят громче любых слов о себе — вот реальный опыт сотрудничества."
+    },
+    "items": []
+  },
+  "whyMe": {
+    "heading": {
+      "ar": "لماذا أنا؟",
+      "en": "Why Me?",
+      "ru": "Почему я?"
+    },
+    "subtitle": {
+      "ar": "مقارنة سريعة توضّح الفرق بين العمل معي وبين الخيارات الأخرى في السوق.",
+      "en": "A quick comparison showing the difference between working with me and other options.",
+      "ru": "Краткое сравнение, показывающее разницу между работой со мной и другими вариантами."
+    },
+    "intro": {
+      "ar": "لا أبيع وعوداً — أقدّم نتائج ملموسة: جودة عالية، التزام بالمواعيد، ودعم بعد التسليم.",
+      "en": "I don't sell promises — I deliver tangible results: high quality, on-time delivery, and post-launch support.",
+      "ru": "Я не продаю обещания — я даю результат: качество, соблюдение сроков и поддержку после запуска."
+    },
+    "tableHeaders": {
+      "feature": {
+        "ar": "الميزة",
+        "en": "Feature",
+        "ru": "Критерий"
+      },
+      "me": {
+        "ar": "أنا",
+        "en": "Me",
+        "ru": "Я"
+      },
+      "others": {
+        "ar": "المطورون / الشركات الأخرى",
+        "en": "Other Developers / Agencies",
+        "ru": "Другие разработчики"
+      }
+    },
+    "rows": [
+      {
+        "id": "why_1",
+        "feature": {
+          "ar": "التسليم في الوقت",
+          "en": "On-time Delivery",
+          "ru": "Сроки"
+        },
+        "meValue": {
+          "ar": "100% التزام",
+          "en": "100% commitment",
+          "ru": "100% соблюдение"
+        },
+        "othersValue": {
+          "ar": "غالباً تأخير",
+          "en": "Often delayed",
+          "ru": "Часто задержки"
+        },
+        "mePositive": true,
+        "othersPositive": false
+      },
+      {
+        "id": "why_2",
+        "feature": {
+          "ar": "التواصل المباشر",
+          "en": "Direct Communication",
+          "ru": "Прямая связь"
+        },
+        "meValue": {
+          "ar": "معك مباشرة",
+          "en": "Direct with you",
+          "ru": "Напрямую с вами"
+        },
+        "othersValue": {
+          "ar": "وسطاء / فريق",
+          "en": "Middlemen / team",
+          "ru": "Посредники"
+        },
+        "mePositive": true,
+        "othersPositive": false
+      },
+      {
+        "id": "why_3",
+        "feature": {
+          "ar": "الدعم بعد التسليم",
+          "en": "Post-delivery Support",
+          "ru": "Поддержка после сдачи"
+        },
+        "meValue": {
+          "ar": "متابعة مستمرة",
+          "en": "Ongoing follow-up",
+          "ru": "Постоянная поддержка"
+        },
+        "othersValue": {
+          "ar": "محدود أو مدفوع",
+          "en": "Limited or paid",
+          "ru": "Ограничена"
+        },
+        "mePositive": true,
+        "othersPositive": false
+      },
+      {
+        "id": "why_4",
+        "feature": {
+          "ar": "جودة الكود",
+          "en": "Code Quality",
+          "ru": "Качество кода"
+        },
+        "meValue": {
+          "ar": "نظيف وقابل للتوسع",
+          "en": "Clean & scalable",
+          "ru": "Чистый и масштабируемый"
+        },
+        "othersValue": {
+          "ar": "متوسط",
+          "en": "Average",
+          "ru": "Среднее"
+        },
+        "mePositive": true,
+        "othersPositive": false
+      }
+    ],
+    "highlights": [
+      {
+        "id": "hl_1",
+        "icon": "fa-rocket",
+        "title": {
+          "ar": "5+ سنوات خبرة",
+          "en": "5+ Years Experience",
+          "ru": "5+ лет опыта"
+        },
+        "description": {
+          "ar": "خبرة عملية في مواقع، تطبيقات، وأنظمة إدارية متكاملة.",
+          "en": "Hands-on experience across websites, apps, and enterprise systems.",
+          "ru": "Практический опыт в сайтах, приложениях и корпоративных системах."
+        }
+      },
+      {
+        "id": "hl_2",
+        "icon": "fa-shield",
+        "title": {
+          "ar": "أمان وجودة",
+          "en": "Security & Quality",
+          "ru": "Безопасность и качество"
+        },
+        "description": {
+          "ar": "أولوية للأمان، الأداء، وتجربة مستخدم ممتازة في كل مشروع.",
+          "en": "Security, performance, and UX are priorities in every project.",
+          "ru": "Безопасность, производительность и UX — приоритет в каждом проекте."
+        }
+      },
+      {
+        "id": "hl_3",
+        "icon": "fa-trophy",
+        "title": {
+          "ar": "نتائج مثبتة",
+          "en": "Proven Results",
+          "ru": "Доказанные результаты"
+        },
+        "description": {
+          "ar": "جوائز وشهادات ومشاريع لا تزال قيد الاستخدام حتى اليوم.",
+          "en": "Awards, certifications, and projects still actively used today.",
+          "ru": "Награды, сертификаты и проекты, которые используются до сих пор."
+        }
+      }
+    ]
+  },
+  "workflow": {
+    "heading": {
+      "ar": "خطة العمل",
+      "en": "Workflow Plan",
+      "ru": "План работы"
+    },
+    "subtitle": {
+      "ar": "خطوات واضحة ومنظمة لتحويل فكرتك إلى مشروع متكامل وناجح.",
+      "en": "Clear and organized steps to transform your idea into a successful project.",
+      "ru": "Простые и понятные шаги для превращения вашей идеи в успешный проект."
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "stepNumber": 1,
+        "title": {
+          "ar": "تتواصل معي",
+          "en": "Contact Me",
+          "ru": "Свяжитесь со мной"
+        },
+        "description": {
+          "ar": "البداية بمحادثة نناقش فيها رؤيتك وأهدافك العامة.",
+          "en": "Start with a conversation to discuss your general vision and goals.",
+          "ru": "Начнем с диалога, чтобы обсудить ваше видение и цели."
+        }
+      },
+      {
+        "id": "step_2",
+        "stepNumber": 2,
+        "title": {
+          "ar": "أعرف طلبك وتفاصيله",
+          "en": "Understand Details",
+          "ru": "Анализ требований"
+        },
+        "description": {
+          "ar": "تحليل متطلباتك بدقة لتحديد الخصائص والميزات التقنية.",
+          "en": "Analyze your requirements thoroughly to define technical features.",
+          "ru": "Подробный анализ ваших требований для определения функций."
+        }
+      },
+      {
+        "id": "step_3",
+        "stepNumber": 3,
+        "title": {
+          "ar": "سأقول لك الوقت اللازم",
+          "en": "Estimate Timeframe",
+          "ru": "Оценка сроков"
+        },
+        "description": {
+          "ar": "تحديد خطة زمنية واضحة ومراحل لتسليم المهام بدقة.",
+          "en": "Define a clear timeline and phases for on-time delivery.",
+          "ru": "Определение четких сроков и этапов реализации."
+        }
+      },
+      {
+        "id": "step_4",
+        "stepNumber": 4,
+        "title": {
+          "ar": "الاتفاق على أفضل سعر",
+          "en": "Best Price Agreement",
+          "ru": "Согласование цены"
+        },
+        "description": {
+          "ar": "تقديم تسعير مرن ومناسب لميزانية مشروعك مع أعلى جودة.",
+          "en": "Provide flexible pricing customized to your budget with premium quality.",
+          "ru": "Гибкое ценообразование под ваш бюджет с высоким качеством."
+        }
+      },
+      {
+        "id": "step_5",
+        "stepNumber": 5,
+        "title": {
+          "ar": "تسليم المشروع جاهز كما طلبت",
+          "en": "Project Delivery",
+          "ru": "Сдача проекта"
+        },
+        "description": {
+          "ar": "إطلاق وتأمين النسخة النهائية من المشروع مع اختبارها بدقة.",
+          "en": "Launch and deploy the final tested version of your project.",
+          "ru": "Запуск и передача полностью протестированного проекта."
+        }
+      },
+      {
+        "id": "step_6",
+        "stepNumber": 6,
+        "title": {
+          "ar": "متابعة مجانية لمدة 6 أشهر",
+          "en": "6 Months Free Support",
+          "ru": "6 месяцев поддержки"
+        },
+        "description": {
+          "ar": "دعم فني وضمان متكامل لحل أي مشكلات بعد الإطلاق مجاناً.",
+          "en": "Full technical support and warranty post-launch at zero cost.",
+          "ru": "Техническая поддержка и гарантия после запуска бесплатно."
+        }
+      }
+    ]
+  }
+}
