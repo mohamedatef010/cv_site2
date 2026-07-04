@@ -4481,17 +4481,29 @@ body.dark-theme #tools {
 }
 
 .tools-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    width: 100%;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+gap: 2rem;
+width: 100%;
+max-width: 100%;
+box-sizing: border-box;
 }
-
 @media (max-width: 767px) {
-    .tools-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
+.tools-container {
+grid-template-columns: 1fr;
+gap: 1.5rem;
+width: 100%;
+max-width: 100%;
+margin: 0 auto;
+padding: 0;
+box-sizing: border-box;
+}
+.tools-category {
+width: 100%;
+max-width: 100%;
+box-sizing: border-box;
+padding: 1.5rem 1rem;
+}
 }
 
 /* Category Card */
