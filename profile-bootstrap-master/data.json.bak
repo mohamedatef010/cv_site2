@@ -389,7 +389,7 @@
         "ru": "Разработка приложений Android и iOS"
       },
       "description": {
-        "ar": "أسوي تطبيقات للجوال تشتغل على الأندرويد والآيفون — زي تطبيقات الطلب والحجز والتوصيل.",
+        "ar": "أبرمج تطبيقات للجوال تعمل على الأندرويد  — مثل تطبيقات الطلب والحجز والتوصيل.",
         "en": "I make mobile apps for Android and iPhone — like ordering, booking, or delivery apps.",
         "ru": "Делаю приложения для Android и iPhone — заказ, бронирование, доставка и т.д."
       },
@@ -782,6 +782,16 @@
       "ar": "إغلاق",
       "en": "Close",
       "ru": "Закрыть"
+    },
+    "navTools": {
+      "ar": "المهارات والأدوات",
+      "en": "Skills & Tools",
+      "ru": "Навыки и Инструменты"
+    },
+    "toolsHeading": {
+      "ar": "المهارات والأدوات",
+      "en": "Skills & Tools",
+      "ru": "Навыки и Инструменты"
     }
   },
   "testimonials": {
@@ -795,28 +805,7 @@
       "en": "What clients say about me speaks louder than self-promotion — here are real experiences.",
       "ru": "Отзывы клиентов говорят громче любых слов о себе — вот реальный опыт сотрудничества."
     },
-    "items": [
-      {
-        "id": "test_1",
-        "clientName": {
-          "ar": "أحمد الخالد",
-          "en": "Ahmed Al-Khaled",
-          "ru": "Ахмед Аль-Халид"
-        },
-        "role": {
-          "ar": "مدير مشروع — شركة تقنية",
-          "en": "Project Manager — Tech Company",
-          "ru": "Менеджер проекта — IT-компания"
-        },
-        "quote": {
-          "ar": "محمد محترف للغاية، سلّم المشروع قبل الموعد بجودة ممتازة وتواصل مستمر طوال العمل.",
-          "en": "Mohamed is highly professional — delivered ahead of schedule with excellent quality and constant communication.",
-          "ru": "Мохамед очень профессионален — сдал проект раньше срока с отличным качеством и постоянной связью."
-        },
-        "rating": 5,
-        "image": "img/5310125027808187214_1782685383626.jpg"
-      }
-    ]
+    "items": []
   },
   "whyMe": {
     "heading": {
@@ -1073,6 +1062,406 @@
           "en": "Full technical support and warranty post-launch at zero cost.",
           "ru": "Техническая поддержка и гарантия после запуска бесплатно."
         }
+      }
+    ]
+  },
+  "tools": {
+    "heading": {
+      "ar": "المهارات والأدوات",
+      "en": "Skills & Tools",
+      "ru": "Навыки и Инструменты"
+    },
+    "subtitle": {
+      "ar": "مجموعة التقنيات والمنصات التي أتقنها وأستخدمها في بناء المشاريع.",
+      "en": "The array of technologies and platforms I master and utilize in project development.",
+      "ru": "Набор технологий и платформ, которыми я владею и использую в разработке проектов."
+    },
+    "categories": [
+      {
+        "id": "prog_langs",
+        "title": {
+          "ar": "لغات البرمجة",
+          "en": "Programming Languages",
+          "ru": "Языки программирования"
+        },
+        "items": [
+          {
+            "id": "tool_python",
+            "name": {
+              "ar": "بايثون",
+              "en": "Python",
+              "ru": "Python"
+            },
+            "icon": "devicon-python-plain colored",
+            "description": {
+              "ar": "أستخدم بايثون لتطوير الواجهات الخلفية، تحليل البيانات، والبرمجة النصية بفضل سهولتها ومكتباتها الغنية.",
+              "en": "I use Python for backend development, data analysis, and scripting due to its simplicity and rich libraries.",
+              "ru": "Я использую Python для бэкенд-разработки, анализа данных и написания скриптов благодаря его простоте и богатым библиотекам."
+            }
+          },
+          {
+            "id": "tool_js",
+            "name": {
+              "ar": "جافاسكريبت (ES6+)",
+              "en": "JavaScript (ES6+)",
+              "ru": "JavaScript (ES6+)"
+            },
+            "icon": "devicon-javascript-plain colored",
+            "description": {
+              "ar": "العمود الفقري لتطوير الويب التفاعلي، أستخدمها في الواجهات الأمامية والخلفية.",
+              "en": "The backbone of interactive web development, I use it for both frontend and backend.",
+              "ru": "Основа интерактивной веб-разработки, я использую его как для фронтенда, так и для бэкенда."
+            }
+          },
+          {
+            "id": "tool_ts",
+            "name": {
+              "ar": "تايب سكريبت",
+              "en": "TypeScript",
+              "ru": "TypeScript"
+            },
+            "icon": "devicon-typescript-plain colored",
+            "description": {
+              "ar": "تضيف تايب سكريبت قوة الأنواع لجافاسكريبت، مما يحسن جودة الكود وقابليته للصيانة في المشاريع الكبيرة.",
+              "en": "TypeScript adds type safety to JavaScript, improving code quality and maintainability in large projects.",
+              "ru": "TypeScript добавляет типобезопасность в JavaScript, улучшая качество кода и удобство поддержки в больших проектах."
+            }
+          },
+          {
+            "id": "tool_kotlin",
+            "name": {
+              "ar": "كوتلن",
+              "en": "Kotlin",
+              "ru": "Kotlin"
+            },
+            "icon": "devicon-kotlin-plain colored",
+            "description": {
+              "ar": "لغة مفضلة لتطوير تطبيقات أندرويد الأصلية بفضل حداثتها وميزاتها القوية.",
+              "en": "A preferred language for native Android app development due to its modernity and powerful features.",
+              "ru": "Предпочтительный язык для нативной разработки Android-приложений благодаря его современности и мощным функциям."
+            }
+          },
+          {
+            "id": "tool_java",
+            "name": {
+              "ar": "جافا",
+              "en": "Java",
+              "ru": "Java"
+            },
+            "icon": "devicon-java-plain colored",
+            "description": {
+              "ar": "أستخدم جافا في تطوير تطبيقات أندرويد والأنظمة الخلفية الكبيرة.",
+              "en": "I use Java for Android app development and large-scale backend systems.",
+              "ru": "Я использую Java для разработки Android-приложений и крупных бэкенд-систем."
+            }
+          }
+        ]
+      },
+      {
+        "id": "web_dev",
+        "title": {
+          "ar": "تطوير الويب",
+          "en": "Web Development",
+          "ru": "Веб-разработка"
+        },
+        "items": [
+          {
+            "id": "tool_react",
+            "name": {
+              "ar": "React.js",
+              "en": "React.js",
+              "ru": "React.js"
+            },
+            "icon": "devicon-react-plain colored",
+            "description": {
+              "ar": "مكتبة قوية لبناء واجهات المستخدم التفاعلية والمعقدة بكفاءة.",
+              "en": "A powerful library for efficiently building interactive and complex user interfaces.",
+              "ru": "Мощная библиотека для эффективного создания интерактивных и сложных пользовательских интерфейсов."
+            }
+          },
+          {
+            "id": "tool_nextjs",
+            "name": {
+              "ar": "Next.js",
+              "en": "Next.js",
+              "ru": "Next.js"
+            },
+            "icon": "devicon-nextjs-plain colored",
+            "description": {
+              "ar": "إطار عمل React لتطبيقات الويب الحديثة، يوفر تحسين الأداء وتجربة المطور.",
+              "en": "A React framework for modern web applications, offering performance optimization and developer experience.",
+              "ru": "Фреймворк React для современных веб-приложений, обеспечивающий оптимизацию производительности и удобство для разработчиков."
+            }
+          },
+          {
+            "id": "tool_tailwind",
+            "name": {
+              "ar": "Tailwind CSS",
+              "en": "Tailwind CSS",
+              "ru": "Tailwind CSS"
+            },
+            "icon": "devicon-tailwindcss-plain colored",
+            "description": {
+              "ar": "إطار عمل CSS يسرع عملية التصميم ويجعل الواجهات قابلة للتخصيص بدرجة عالية.",
+              "en": "A CSS framework that speeds up design and makes interfaces highly customizable.",
+              "ru": "CSS-фреймворк, который ускоряет процесс проектирования и делает интерфейсы легко настраиваемыми."
+            }
+          },
+          {
+            "id": "tool_bootstrap",
+            "name": {
+              "ar": "Bootstrap",
+              "en": "Bootstrap",
+              "ru": "Bootstrap"
+            },
+            "icon": "devicon-bootstrap-plain colored",
+            "description": {
+              "ar": "إطار عمل CSS شائع لبناء واجهات مستخدم سريعة الاستجابة ومتوافقة مع مختلف الأجهزة.",
+              "en": "A popular CSS framework for building responsive and device-compatible user interfaces.",
+              "ru": "Популярный CSS-фреймворк для создания адаптивных и совместимых с различными устройствами пользовательских интерфейсов."
+            }
+          },
+          {
+            "id": "tool_vite",
+            "name": {
+              "ar": "Vite",
+              "en": "Vite",
+              "ru": "Vite"
+            },
+            "icon": "devicon-vitejs-plain colored",
+            "description": {
+              "ar": "أداة بناء سريعة لتطوير الويب الحديث، توفر تجربة تطوير سريعة وفعالة.",
+              "en": "A fast build tool for modern web development, providing a quick and efficient development experience.",
+              "ru": "Быстрый инструмент сборки для современной веб-разработки, обеспечивающий быструю и эффективную разработку."
+            }
+          },
+          {
+            "id": "tool_express",
+            "name": {
+              "ar": "Express.js",
+              "en": "Express.js",
+              "ru": "Express.js"
+            },
+            "icon": "devicon-express-original colored",
+            "description": {
+              "ar": "إطار عمل Node.js خفيف الوزن لبناء واجهات برمجة التطبيقات (APIs) وتطبيقات الويب الخلفية.",
+              "en": "A lightweight Node.js framework for building APIs and backend web applications.",
+              "ru": "Легковесный фреймворк Node.js для создания API и бэкенд-веб-приложений."
+            }
+          },
+          {
+            "id": "tool_flask",
+            "name": {
+              "ar": "Flask",
+              "en": "Flask",
+              "ru": "Flask"
+            },
+            "icon": "devicon-flask-plain colored",
+            "description": {
+              "ar": "إطار عمل بايثون صغير وقوي لبناء تطبيقات الويب بسرعة وسهولة.",
+              "en": "A small yet powerful Python framework for quickly and easily building web applications.",
+              "ru": "Небольшой, но мощный фреймворк Python для быстрого и легкого создания веб-приложений."
+            }
+          }
+        ]
+      },
+      {
+        "id": "mobile_dev",
+        "title": {
+          "ar": "تطوير الهواتف",
+          "en": "Mobile Development",
+          "ru": "Мобильная разработка"
+        },
+        "items": [
+          {
+            "id": "tool_jetpack_compose",
+            "name": {
+              "ar": "Jetpack Compose",
+              "en": "Jetpack Compose",
+              "ru": "Jetpack Compose"
+            },
+            "icon": "devicon-android-plain colored",
+            "description": {
+              "ar": "إطار عمل حديث لبناء واجهات مستخدم أندرويد الأصلية بشكل تصريحي.",
+              "en": "A modern toolkit for building native Android UIs declaratively.",
+              "ru": "Современный инструментарий для декларативного создания нативных пользовательских интерфейсов Android."
+            }
+          },
+          {
+            "id": "tool_xml",
+            "name": {
+              "ar": "XML (Android Layouts)",
+              "en": "XML (Android Layouts)",
+              "ru": "XML (макеты Android)"
+            },
+            "icon": "devicon-android-plain colored",
+            "description": {
+              "ar": "أستخدم XML لتصميم واجهات المستخدم التقليدية لتطبيقات أندرويد.",
+              "en": "I use XML for designing traditional user interfaces for Android applications.",
+              "ru": "Я использую XML для проектирования традиционных пользовательских интерфейсов для Android-приложений."
+            }
+          },
+          {
+            "id": "tool_android_sdk",
+            "name": {
+              "ar": "Android SDK",
+              "en": "Android SDK",
+              "ru": "Android SDK"
+            },
+            "icon": "devicon-android-plain colored",
+            "description": {
+              "ar": "مجموعة الأدوات الأساسية لتطوير تطبيقات أندرويد، توفر واجهات برمجة التطبيقات والمكتبات اللازمة.",
+              "en": "The essential toolkit for Android app development, providing necessary APIs and libraries.",
+              "ru": "Основной инструментарий для разработки Android-приложений, предоставляющий необходимые API и библиотеки."
+            }
+          },
+          {
+            "id": "tool_react_native",
+            "name": {
+              "ar": "React Native",
+              "en": "React Native",
+              "ru": "React Native"
+            },
+            "icon": "devicon-react-plain colored",
+            "description": {
+              "ar": "لبناء تطبيقات هاتف أصلية متعددة المنصات باستخدام جافاسكريبت.",
+              "en": "For building cross-platform native mobile applications using JavaScript.",
+              "ru": "Для создания кроссплатформенных нативных мобильных приложений с использованием JavaScript."
+            }
+          }
+        ]
+      },
+      {
+        "id": "databases",
+        "title": {
+          "ar": "قواعد البيانات",
+          "en": "Databases",
+          "ru": "Базы данных"
+        },
+        "items": [
+          {
+            "id": "tool_postgresql",
+            "name": {
+              "ar": "PostgreSQL",
+              "en": "PostgreSQL",
+              "ru": "PostgreSQL"
+            },
+            "icon": "devicon-postgresql-plain colored",
+            "description": {
+              "ar": "قاعدة بيانات علائقية قوية ومفتوحة المصدر، مفضلة للمشاريع التي تتطلب موثوقية وتوسعاً.",
+              "en": "A powerful, open-source relational database, preferred for projects requiring reliability and scalability.",
+              "ru": "Мощная реляционная база данных с открытым исходным кодом, предпочтительная для проектов, требующих надежности и масштабируемости."
+            }
+          },
+          {
+            "id": "tool_mysql",
+            "name": {
+              "ar": "MySQL",
+              "en": "MySQL",
+              "ru": "MySQL"
+            },
+            "icon": "devicon-mysql-plain colored",
+            "description": {
+              "ar": "قاعدة بيانات علائقية شائعة، تستخدم على نطاق واسع في تطبيقات الويب.",
+              "en": "A popular relational database, widely used in web applications.",
+              "ru": "Популярная реляционная база данных, широко используемая в веб-приложениях."
+            }
+          },
+          {
+            "id": "tool_firebase",
+            "name": {
+              "ar": "Firebase (Firestore, Realtime DB)",
+              "en": "Firebase (Firestore, Realtime DB)",
+              "ru": "Firebase (Firestore, Realtime DB)"
+            },
+            "icon": "devicon-firebase-plain colored",
+            "description": {
+              "ar": "منصة تطوير تطبيقات توفر قواعد بيانات NoSQL سحابية ومزامنة فورية للبيانات.",
+              "en": "An app development platform offering cloud-hosted NoSQL databases and real-time data synchronization.",
+              "ru": "Платформа для разработки приложений, предлагающая облачные базы данных NoSQL и синхронизацию данных в реальном времени."
+            }
+          },
+          {
+            "id": "tool_supabase",
+            "name": {
+              "ar": "Supabase",
+              "en": "Supabase",
+              "ru": "Supabase"
+            },
+            "icon": "devicon-supabase-plain colored",
+            "description": {
+              "ar": "بديل مفتوح المصدر لـ Firebase، مبني على PostgreSQL، يوفر مصادقة، قواعد بيانات، وتخزين ملفات.",
+              "en": "An open-source Firebase alternative, built on PostgreSQL, providing authentication, databases, and file storage.",
+              "ru": "Альтернатива Firebase с открытым исходным кодом, построенная на PostgreSQL, предоставляющая аутентификацию, базы данных и хранение файлов."
+            }
+          }
+        ]
+      },
+      {
+        "id": "infra_tools",
+        "title": {
+          "ar": "الأدوات والبنية التحتية",
+          "en": "Tools & Infrastructure",
+          "ru": "Инструменты и Инфраструктура"
+        },
+        "items": [
+          {
+            "id": "tool_docker",
+            "name": {
+              "ar": "Docker",
+              "en": "Docker",
+              "ru": "Docker"
+            },
+            "icon": "devicon-docker-plain colored",
+            "description": {
+              "ar": "لإنشاء ونشر التطبيقات في بيئات معزولة (حاويات)، مما يضمن التناسق عبر بيئات التطوير والإنتاج.",
+              "en": "For creating and deploying applications in isolated environments (containers), ensuring consistency across development and production.",
+              "ru": "Для создания и развертывания приложений в изолированных средах (контейнерах), обеспечивая согласованность между средами разработки и продакшена."
+            }
+          },
+          {
+            "id": "tool_github",
+            "name": {
+              "ar": "GitHub",
+              "en": "GitHub",
+              "ru": "GitHub"
+            },
+            "icon": "devicon-github-original colored",
+            "description": {
+              "ar": "منصة لإدارة إصدارات الكود والتعاون في المشاريع البرمجية.",
+              "en": "A platform for version control and collaborative software development.",
+              "ru": "Платформа для контроля версий кода и совместной разработки программного обеспечения."
+            }
+          },
+          {
+            "id": "tool_swagger",
+            "name": {
+              "ar": "Swagger/OpenAPI",
+              "en": "Swagger/OpenAPI",
+              "ru": "Swagger/OpenAPI"
+            },
+            "icon": "devicon-swagger-plain colored",
+            "description": {
+              "ar": "لتصميم، بناء، توثيق، واستهلاك واجهات برمجة التطبيقات (APIs) بطريقة موحدة.",
+              "en": "For designing, building, documenting, and consuming APIs in a standardized way.",
+              "ru": "Для проектирования, создания, документирования и использования API стандартизированным способом."
+            }
+          },
+          {
+            "id": "tool_fcm",
+            "name": {
+              "ar": "Firebase Cloud Messaging (FCM)",
+              "en": "Firebase Cloud Messaging (FCM)",
+              "ru": "Firebase Cloud Messaging (FCM)"
+            },
+            "icon": "devicon-firebase-plain colored",
+            "description": {
+              "ar": "لإرسال الإشعارات والرسائل عبر الأنظمة الأساسية إلى تطبيقات الهاتف والويب بشكل موثوق.",
+              "en": "For reliably sending cross-platform notifications and messages to mobile and web applications.",
+              "ru": "Для надежной отправки кроссплатформенных уведомлений и сообщений в мобильные и веб-приложения."
+            }
+          }
+        ]
       }
     ]
   }

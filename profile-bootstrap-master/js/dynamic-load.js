@@ -171,7 +171,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const body = document.body;
-    const toggleIcon = document.querySelector("#theme-toggle i");
+    // Support both old standalone #theme-toggle and new panel-embedded one
+    const toggleIcons = document.querySelectorAll("#theme-toggle i");
     const effectiveTheme = getEffectiveTheme();
     const shouldAnimateThemeSwitch = !isDesktopView();
 
@@ -185,14 +186,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (effectiveTheme === "dark") {
       body.classList.add("dark-theme");
-      if (toggleIcon) {
-        toggleIcon.className = "fa fa-sun-o";
-      }
+      toggleIcons.forEach(function(icon) { icon.className = "fa fa-sun-o"; });
     } else {
       body.classList.remove("dark-theme");
-      if (toggleIcon) {
-        toggleIcon.className = "fa fa-moon-o";
-      }
+      toggleIcons.forEach(function(icon) { icon.className = "fa fa-moon-o"; });
     }
     applyAboutBanner(currentBannerImage, false);
   }
@@ -323,12 +320,22 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateLanguageButtons() {
     const langs = ["ar", "en", "ru"];
     langs.forEach((l) => {
+      // Desktop buttons
       const btn = document.getElementById("lang-btn-" + l);
       if (btn) {
         if (l === currentLang) {
           btn.classList.add("active");
         } else {
           btn.classList.remove("active");
+        }
+      }
+      // Mobile chips inside unified panel
+      const chip = document.getElementById("mobile-lang-btn-" + l);
+      if (chip) {
+        if (l === currentLang) {
+          chip.classList.add("active");
+        } else {
+          chip.classList.remove("active");
         }
       }
     });
@@ -355,6 +362,11 @@ document.addEventListener("DOMContentLoaded", function () {
     renderWorkflow(data.workflow);
     renderFooter(data.about);
     initAwardsBgAnimation();
+
+    // Render Tools & Skills section
+    if (typeof window.renderTools === 'function') window.renderTools(data);
+    if (typeof window.updateToolsFooterLink === 'function') window.updateToolsFooterLink();
+    if (typeof window.updateToolsNavLink === 'function') window.updateToolsNavLink();
 
     // Trigger scroll animations
     initScrollReveal();
@@ -383,6 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
       'a[href="#testimonials"]': ui.navTestimonials,
       'a[href="#workflow"]': ui.navWorkflow,
       'a[href="#why-me"]': ui.navWhyMe,
+      'a[href="#tools"]': ui.navTools || (siteData && siteData.tools && siteData.tools.heading),
     };
 
     for (const selector in linksMap) {
@@ -1123,7 +1136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const headers = whyMe.tableHeaders || {};
     const rows = whyMe.rows || [];
     let tableHtml = `
-      <div class="why-me-table-wrap reveal">
+      <div class="why-me-table-wrap">
         <table class="why-me-table">
           <thead>
             <tr>
@@ -1152,7 +1165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let highlightsHtml = '<div class="why-me-highlights-grid">';
     highlights.forEach(function (item) {
       highlightsHtml += `
-        <article class="why-me-highlight-card reveal">
+        <article class="why-me-highlight-card">
           <span class="why-me-highlight-icon"><i class="fa ${escapeHtml(item.icon || "fa-star")}" aria-hidden="true"></i></span>
           <h4>${escapeHtml(getLocValue(item.title))}</h4>
           <p>${escapeHtml(getLocValue(item.description))}</p>
@@ -1479,3 +1492,258 @@ document.addEventListener("DOMContentLoaded", function () {
     lastScrollTop = scrollTop;
   });
 });
+
+// ============================================================
+// Mobile Unified Controls Panel (Language + Theme)
+// ============================================================
+
+(function () {
+  // currentLang for tools rendering - reads from localStorage (kept in sync with main DOMContentLoaded)
+  var currentLang = localStorage.getItem('preferredLang') || 'ar';
+  var isOpen = false;
+
+  function openPanel() {
+    var btn   = document.getElementById('mobile-controls-btn');
+    var panel = document.getElementById('mobile-controls-panel');
+    if (!btn || !panel) return;
+    isOpen = true;
+    btn.classList.add('is-open');
+    panel.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    // Ripple effect
+    btn.classList.remove('ripple');
+    void btn.offsetWidth; // reflow
+    btn.classList.add('ripple');
+    setTimeout(function() { btn.classList.remove('ripple'); }, 500);
+  }
+
+  function closePanel() {
+    var btn   = document.getElementById('mobile-controls-btn');
+    var panel = document.getElementById('mobile-controls-panel');
+    if (!btn || !panel) return;
+    isOpen = false;
+    btn.classList.remove('is-open');
+    panel.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  window.toggleMobileControls = function () {
+    if (isOpen) { closePanel(); } else { openPanel(); }
+  };
+
+  // Close when clicking outside
+  document.addEventListener('click', function (e) {
+    var wrapper = document.getElementById('mobile-controls-wrapper');
+    if (isOpen && wrapper && !wrapper.contains(e.target)) {
+      closePanel();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && isOpen) { closePanel(); }
+  });
+
+  // Update chip active state to match current language
+  function syncLangChips(lang) {
+    var chips = document.querySelectorAll('.mobile-lang-chip');
+    chips.forEach(function (chip) {
+      if (chip.getAttribute('data-lang') === lang) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+  }
+
+  window.selectMobileLang = function (lang) {
+    if (window.setLanguage) { window.setLanguage(lang); }
+    syncLangChips(lang);
+    // Keep panel open so user can also toggle theme
+  };
+
+  // Backward compat: keep old toggleMobileLangDropdown as no-op
+  window.toggleMobileLangDropdown = function () {};
+
+  // Sync chips on page load based on saved language
+  document.addEventListener('DOMContentLoaded', function () {
+    var savedLang = localStorage.getItem('preferredLang') || 'ar';
+    syncLangChips(savedLang);
+  });
+
+  // ===== TOOLS & SKILLS SECTION =====
+  function renderTools(data) {
+    // Always read the latest language from localStorage before rendering
+    currentLang = localStorage.getItem('preferredLang') || 'ar';
+    if (!data.tools) return;
+    
+    const toolsHeading = document.getElementById('tools-heading');
+    const toolsSubtitle = document.getElementById('tools-subtitle');
+    const toolsContainer = document.getElementById('tools-container');
+    
+    if (!toolsContainer) return;
+    
+    // Update heading and subtitle
+    if (toolsHeading && data.tools.heading) {
+      toolsHeading.textContent = data.tools.heading[currentLang] || data.tools.heading.en;
+    }
+    if (toolsSubtitle && data.tools.subtitle) {
+      toolsSubtitle.textContent = data.tools.subtitle[currentLang] || data.tools.subtitle.en;
+    }
+    
+    // Clear container
+    toolsContainer.innerHTML = '';
+    
+    // Render categories
+    if (data.tools.categories && Array.isArray(data.tools.categories)) {
+      data.tools.categories.forEach(function(category) {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'tools-category';
+        
+        const categoryTitle = document.createElement('div');
+        categoryTitle.className = 'tools-category-title';
+        categoryTitle.textContent = category.title[currentLang] || category.title.en;
+        categoryDiv.appendChild(categoryTitle);
+        
+        // Render tool items
+        if (category.items && Array.isArray(category.items)) {
+          category.items.forEach(function(tool) {
+            const toolDiv = document.createElement('div');
+            toolDiv.className = 'tool-item';
+            toolDiv.style.cursor = 'pointer';
+            
+            const iconDiv = document.createElement('div');
+            iconDiv.className = 'tool-icon';
+            
+            // Check if it's a Font Awesome icon or a custom class
+            if (tool.icon.includes('devicon')) {
+              const i = document.createElement('i');
+              i.className = tool.icon;
+              iconDiv.appendChild(i);
+            } else {
+              const i = document.createElement('i');
+              i.className = 'fa ' + tool.icon;
+              iconDiv.appendChild(i);
+            }
+            
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'tool-name';
+            nameDiv.textContent = tool.name[currentLang] || tool.name.en;
+
+            // Hint text
+            const hintTexts = { ar: '← اضغط للشرح', en: 'Tap to learn why →', ru: 'Нажмите →' };
+            const hintDiv = document.createElement('div');
+            hintDiv.className = 'tool-item-hint';
+            hintDiv.innerHTML = `<i class="fa fa-info-circle"></i> ${hintTexts[currentLang] || hintTexts.en}`;
+            
+            toolDiv.appendChild(iconDiv);
+            toolDiv.appendChild(nameDiv);
+            toolDiv.appendChild(hintDiv);
+            
+            // Add click event to show detail modal
+            toolDiv.addEventListener('click', function() {
+              showToolDetail(tool);
+            });
+            
+            categoryDiv.appendChild(toolDiv);
+          });
+        }
+        
+        toolsContainer.appendChild(categoryDiv);
+      });
+    }
+  }
+  
+  function showToolDetail(tool) {
+    // Create or get modal
+    let modal = document.getElementById('tool-detail-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'tool-detail-modal';
+      modal.className = 'tool-detail-modal';
+      modal.innerHTML = `
+        <div class="tool-detail-backdrop"></div>
+        <div class="tool-detail-dialog">
+          <button class="tool-detail-close" onclick="closeToolDetail()">&times;</button>
+          <div class="tool-detail-header">
+            <div class="tool-detail-icon"></div>
+            <h3 class="tool-detail-title"></h3>
+          </div>
+          <div class="tool-detail-content"></div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      
+      // Close on backdrop click
+      modal.querySelector('.tool-detail-backdrop').addEventListener('click', closeToolDetail);
+      
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+          closeToolDetail();
+        }
+      });
+    }
+    
+    // Populate modal content
+    const icon = modal.querySelector('.tool-detail-icon');
+    const title = modal.querySelector('.tool-detail-title');
+    const content = modal.querySelector('.tool-detail-content');
+    
+    icon.innerHTML = '';
+    if (tool.icon.includes('devicon')) {
+      const i = document.createElement('i');
+      i.className = tool.icon;
+      icon.appendChild(i);
+    } else {
+      const i = document.createElement('i');
+      i.className = 'fa ' + tool.icon;
+      icon.appendChild(i);
+    }
+    
+    title.textContent = tool.name[currentLang] || tool.name.en;
+
+    // Build modal content with "Why I prefer this" label
+    const whyLabels = { ar: 'لماذا أفضل هذا بالتحديد؟', en: 'Why I prefer this specifically?', ru: 'Почему именно это?' };
+    const whyLabel = whyLabels[currentLang] || whyLabels.en;
+    const descText = tool.description[currentLang] || tool.description.en || '';
+    content.innerHTML = `<div class="tool-why-label"><i class="fa fa-lightbulb-o"></i> ${whyLabel}</div><p>${descText}</p>`;
+    
+    // Show modal with animation
+    modal.classList.add('is-open');
+  }
+  
+  window.closeToolDetail = function() {
+    const modal = document.getElementById('tool-detail-modal');
+    if (modal) {
+      modal.classList.remove('is-open');
+    }
+  };
+  
+  // Update footer link text for Tools
+  function updateToolsFooterLink() {
+    const footerLink = document.getElementById('footer-link-tools');
+    if (footerLink && siteData && siteData.tools) {
+      footerLink.textContent = siteData.tools.heading[currentLang] || siteData.tools.heading.en || 'Tools';
+    }
+  }
+
+  // Update nav link text for Tools (sidebar navigation)
+  function updateToolsNavLink() {
+    const navLink = document.getElementById('nav-link-tools');
+    if (navLink && siteData) {
+      // Use ui.navTools if available, else fall back to tools.heading
+      const navText = (siteData.ui && siteData.ui.navTools)
+        ? (siteData.ui.navTools[currentLang] || siteData.ui.navTools.en)
+        : (siteData.tools && siteData.tools.heading
+            ? (siteData.tools.heading[currentLang] || siteData.tools.heading.en)
+            : 'Tools');
+      navLink.textContent = navText;
+    }
+  }
+  
+  // Expose renderTools globally so the main DOMContentLoaded renderAll can call it
+  window.renderTools = renderTools;
+  window.updateToolsFooterLink = updateToolsFooterLink;
+  window.updateToolsNavLink = updateToolsNavLink;
+}());

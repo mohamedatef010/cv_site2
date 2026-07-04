@@ -134,6 +134,9 @@
                 <li class="menu-item" data-tab="why-me">
                     <a href="javascript:void(0)"><i class="fa fa-star"></i> Why Me</a>
                 </li>
+                <li class="menu-item" data-tab="tools">
+                    <a href="javascript:void(0)"><i class="fa fa-sliders"></i> Tools & Skills</a>
+                </li>
             </ul>
             <div class="sidebar-footer">
                 <button class="btn-logout" id="btn-logout">
@@ -654,6 +657,70 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Tools Tab -->
+            <section class="tab-panel" id="tab-tools">
+                <div class="panel-card">
+                    <div class="panel-title">Tools & Skills Settings</div>
+                    <form id="form-tools-settings">
+                        <div class="lang-group">
+                            <div class="lang-label">Section Heading</div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Arabic (العربية)</label><input type="text" id="tools-heading-ar" class="form-control" placeholder="المهارات والأدوات"></div>
+                                <div class="form-group"><label>English</label><input type="text" id="tools-heading-en" class="form-control" placeholder="Skills &amp; Tools"></div>
+                                <div class="form-group"><label>Russian (Русский)</label><input type="text" id="tools-heading-ru" class="form-control" placeholder="Навыки и Инструменты"></div>
+                            </div>
+                        </div>
+                        <div class="lang-group">
+                            <div class="lang-label">Section Subtitle</div>
+                            <div class="form-group"><label>Arabic (العربية)</label><textarea id="tools-subtitle-ar" class="form-control" rows="2" placeholder="مجموعة التقنيات والمنصات التي أتقنها..."></textarea></div>
+                            <div class="form-group"><label>English</label><textarea id="tools-subtitle-en" class="form-control" rows="2" placeholder="The array of technologies and platforms..."></textarea></div>
+                            <div class="form-group"><label>Russian (Русский)</label><textarea id="tools-subtitle-ru" class="form-control" rows="2" placeholder="Набор теخнологий и платформ..."></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-card" style="margin-top: 24px;">
+                    <div class="panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Tool Categories</span>
+                        <button class="btn btn-success btn-sm" onclick="openToolsCategoryModal(null)">
+                            <i class="fa fa-plus"></i> Add Category
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="tools-categories-table">
+                            <thead>
+                                <tr>
+                                    <th>Category Name</th>
+                                    <th>Items Count</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-card" style="margin-top: 24px;">
+                    <div class="panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>All Tools</span>
+                        <button class="btn btn-success btn-sm" onclick="openToolsItemModal(null, null)">
+                            <i class="fa fa-plus"></i> Add Tool
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="tools-items-table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Tool Name</th>
+                                    <th>Icon</th>
+                                    <th style="width: 150px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -1125,6 +1192,72 @@
         </div>
     </div>
 
+    <!-- Tools Category Modal -->
+    <div class="modal-overlay" id="modal-tools-category">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h3 id="tools-cat-modal-title">Add Category</h3>
+                <button class="modal-close" onclick="closeModal('modal-tools-category')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-tools-category">
+                    <input type="hidden" id="tools-cat-edit-idx">
+                    <div class="lang-group">
+                        <div class="lang-label">Category Name</div>
+                        <div class="form-group"><label>Arabic (العربية)</label><input type="text" id="tools-cat-title-ar" class="form-control" placeholder="لغات البرمجة"></div>
+                        <div class="form-group"><label>English</label><input type="text" id="tools-cat-title-en" class="form-control" placeholder="Programming Languages" required></div>
+                        <div class="form-group"><label>Russian (Русский)</label><input type="text" id="tools-cat-title-ru" class="form-control" placeholder="Языки программирования"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-tools-category')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitToolsCategoryForm()">Save Category</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tools Item Modal -->
+    <div class="modal-overlay" id="modal-tools-item">
+        <div class="admin-modal" style="max-width: 680px;">
+            <div class="modal-header">
+                <h3 id="tools-item-modal-title">Add Tool</h3>
+                <button class="modal-close" onclick="closeModal('modal-tools-item')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-modal-tools-item">
+                    <input type="hidden" id="tools-item-edit-catidx">
+                    <input type="hidden" id="tools-item-edit-itemidx">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="tools-item-category" class="form-control"></select>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Tool Name</div>
+                        <div class="form-group"><label>Arabic (العربية)</label><input type="text" id="tools-item-name-ar" class="form-control" placeholder="بايثون"></div>
+                        <div class="form-group"><label>English</label><input type="text" id="tools-item-name-en" class="form-control" placeholder="Python" required></div>
+                        <div class="form-group"><label>Russian (Русский)</label><input type="text" id="tools-item-name-ru" class="form-control" placeholder="Python"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Icon Class <small style="color:var(--text-muted);">(e.g. <code>devicon-python-plain colored</code> or <code>fa-code</code>)</small></label>
+                        <input type="text" id="tools-item-icon" class="form-control" placeholder="devicon-python-plain colored" required>
+                        <small style="color:var(--text-muted); margin-top:4px; display:block;">Use <a href="https://devicon.dev/" target="_blank" style="color:var(--primary-color);">devicon.dev</a> for tech icons or Font Awesome class names.</small>
+                    </div>
+                    <div class="lang-group">
+                        <div class="lang-label">Why I prefer this (Description)</div>
+                        <div class="form-group"><label>Arabic (العربية)</label><textarea id="tools-item-desc-ar" class="form-control" rows="3" placeholder="لماذا تفضل هذه الأداة..."></textarea></div>
+                        <div class="form-group"><label>English</label><textarea id="tools-item-desc-en" class="form-control" rows="3" placeholder="Why I prefer this tool..."></textarea></div>
+                        <div class="form-group"><label>Russian (Русский)</label><textarea id="tools-item-desc-ru" class="form-control" rows="3" placeholder="Почему я предпочитаю этот инструмент..."></textarea></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-tools-item')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitToolsItemForm()">Save Tool</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JS Scripts -->
     <script>
         // Store website state locally
@@ -1328,6 +1461,7 @@
                 ensureNewSections(siteData);
                 populateTestimonialsSettings(siteData.testimonials);
                 populateWhyMeSettings(siteData.whyMe);
+                populateToolsSettings(siteData.tools);
 
                 // Populate Lists
                 renderExperienceTable(siteData.experience);
@@ -1431,6 +1565,7 @@
             if (!siteData.about.socials) siteData.about.socials = {};
             if (!siteData.testimonials) siteData.testimonials = { heading: {}, subtitle: {}, items: [] };
             if (!siteData.whyMe) siteData.whyMe = { heading: {}, subtitle: {}, intro: {}, tableHeaders: {}, rows: [], highlights: [] };
+            if (!siteData.tools) siteData.tools = { heading: {}, subtitle: {}, categories: [] };
             if (!siteData.ui) siteData.ui = {};
 
             // About
@@ -1506,9 +1641,24 @@
                 }
             };
 
+            // Tools
+            if (document.getElementById('tools-heading-ar')) {
+                siteData.tools.heading = {
+                    ar: document.getElementById('tools-heading-ar').value,
+                    en: document.getElementById('tools-heading-en').value,
+                    ru: document.getElementById('tools-heading-ru').value
+                };
+                siteData.tools.subtitle = {
+                    ar: document.getElementById('tools-subtitle-ar').value,
+                    en: document.getElementById('tools-subtitle-en').value,
+                    ru: document.getElementById('tools-subtitle-ru').value
+                };
+            }
+
             if (siteData.ui) {
                 siteData.ui.testimonialsHeading = siteData.testimonials.heading;
                 siteData.ui.whyMeHeading = siteData.whyMe.heading;
+                siteData.ui.toolsHeading = siteData.tools.heading;
             }
         }
 
@@ -1837,6 +1987,8 @@
             if (!data.whyMe.highlights) data.whyMe.highlights = [];
             if (!data.workflow) data.workflow = { heading: {}, subtitle: {}, steps: [] };
             if (!data.workflow.steps) data.workflow.steps = [];
+            if (!data.tools) data.tools = { heading: {}, subtitle: {}, categories: [] };
+            if (!data.tools.categories) data.tools.categories = [];
             if (!data.ui) data.ui = {};
         }
 
@@ -1872,6 +2024,242 @@
             document.getElementById('why-me-header-others-en').value = whyMe.tableHeaders?.others?.en || '';
             document.getElementById('why-me-header-others-ru').value = whyMe.tableHeaders?.others?.ru || '';
             bindFormChangeListeners('#form-why-me-settings');
+        }
+
+
+        function populateToolsSettings(tools) {
+            if (!tools) return;
+            document.getElementById('tools-heading-ar').value = tools.heading?.ar || '';
+            document.getElementById('tools-heading-en').value = tools.heading?.en || '';
+            document.getElementById('tools-heading-ru').value = tools.heading?.ru || '';
+            document.getElementById('tools-subtitle-ar').value = tools.subtitle?.ar || '';
+            document.getElementById('tools-subtitle-en').value = tools.subtitle?.en || '';
+            document.getElementById('tools-subtitle-ru').value = tools.subtitle?.ru || '';
+            renderToolsCategoriesTable(tools.categories);
+            renderToolsItemsTable(tools.categories);
+            bindFormChangeListeners('#form-tools-settings');
+        }
+
+
+        function renderToolsCategoriesTable(categories) {
+            const tbody = document.querySelector('#tools-categories-table tbody');
+            tbody.innerHTML = '';
+            if (!categories || categories.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" class="text-center" style="color:var(--text-muted)">No categories added yet.</td></tr>';
+                return;
+            }
+
+            categories.forEach((cat, idx) => {
+                const tr = document.createElement('tr');
+                const itemsCount = (cat.items && cat.items.length) || 0;
+                tr.innerHTML = `
+                    <td><strong>${cat.title?.en || cat.title?.ar || 'Untitled'}</strong><br><small style="color:var(--text-muted)">${cat.title?.ar || ''}</small></td>
+                    <td><span class="badge badge-info">${itemsCount} tools</span></td>
+                    <td class="table-actions" style="text-align: right;">
+                        <button class="btn btn-success btn-sm" onclick="openToolsItemModal(${idx}, null)" title="Add tool to this category"><i class="fa fa-plus"></i></button>
+                        <button class="btn btn-secondary btn-sm" onclick="editToolsCategory(${idx})"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteToolsCategory(${idx})"><i class="fa fa-trash"></i> Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderToolsItemsTable(categories) {
+            const tbody = document.querySelector('#tools-items-table tbody');
+            tbody.innerHTML = '';
+            let allItems = [];
+            
+            if (categories && categories.length > 0) {
+                categories.forEach((cat, catIdx) => {
+                    if (cat.items && cat.items.length > 0) {
+                        cat.items.forEach((item, itemIdx) => {
+                            allItems.push({ category: cat, catIdx, item, itemIdx });
+                        });
+                    }
+                });
+            }
+
+            if (allItems.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center" style="color:var(--text-muted)">No tools added yet.</td></tr>';
+                return;
+            }
+
+            allItems.forEach(({ category, catIdx, item, itemIdx }) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${category.title?.en || category.title?.ar || 'Untitled'}</strong></td>
+                    <td>${item.name?.en || item.name?.ar || 'Untitled'}</td>
+                    <td><i class="${item.icon}"></i> <code>${item.icon}</code></td>
+                    <td class="table-actions" style="text-align: right;">
+                        <button class="btn btn-secondary btn-sm" onclick="editToolsItem(${catIdx}, ${itemIdx})"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteToolsItem(${catIdx}, ${itemIdx})"><i class="fa fa-trash"></i> Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function editToolsCategory(idx) {
+            openToolsCategoryModal(idx);
+        }
+
+        function deleteToolsCategory(idx) {
+            if (!confirm('Are you sure you want to delete this category and all its tools?')) return;
+            siteData.tools.categories.splice(idx, 1);
+            markAsModified();
+            renderToolsCategoriesTable(siteData.tools.categories);
+            renderToolsItemsTable(siteData.tools.categories);
+            showToast('Category deleted.', 'info');
+        }
+
+        function editToolsItem(catIdx, itemIdx) {
+            openToolsItemModal(catIdx, itemIdx);
+        }
+
+        function deleteToolsItem(catIdx, itemIdx) {
+            if (!confirm('Are you sure you want to delete this tool?')) return;
+            siteData.tools.categories[catIdx].items.splice(itemIdx, 1);
+            markAsModified();
+            renderToolsCategoriesTable(siteData.tools.categories);
+            renderToolsItemsTable(siteData.tools.categories);
+            showToast('Tool deleted.', 'info');
+        }
+
+        function openToolsCategoryModal(idx) {
+            document.getElementById('form-modal-tools-category').reset();
+            if (idx !== null && idx !== undefined) {
+                const cat = siteData.tools.categories[idx];
+                document.getElementById('tools-cat-modal-title').innerText = 'Edit Category';
+                document.getElementById('tools-cat-edit-idx').value = idx;
+                document.getElementById('tools-cat-title-ar').value = cat.title?.ar || '';
+                document.getElementById('tools-cat-title-en').value = cat.title?.en || '';
+                document.getElementById('tools-cat-title-ru').value = cat.title?.ru || '';
+            } else {
+                document.getElementById('tools-cat-modal-title').innerText = 'Add Category';
+                document.getElementById('tools-cat-edit-idx').value = '';
+            }
+            showModal('modal-tools-category');
+        }
+
+        function submitToolsCategoryForm() {
+            const idxVal = document.getElementById('tools-cat-edit-idx').value;
+            const titleAr = document.getElementById('tools-cat-title-ar').value.trim();
+            const titleEn = document.getElementById('tools-cat-title-en').value.trim();
+            const titleRu = document.getElementById('tools-cat-title-ru').value.trim();
+            if (!titleAr && !titleEn) {
+                showToast('Please fill Category Name in Arabic or English.', 'warning');
+                return;
+            }
+            if (!siteData.tools.categories) siteData.tools.categories = [];
+            if (idxVal !== '') {
+                const idx = parseInt(idxVal, 10);
+                siteData.tools.categories[idx].title = { ar: titleAr, en: titleEn, ru: titleRu };
+            } else {
+                siteData.tools.categories.push({
+                    id: 'cat_' + Date.now(),
+                    title: { ar: titleAr, en: titleEn, ru: titleRu },
+                    items: []
+                });
+            }
+            closeModal('modal-tools-category');
+            renderToolsCategoriesTable(siteData.tools.categories);
+            renderToolsItemsTable(siteData.tools.categories);
+            markAsModified();
+            showToast('Category saved!', 'success');
+        }
+
+        function openToolsItemModal(catIdx, itemIdx) {
+            document.getElementById('form-modal-tools-item').reset();
+            // Populate category dropdown
+            const catSelect = document.getElementById('tools-item-category');
+            catSelect.innerHTML = '';
+            if (!siteData.tools.categories || siteData.tools.categories.length === 0) {
+                showToast('Please add a category first.', 'warning');
+                return;
+            }
+            siteData.tools.categories.forEach((cat, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = cat.title?.en || cat.title?.ar || 'Category ' + i;
+                catSelect.appendChild(opt);
+            });
+
+            if (catIdx !== null && catIdx !== undefined && itemIdx !== null && itemIdx !== undefined) {
+                const item = siteData.tools.categories[catIdx].items[itemIdx];
+                document.getElementById('tools-item-modal-title').innerText = 'Edit Tool';
+                document.getElementById('tools-item-edit-catidx').value = catIdx;
+                document.getElementById('tools-item-edit-itemidx').value = itemIdx;
+                catSelect.value = catIdx;
+                document.getElementById('tools-item-name-ar').value = item.name?.ar || '';
+                document.getElementById('tools-item-name-en').value = item.name?.en || '';
+                document.getElementById('tools-item-name-ru').value = item.name?.ru || '';
+                document.getElementById('tools-item-icon').value = item.icon || '';
+                document.getElementById('tools-item-desc-ar').value = item.description?.ar || '';
+                document.getElementById('tools-item-desc-en').value = item.description?.en || '';
+                document.getElementById('tools-item-desc-ru').value = item.description?.ru || '';
+            } else {
+                document.getElementById('tools-item-modal-title').innerText = 'Add Tool';
+                document.getElementById('tools-item-edit-catidx').value = '';
+                document.getElementById('tools-item-edit-itemidx').value = '';
+                if (catIdx !== null && catIdx !== undefined) catSelect.value = catIdx;
+            }
+            showModal('modal-tools-item');
+        }
+
+        function submitToolsItemForm() {
+            const catIdxVal = document.getElementById('tools-item-edit-catidx').value;
+            const itemIdxVal = document.getElementById('tools-item-edit-itemidx').value;
+            const selectedCatIdx = parseInt(document.getElementById('tools-item-category').value, 10);
+            const nameAr = document.getElementById('tools-item-name-ar').value.trim();
+            const nameEn = document.getElementById('tools-item-name-en').value.trim();
+            const nameRu = document.getElementById('tools-item-name-ru').value.trim();
+            const icon = document.getElementById('tools-item-icon').value.trim();
+            const descAr = document.getElementById('tools-item-desc-ar').value.trim();
+            const descEn = document.getElementById('tools-item-desc-en').value.trim();
+            const descRu = document.getElementById('tools-item-desc-ru').value.trim();
+
+            if (!nameEn && !nameAr) {
+                showToast('Please fill Tool Name in Arabic or English.', 'warning');
+                return;
+            }
+            if (!icon) {
+                showToast('Please enter an icon class (e.g. devicon-python-plain colored).', 'warning');
+                return;
+            }
+
+            const obj = {
+                id: 'tool_' + Date.now(),
+                name: { ar: nameAr, en: nameEn, ru: nameRu },
+                icon: icon,
+                description: { ar: descAr, en: descEn, ru: descRu }
+            };
+
+            if (!siteData.tools.categories[selectedCatIdx].items) {
+                siteData.tools.categories[selectedCatIdx].items = [];
+            }
+
+            if (catIdxVal !== '' && itemIdxVal !== '') {
+                const oldCatIdx = parseInt(catIdxVal, 10);
+                const oldItemIdx = parseInt(itemIdxVal, 10);
+                // Keep original id
+                obj.id = siteData.tools.categories[oldCatIdx].items[oldItemIdx].id;
+                // If category changed, move item
+                if (oldCatIdx !== selectedCatIdx) {
+                    siteData.tools.categories[oldCatIdx].items.splice(oldItemIdx, 1);
+                    siteData.tools.categories[selectedCatIdx].items.push(obj);
+                } else {
+                    siteData.tools.categories[selectedCatIdx].items[oldItemIdx] = obj;
+                }
+            } else {
+                siteData.tools.categories[selectedCatIdx].items.push(obj);
+            }
+
+            closeModal('modal-tools-item');
+            renderToolsCategoriesTable(siteData.tools.categories);
+            renderToolsItemsTable(siteData.tools.categories);
+            markAsModified();
+            showToast('Tool saved!', 'success');
         }
 
         // --- RENDER TABLES ---
@@ -2835,7 +3223,8 @@
                     skills: { title: 'Skills Inventory', subtitle: 'Add skills and define your proficiency levels' },
                     awards: { title: 'Awards & Certifications', subtitle: 'List academic and professional achievements' },
                     testimonials: { title: 'Client Testimonials', subtitle: 'Manage client reviews and screenshot testimonials' },
-                    'why-me': { title: 'Why Me', subtitle: 'Comparison table and convincing highlights' }
+                    'why-me': { title: 'Why Me', subtitle: 'Comparison table and convincing highlights' },
+                    tools: { title: 'Skills & Tools', subtitle: 'Manage programming languages, frameworks, databases, and infrastructure tools' }
                 };
 
                 document.getElementById('current-tab-title').innerText = titleMap[tabId].title;
