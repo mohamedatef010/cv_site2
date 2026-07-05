@@ -428,14 +428,14 @@
     {
       "id": "skill_2",
       "name": {
-        "ar": "تطوير تطبيقات Android و iOS",
-        "en": "Android & iOS App Development",
-        "ru": "Разработка приложений Android и iOS"
+        "ar": "تطوير تطبيقات (Android) ",
+        "en": "App Development (Android)",
+        "ru": "Разработка приложений (Android)"
       },
       "description": {
         "ar": "أبرمج تطبيقات للجوال تعمل على الأندرويد  — مثل تطبيقات الطلب والحجز والتوصيل.",
-        "en": "I make mobile apps for Android and iPhone — like ordering, booking, or delivery apps.",
-        "ru": "Делаю приложения для Android и iPhone — заказ, бронирование, доставка и т.д."
+        "en": "I make mobile apps for Android  — like ordering, booking, or delivery apps.",
+        "ru": "Делаю приложения для Android — заказ, бронирование, доставка и т.д."
       },
       "icon": "fa-mobile",
       "percentage": 90
