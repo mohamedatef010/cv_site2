@@ -72,7 +72,7 @@
       "mailRu": "  https://my.mail.ru/mail/mohamedatef0100",
       "facebook": "#",
       "telegram": "https://t.me/mohamedatef010",
-      "max": "+79363330407",
+      "max": "https://max.ru/79363330407",
       "whatsapp": "https://wa.me/79363330407"
     }
   },
@@ -90,9 +90,9 @@
         "ru": "Январь 2020 — настоящее время"
       },
       "description": {
-        "ar": "💼 مهندس برمجيات\n\nأكثر من خمس سنوات من الخبرة في تطوير البرمجيات، وبناء مواقع الويب الحديثة، وتطبيقات الهواتف الذكية، والأنظمة الإدارية المتكاملة باستخدام أحدث التقنيات مع التركيز على الأداء والأمان وقابلية التوسع.",
-        "en": "💼 Software Engineer\nOver the past five years, I have designed and developed modern web applications, mobile applications, and enterprise systems using the latest technologies. My expertise covers Full Stack Development, UI/UX implementation, database architecture, API development, server deployment, networking, and cloud infrastructure. I am passionate about building secure, scalable, and high-performance digital solutions that provide exceptional user experiences.",
-        "ru": "💼 Инженер-программист (Software Engineer)\n\nБолее 5 лет профессионального опыта в разработке программного обеспечения. Специализируюсь на создании современных веб-приложений, мобильных приложений и корпоративных информационных систем. Имею глубокие знания в области Full Stack разработки, проектирования баз данных, разработки API, UI/UX, администрирования серверов, сетевых технологий и облачной инфраструктуры. Создаю безопасные, масштабируемые и высокопроизводительные программные решения."
+        "ar": "مهندس برمجيات\n\nأكثر من خمس سنوات من الخبرة في تطوير البرمجيات، وبناء مواقع الويب الحديثة، وتطبيقات الهواتف الذكية، والأنظمة الإدارية المتكاملة باستخدام أحدث التقنيات مع التركيز على الأداء والأمان وقابلية التوسع.",
+        "en": "Software Engineer\nOver the past five years, I have designed and developed modern web applications, mobile applications, and enterprise systems using the latest technologies. My expertise covers Full Stack Development, UI/UX implementation, database architecture, API development, server deployment, networking, and cloud infrastructure. I am passionate about building secure, scalable, and high-performance digital solutions that provide exceptional user experiences.",
+        "ru": "Инженер-программист (Software Engineer)\n\nБолее 5 лет профессионального опыта в разработке программного обеспечения. Специализируюсь на создании современных веб-приложений, мобильных приложений и корпоративных информационных систем. Имею глубокие знания в области Full Stack разработки, проектирования баз данных, разработки API, UI/UX, администрирования серверов, сетевых технологий и облачной инфраструктуры. Создаю безопасные, масштабируемые и высокопроизводительные программные решения."
       },
       "color": "info",
       "icon": "fa-globe"
@@ -204,9 +204,9 @@
         "ru": ""
       },
       "date": {
-        "ar": "",
-        "en": "",
-        "ru": ""
+        "ar": "2025",
+        "en": "2025",
+        "ru": "2025"
       },
       "service": {
         "ar": "",
@@ -214,9 +214,9 @@
         "ru": ""
       },
       "deliveryTime": {
-        "ar": "",
-        "en": "",
-        "ru": ""
+        "ar": "شهر",
+        "en": "Month",
+        "ru": "Месяц"
       },
       "description": {
         "ar": "حلم صاحب المطعم أن يدير موقعه الإلكتروني بنفسه — دون وسطاء، ودون انتظار، ودون مصاريف إضافية. لم يكن يبحث عن موقع جميل فحسب، بل عن منصة حية تتنفس مع إيقاع مطعمه: تتغير بتغير قائمة الطعام، وتعكس عروض اليوم، وتحافظ على الطابع الفريد للمكان.\n\nأراد صاحب المطعم أن يكون الموقع واعياً بالزمن، لا مجرد واجهة جامدة. أن يفهم الزائر فور دخوله: هل المطعم مفتوح الآن؟ هل يمكنه الطلب؟ أم أن عليه العودة لاحقاً؟\n\nلهذا، أضفتُ وحدة ذكية تقرأ اليوم، والساعة، والدقيقة من جهاز المستخدم، ثم تقارنها تلقائياً بجدول العمل الذي يحدده صاحب المطعم بنفسه من لوحة التحكم. لا حاجة لأي تحديث يدوي — كل شيء يحدث في لحظة، وبهدوء تام، دون أن يشعر الزائر بأي تعقيد. الموقع أصبح يفهم الوقت، كما يفهمه صاحبه تماماً.",
@@ -263,14 +263,14 @@
         "img/portfolio/lv_0_20260429011329_1782781329725.mp4"
       ],
       "client": {
-        "ar": "المكتب الدولي للطلاب الاجانب",
-        "en": "International Office",
-        "ru": "Международный отдел"
+        "ar": "المكتب الدولي للطلاب الاجانب ( جامعه موسكو التقنيه)",
+        "en": "International Office (Moscow Technical University ) ",
+        "ru": "Международный отдел ( МГТУ им. Баумана )"
       },
       "date": {
-        "ar": "",
-        "en": "",
-        "ru": ""
+        "ar": "2026",
+        "en": "2026",
+        "ru": "2026"
       },
       "service": {
         "ar": "",
