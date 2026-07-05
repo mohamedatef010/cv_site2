@@ -340,7 +340,7 @@ function applyAboutBanner(bannerPath, animate) {
     })
     .catch((err) => {
       console.warn("Could not load dynamic website data. Falling back to default static HTML.", err);
-      applyAboutBanner("img/profile-banner.jpg", true);
+      applyAboutBanner("img/1000096683_jpg__3__1783213312353.jpeg", true);
     });
 
   function updateLanguageButtons() {
@@ -391,8 +391,8 @@ function applyAboutBanner(bannerPath, animate) {
 
     // Render Tools & Skills section
     if (typeof window.renderTools === 'function') window.renderTools(data);
-    if (typeof window.updateToolsFooterLink === 'function') window.updateToolsFooterLink();
-    if (typeof window.updateToolsNavLink === 'function') window.updateToolsNavLink();
+    if (typeof window.updateToolsFooterLink === 'function') window.updateToolsFooterLink(data);
+    if (typeof window.updateToolsNavLink === 'function') window.updateToolsNavLink(data);
 
     // Trigger scroll animations
     initScrollReveal();
@@ -540,9 +540,9 @@ function applyAboutBanner(bannerPath, animate) {
   // Helper to render a media element (image or video)
   function renderMediaElement(src, alt, style) {
     if (isVideoFile(src)) {
-      return `<video class="d-block w-100 img-fluid img-centered" src="${src}" controls style="${style || 'max-height: 400px; object-fit: contain; margin-bottom: 20px;'}"></video>`;
+      return `<video class="d-block w-100 img-fluid img-centered" src="${src}" controls style="${style || 'max-height: 100vh; object-fit: contain; margin-bottom: 20px;'}"></video>`;
     }
-    return `<img class="d-block w-100 img-fluid img-centered" src="${src}" alt="${alt || ''}" style="${style || 'max-height: 400px; object-fit: contain; margin-bottom: 20px;'}">`;
+    return `<img class="d-block w-100 img-fluid img-centered" src="${src}" alt="${alt || ''}" style="${style || 'max-height: 100vh; object-fit: contain; margin-bottom: 20px;'}">`;
   }
 
   // Helper to render image/video browser carousel or single media inside Portfolio modal
@@ -552,9 +552,9 @@ function applyAboutBanner(bannerPath, animate) {
     }
     if (images.length === 1) {
       if (isVideoFile(images[0])) {
-        return `<video class="img-fluid img-centered" src="${images[0]}" controls style="max-height: 400px; width: 100%; object-fit: contain; margin-bottom: 20px;"></video>`;
+        return `<video class="img-fluid img-centered" src="${images[0]}" controls style="max-height: 80vh; width: 100%; object-fit: contain; margin-bottom: 20px;"></video>`;
       }
-      return `<img class="img-fluid img-centered" src="${images[0]}" alt="Project Image" style="max-height: 400px; width: 100%; object-fit: contain; margin-bottom: 20px;">`;
+      return `<img class="img-fluid img-centered" src="${images[0]}" alt="Project Image" style="max-height: 80vh; width: 100%; object-fit: contain; margin-bottom: 20px;">`;
     }
 
     // Build Carousel
@@ -564,9 +564,9 @@ function applyAboutBanner(bannerPath, animate) {
       indicators += `<li data-target="#carousel_${projectId}" data-slide-to="${index}" class="${index === 0 ? "active" : ""}"></li>`;
       let mediaContent;
       if (isVideoFile(img)) {
-        mediaContent = `<video class="d-block w-100 img-fluid img-centered" src="${img}" controls style="max-height: 400px; object-fit: contain; margin-bottom: 20px;"></video>`;
+        mediaContent = `<video class="d-block w-100 img-fluid img-centered" src="${img}" controls style="max-height: 80vh; object-fit: contain; margin-bottom: 20px;"></video>`;
       } else {
-        mediaContent = `<img class="d-block w-100 img-fluid img-centered" src="${img}" alt="Project image ${index + 1}" style="max-height: 400px; object-fit: contain; margin-bottom: 20px;">`;
+        mediaContent = `<img class="d-block w-100 img-fluid img-centered" src="${img}" alt="Project image ${index + 1}" style="max-height: 80vh; object-fit: contain; margin-bottom: 20px;">`;
       }
       slides += `
         <div class="carousel-item ${index === 0 ? "active" : ""}">
@@ -576,18 +576,18 @@ function applyAboutBanner(bannerPath, animate) {
     });
 
     return `
-      <div id="carousel_${projectId}" class="carousel slide" data-ride="carousel" style="background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 25px;">
+      <div id="carousel_${projectId}" class="carousel slide" data-ride="carousel" style="background: transparent; margin-bottom: 25px;">
         <ol class="carousel-indicators" style="bottom: 0px;">
           ${indicators}
         </ol>
         <div class="carousel-inner">
           ${slides}
         </div>
-        <a class="carousel-control-prev" href="#carousel_${projectId}" role="button" data-slide="prev" style="filter: invert(1);">
+        <a class="carousel-control-prev custom-carousel-control" href="#carousel_${projectId}" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carousel_${projectId}" role="button" data-slide="next" style="filter: invert(1);">
+        <a class="carousel-control-next custom-carousel-control" href="#carousel_${projectId}" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -650,20 +650,20 @@ function applyAboutBanner(bannerPath, animate) {
                             <div class="rl"></div>
                         </div>
                     </div>
-                    <div class="container">
+                    <div class="container-fluid" style="max-width: 1400px; padding: 0 4%;">
                         <div class="row">
-                            <div class="modal-body">
+                            <div class="modal-body w-100">
                                 <div class="title-bar">
                                   <div class="col-md-12">
-                                    <h2 class="text-center">${getLocValue(item.title)}</h2>
+                                    <h3 class="text-center portfolio-modal-title">${getLocValue(item.title)}</h3>
                                     <div class="heading-border"></div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-lg-7 col-md-12 mb-4">
                                     ${imagesContainerHTML}
                                   </div>
-                                  <div class="col-md-6">
+                                  <div class="col-lg-5 col-md-12">
                                     <p>${getLocValue(item.description)}</p>
                                     <ul class="list-inline item-details">
                                         <li>${getLocValue(ui.clientLabel)}:
@@ -1756,22 +1756,24 @@ function applyAboutBanner(bannerPath, animate) {
   };
   
   // Update footer link text for Tools
-  function updateToolsFooterLink() {
-    const footerLink = document.getElementById('footer-link-tools');
-    if (footerLink && siteData && siteData.tools) {
-      footerLink.textContent = siteData.tools.heading[currentLang] || siteData.tools.heading.en || 'Tools';
+  function updateToolsFooterLink(data) {
+    var d = data || {};
+    var footerLink = document.getElementById('footer-link-tools');
+    if (footerLink && d.tools) {
+      footerLink.textContent = d.tools.heading[currentLang] || d.tools.heading.en || 'Tools';
     }
   }
 
   // Update nav link text for Tools (sidebar navigation)
-  function updateToolsNavLink() {
-    const navLink = document.getElementById('nav-link-tools');
-    if (navLink && siteData) {
+  function updateToolsNavLink(data) {
+    var d = data || {};
+    var navLink = document.getElementById('nav-link-tools');
+    if (navLink && d) {
       // Use ui.navTools if available, else fall back to tools.heading
-      const navText = (siteData.ui && siteData.ui.navTools)
-        ? (siteData.ui.navTools[currentLang] || siteData.ui.navTools.en)
-        : (siteData.tools && siteData.tools.heading
-            ? (siteData.tools.heading[currentLang] || siteData.tools.heading.en)
+      var navText = (d.ui && d.ui.navTools)
+        ? (d.ui.navTools[currentLang] || d.ui.navTools.en)
+        : (d.tools && d.tools.heading
+            ? (d.tools.heading[currentLang] || d.tools.heading.en)
             : 'Tools');
       navLink.textContent = navText;
     }
