@@ -428,14 +428,14 @@
     {
       "id": "skill_2",
       "name": {
-        "ar": "تطوير تطبيقات (Android) ",
-        "en": "App Development (Android)",
-        "ru": "Разработка приложений (Android)"
+        "ar": "تطوير تطبيقات Android و iOS",
+        "en": "Android & iOS App Development",
+        "ru": "Разработка приложений Android и iOS"
       },
       "description": {
         "ar": "أبرمج تطبيقات للجوال تعمل على الأندرويد  — مثل تطبيقات الطلب والحجز والتوصيل.",
-        "en": "I make mobile apps for Android  — like ordering, booking, or delivery apps.",
-        "ru": "Делаю приложения для Android — заказ, бронирование, доставка и т.д."
+        "en": "I make mobile apps for Android and iPhone — like ordering, booking, or delivery apps.",
+        "ru": "Делаю приложения для Android и iPhone — заказ, бронирование, доставка и т.д."
       },
       "icon": "fa-mobile",
       "percentage": 90
@@ -589,6 +589,21 @@
       },
       "icon": "fa-cogs",
       "percentage": 90
+    },
+    {
+      "id": "skill_1783273057437",
+      "name": {
+        "ar": "تصميم وتطوير أنظمة ERP (تخطيط موارد المؤسسات)",
+        "en": "ERP Systems Design & Development",
+        "ru": "Проектирование и разработка ERP-систем"
+      },
+      "description": {
+        "ar": "نظام ERP (Enterprise Resource Planning) هو نظام متكامل يُستخدم لإدارة جميع عمليات المؤسسة في منصة واحدة، مثل:\n\nالموارد البشرية\n\nالمبيعات والمشتريات\n\nالمخزون والمستودعات\n\nالمحاسبة والمالية\n\nإدارة العملاء والموردين\n\nالتقارير والتحليلات\n\nهدفه: تحسين الكفاءة، تقليل الأخطاء، وتوفير رؤية شاملة لأداء المؤسسة في لحظة واحدة.",
+        "en": "An ERP (Enterprise Resource Planning) system is an integrated platform that manages all core business processes in one place, including:\n\nHuman Resources\n\nSales & Purchases\n\nInventory & Warehouses\n\nAccounting & Finance\n\nCustomer & Supplier Management\n\nReports & Analytics\n\nIts goal: Improve efficiency, reduce errors, and provide a real-time holistic view of the organization's performance.",
+        "ru": "ERP (Enterprise Resource Planning) — это интегрированная платформа для управления всеми ключевыми бизнес-процессами компании в единой системе, включая:\n\nКадры и персонал\n\nПродажи и закупки\n\nСклад и запасы\n\nБухгалтерию и финансы\n\nУправление клиентами и поставщиками\n\nОтчёты и аналитику\n\nЦель: повысить эффективность, снизить количество ошибок и получить полную картину работы компании в реальном времени."
+      },
+      "icon": "fa-building",
+      "percentage": 80
     }
   ],
   "awards": [
