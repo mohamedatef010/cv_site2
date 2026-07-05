@@ -24,6 +24,26 @@
     "bannerImage": "img/1000096683_jpg__3__1783213312353.jpeg",
     "logoS": "img/ChatGPT_Image_28_________2026__1782598670998.png",
     "logoWhite": "img/logo-white.png",
+    "languages": [
+      {
+        "name": { "ar": "العربية", "en": "Arabic", "ru": "Арабский" },
+        "level": { "ar": "اللغة الأم", "en": "Native", "ru": "Родной" },
+        "percent": 100,
+        "flag": "🇦🇪"
+      },
+      {
+        "name": { "ar": "الروسية", "en": "Russian", "ru": "Русский" },
+        "level": { "ar": "متقدم", "en": "Advanced", "ru": "Продвинутый" },
+        "percent": 85,
+        "flag": "🇷🇺"
+      },
+      {
+        "name": { "ar": "الإنجليزية", "en": "English", "ru": "Английский" },
+        "level": { "ar": "جيد جداً", "en": "Very Good", "ru": "Хорошо" },
+        "percent": 75,
+        "flag": "🇬🇧"
+      }
+    ],
     "socials": {
       "mailRu": "mohamedatef0100@mail.ru",
       "facebook": "#",
@@ -784,14 +804,14 @@
       "ru": "Закрыть"
     },
     "navTools": {
-      "ar": "المهارات والأدوات",
-      "en": "Skills & Tools",
-      "ru": "Навыки и Инструменты"
+      "ar": "الأدوات",
+      "en": "Tools",
+      "ru": "Инструменты"
     },
     "toolsHeading": {
-      "ar": "المهارات والأدوات",
-      "en": "Skills & Tools",
-      "ru": "Навыки и Инструменты"
+      "ar": "الأدوات",
+      "en": "Tools",
+      "ru": "Инструменты"
     }
   },
   "testimonials": {
@@ -1067,9 +1087,9 @@
   },
   "tools": {
     "heading": {
-      "ar": "المهارات والأدوات",
-      "en": "Skills & Tools",
-      "ru": "Навыки и Инструменты"
+      "ar": "الأدوات",
+      "en": "Tools",
+      "ru": "Инструменты"
     },
     "subtitle": {
       "ar": "مجموعة التقنيات والمنصات التي أتقنها وأستخدمها في بناء المشاريع.",
