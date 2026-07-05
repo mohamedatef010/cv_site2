@@ -26,30 +26,54 @@
     "logoWhite": "img/logo-white.png",
     "languages": [
       {
-        "name": { "ar": "العربية", "en": "Arabic", "ru": "Арабский" },
-        "level": { "ar": "اللغة الأم", "en": "Native", "ru": "Родной" },
+        "name": {
+          "ar": "العربية",
+          "en": "Arabic",
+          "ru": "Арабский"
+        },
+        "level": {
+          "ar": "اللغة الأم",
+          "en": "Native",
+          "ru": "Родной"
+        },
         "percent": 100,
         "flag": "🇦🇪"
       },
       {
-        "name": { "ar": "الروسية", "en": "Russian", "ru": "Русский" },
-        "level": { "ar": "متقدم", "en": "Advanced", "ru": "Продвинутый" },
+        "name": {
+          "ar": "الروسية",
+          "en": "Russian",
+          "ru": "Русский"
+        },
+        "level": {
+          "ar": "متقدم",
+          "en": "Advanced",
+          "ru": "Продвинутый"
+        },
         "percent": 85,
         "flag": "🇷🇺"
       },
       {
-        "name": { "ar": "الإنجليزية", "en": "English", "ru": "Английский" },
-        "level": { "ar": "جيد جداً", "en": "Very Good", "ru": "Хорошо" },
+        "name": {
+          "ar": "الإنجليزية",
+          "en": "English",
+          "ru": "Английский"
+        },
+        "level": {
+          "ar": "جيد جداً",
+          "en": "Very Good",
+          "ru": "Хорошо"
+        },
         "percent": 75,
         "flag": "🇬🇧"
       }
     ],
     "socials": {
-      "mailRu": "mohamedatef0100@mail.ru",
+      "mailRu": "  https://my.mail.ru/mail/mohamedatef0100",
       "facebook": "#",
-      "telegram": "mohamedatef010",
-      "max": "+79363330407",
-      "whatsapp": "+79363330407"
+      "telegram": "https://t.me/mohamedatef010",
+      "max": "https://max.ru/79363330407",
+      "whatsapp": "https://wa.me/79363330407"
     }
   },
   "experience": [
@@ -439,7 +463,7 @@
         "ru": "Back-End разработка"
       },
       "description": {
-        "ar": "الشغل اللي ما تشوفه — تسجيل الدخول، حفظ البيانات، معالجة الطلبات، وكل اللي يصير ورا الكواليس.",
+        "ar": "الشغل الذي تراه — تسجيل الدخول، حفظ البيانات، معالجة الطلبات، وكل الذي يحدث وراء الكواليس.",
         "en": "The hidden work behind the scenes — login, saving data, processing orders, and making everything run.",
         "ru": "Невидимая работа «за кулисами» — вход, сохранение данных, обработка заказов."
       },
@@ -469,7 +493,7 @@
         "ru": "Управление серверами и хостингом"
       },
       "description": {
-        "ar": "أخلي الموقع أو التطبيق شغّال على السيرفر 24 ساعة، وأتابع الاستضافة والدومين عشان ما يوقف.",
+        "ar": "أجعل الموقع أو التطبيق شغّال على السيرفر 24 ساعة، وأتابع الاستضافة والدومين عشان لا يتوقف.",
         "en": "I keep your site or app running on the server around the clock and manage hosting so it stays online.",
         "ru": "Держу сайт или приложение онлайн круглосуточно и слежу за хостингом и доменом."
       },
@@ -484,7 +508,7 @@
         "ru": "Дизайн UI/UX"
       },
       "description": {
-        "ar": "أصمم شكل الموقع وطريقة استخدامه عشان يكون سهل ومريح — ما يتعب المستخدم ولا يتشوش.",
+        "ar": "أصمم شكل الموقع وطريقة استخدامه عشان يكون سهل ومريح — لا يتعب المستخدم ولا يتشوش.",
         "en": "I design how the site looks and feels so it's easy and pleasant — users don't get lost or frustrated.",
         "ru": "Продумываю внешний вид и удобство, чтобы пользователям было просто и приятно."
       },
@@ -514,7 +538,7 @@
         "ru": "Оптимизация производительности и безопасности"
       },
       "description": {
-        "ar": "أخلي الموقع سريع وما يعلق، وأحميه من الاختراق والمشاكل الأمنية.",
+        "ar": "أجعل الموقع سريع وما يعلق، وأحميه من الاختراق والمشاكل الأمنية.",
         "en": "I make sites fast and protect them from hacks and security problems.",
         "ru": "Ускоряю сайты и защищаю от взлома и уязвимостей."
       },
