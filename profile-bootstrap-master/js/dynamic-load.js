@@ -618,14 +618,23 @@ function applyAboutBanner(bannerPath, animate) {
 
       gridHtml += `
         <div class="col-sm-4 portfolio-item filter ${category}">
-            <a class="portfolio-link" href="#portfolioModal_${item.id}" data-toggle="modal">
-                <div class="caption-port">
-                    <div class="caption-port-content">
-                        <i class="fa fa-search-plus fa-3x"></i>
+            <div class="portfolio-card">
+                <a class="portfolio-link" href="#portfolioModal_${item.id}" data-toggle="modal">
+                    <div class="portfolio-card__image">
+                        <div class="caption-port">
+                            <div class="caption-port-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        ${coverElement}
                     </div>
+                </a>
+                <div class="portfolio-card__body">
+                    <span class="portfolio-card__category">${getLocValue(item.service) || category}</span>
+                    <h3 class="portfolio-card__title">${getLocValue(item.title)}</h3>
+                    <p class="portfolio-card__client"><i class="fa fa-user-o"></i> ${getLocValue(item.client) || ''}</p>
                 </div>
-                ${coverElement}
-            </a>
+            </div>
         </div>
       `;
 

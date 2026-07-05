@@ -851,6 +851,129 @@ section.resume-section .resume-item .resume-date {
     }
 }
 
+/* ---- Portfolio Card ---- */
+.portfolio-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(33, 150, 243, 0.15);
+}
+
+body.dark-theme .portfolio-card {
+    background: #1e293b;
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .portfolio-card:hover {
+    box-shadow: 0 16px 40px rgba(33, 150, 243, 0.2);
+}
+
+.portfolio-card__image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+}
+
+.portfolio-card__image img,
+.portfolio-card__image video {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-card:hover .portfolio-card__image img,
+.portfolio-card:hover .portfolio-card__image video {
+    transform: scale(1.05);
+}
+
+.portfolio-card__body {
+    padding: 1.25rem 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.portfolio-card__category {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #2196f3;
+    background: rgba(33, 150, 243, 0.1);
+    padding: 0.2rem 0.65rem;
+    border-radius: 6px;
+}
+
+body.dark-theme .portfolio-card__category {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+}
+
+.portfolio-card__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.4;
+}
+
+body.dark-theme .portfolio-card__title {
+    color: #f1f5f9;
+}
+
+.portfolio-card__client {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.portfolio-card__client i {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+body.dark-theme .portfolio-card__client {
+    color: #94a3b8;
+}
+
+body.dark-theme .portfolio-card__client i {
+    color: #64748b;
+}
+
+/* Override old link styling inside new cards */
+.portfolio-card .portfolio-link {
+    max-width: none;
+    display: block;
+}
+
+.portfolio-card .caption-port {
+    border-radius: 16px 16px 0 0;
+}
+
+@media (max-width: 767px) {
+    .portfolio-card__body {
+        padding: 1rem;
+    }
+    #portfolio .portfolio-item {
+        margin-bottom: 1.25rem;
+    }
+}
+
 .portfolio-modal .modal-dialog {
     max-width: 100%;
     min-height: 100%;
