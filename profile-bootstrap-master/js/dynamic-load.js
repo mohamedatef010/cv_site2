@@ -112,58 +112,84 @@ document.addEventListener("DOMContentLoaded", function () {
     return document.querySelector(".about-mobile-banner__media");
   }
 
-  function applyAboutBanner(bannerPath, animate) {
+function applyAboutBanner(bannerPath, animate) {
     const aboutSection = document.getElementById("about");
     if (!aboutSection) return;
-
-    const shouldAnimate = animate !== false;
+    
+    let shouldAnimate = animate !== false;
     currentBannerImage = bannerPath || "img/profile-banner.jpg";
     const bannerUrl = toRootImageUrl(currentBannerImage);
     const bannerImg = getMobileBannerImage();
-
-    const setBanner = function () {
-      if (bannerImg) {
-        bannerImg.src = bannerUrl;
-      }
-
-      aboutSection.style.removeProperty("background-image");
-
-      if (!shouldAnimate) return;
-
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          aboutSection.classList.remove("about-banner-loading");
-          aboutSection.classList.add("about-banner-loaded");
-          document.body.classList.add("hero-ready");
-        });
-      });
+    
+    // Check if image is already loaded and matches the target URL
+    const isImageLoaded = function() {
+        if (!bannerImg) return false;
+        if (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl)) return false;
+        return bannerImg.complete && bannerImg.naturalHeight !== 0;
     };
 
-    if (!shouldAnimate) {
-      const img = new Image();
-      img.onload = function () {
-        setBanner();
-      };
-      img.onerror = function () {
-        setBanner();
-      };
-      img.src = bannerUrl;
-      return;
+    // Prevent flickering ONLY if the correct image is already loaded
+    if (shouldAnimate && isImageLoaded()) {
+        shouldAnimate = false;
+        aboutSection.classList.remove("about-banner-loading");
+        aboutSection.classList.add("about-banner-loaded");
+        document.body.classList.add("hero-ready");
     }
 
+    let isBannerSet = false;
+    const setBanner = function () {
+        if (isBannerSet) return;
+        isBannerSet = true;
+        
+        if (bannerImg && (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl))) {
+            bannerImg.src = bannerUrl;
+        }
+        aboutSection.style.removeProperty("background-image");
+        
+        if (!shouldAnimate) {
+            aboutSection.classList.remove("about-banner-loading");
+            aboutSection.classList.add("about-banner-loaded");
+            document.body.classList.add("hero-ready");
+            return;
+        }
+        
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                aboutSection.classList.remove("about-banner-loading");
+                aboutSection.classList.add("about-banner-loaded");
+                document.body.classList.add("hero-ready");
+            });
+        });
+    };
+    
+    if (!shouldAnimate) {
+        setBanner();
+        return;
+    }
+    
+    // For animated case, hide and show
     aboutSection.classList.remove("about-banner-loaded");
     aboutSection.classList.add("about-banner-loading");
     document.body.classList.remove("hero-ready");
-
-    const img = new Image();
-    img.onload = function () {
-      setBanner();
-    };
-    img.onerror = function () {
-      setBanner();
-    };
-    img.src = bannerUrl;
-  }
+    
+    if (bannerImg) {
+        // Use a new Image object for reliable onload/onerror events
+        const img = new Image();
+        img.onload = setBanner;
+        img.onerror = setBanner;
+        img.src = bannerUrl;
+        
+        // Update DOM element immediately to start loading
+        if (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl)) {
+            bannerImg.src = bannerUrl;
+        }
+        
+        // Fallback to ensure it never gets stuck invisible
+        setTimeout(setBanner, 1500);
+    } else {
+        setBanner();
+    }
+}
 
   function applyTheme(theme) {
     if (theme) {
