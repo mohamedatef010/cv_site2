@@ -1,19 +1,50 @@
 document.addEventListener("DOMContentLoaded", function () {
   let siteData = null;
-  // Initialize current language from localStorage or default to Arabic ('ar')
-  let currentLang = localStorage.getItem("preferredLang") || "ar";
-
-  // Theme Manager (Dark / Original Light Theme)
-  let currentTheme = localStorage.getItem("preferredTheme") || "light";
-  let currentBannerImage = "img/profile-banner.jpg";
   const desktopMediaQuery = window.matchMedia("(min-width: 992px)");
 
   function isDesktopView() {
     return desktopMediaQuery.matches;
   }
 
+  // Initialize current language from localStorage or default to English on mobile, Arabic on desktop
+  let currentLang = localStorage.getItem("preferredLang");
+  if (!currentLang) {
+    if (!isDesktopView()) {
+      currentLang = "en";
+      localStorage.setItem("preferredLang", "en");
+    } else {
+      currentLang = "ar";
+    }
+  }
+
+  // Theme Manager (Dark / Original Light Theme)
+  let currentTheme = localStorage.getItem("preferredTheme");
+  if (!currentTheme) {
+    if (!isDesktopView()) {
+      currentTheme = "dark";
+      localStorage.setItem("preferredTheme", "dark");
+    } else {
+      currentTheme = "light";
+    }
+  }
+  let currentBannerImage = "img/profile-banner.jpg";
+
   function getEffectiveTheme() {
     return isDesktopView() ? "dark" : currentTheme;
+  }
+
+  // Guide Animation for Language and Theme
+  if (!localStorage.getItem("guideShown")) {
+    setTimeout(function () {
+      const langSelector = document.querySelector(".lang-selector");
+      if (langSelector) {
+        langSelector.classList.add("guide-attention");
+        setTimeout(function () {
+          langSelector.classList.remove("guide-attention");
+          localStorage.setItem("guideShown", "true");
+        }, 10000);
+      }
+    }, 1000);
   }
 
   const ABOUT_SOCIAL_PLATFORMS = [
@@ -112,84 +143,84 @@ document.addEventListener("DOMContentLoaded", function () {
     return document.querySelector(".about-mobile-banner__media");
   }
 
-function applyAboutBanner(bannerPath, animate) {
+  function applyAboutBanner(bannerPath, animate) {
     const aboutSection = document.getElementById("about");
     if (!aboutSection) return;
-    
+
     let shouldAnimate = animate !== false;
     currentBannerImage = bannerPath || "img/profile-banner.jpg";
     const bannerUrl = toRootImageUrl(currentBannerImage);
     const bannerImg = getMobileBannerImage();
-    
+
     // Check if image is already loaded and matches the target URL
-    const isImageLoaded = function() {
-        if (!bannerImg) return false;
-        if (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl)) return false;
-        return bannerImg.complete && bannerImg.naturalHeight !== 0;
+    const isImageLoaded = function () {
+      if (!bannerImg) return false;
+      if (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl)) return false;
+      return bannerImg.complete && bannerImg.naturalHeight !== 0;
     };
 
     // Prevent flickering ONLY if the correct image is already loaded
     if (shouldAnimate && isImageLoaded()) {
-        shouldAnimate = false;
-        aboutSection.classList.remove("about-banner-loading");
-        aboutSection.classList.add("about-banner-loaded");
-        document.body.classList.add("hero-ready");
+      shouldAnimate = false;
+      aboutSection.classList.remove("about-banner-loading");
+      aboutSection.classList.add("about-banner-loaded");
+      document.body.classList.add("hero-ready");
     }
 
     let isBannerSet = false;
     const setBanner = function () {
-        if (isBannerSet) return;
-        isBannerSet = true;
-        
-        if (bannerImg && (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl))) {
-            bannerImg.src = bannerUrl;
-        }
-        aboutSection.style.removeProperty("background-image");
-        
-        if (!shouldAnimate) {
-            aboutSection.classList.remove("about-banner-loading");
-            aboutSection.classList.add("about-banner-loaded");
-            document.body.classList.add("hero-ready");
-            return;
-        }
-        
-        requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                aboutSection.classList.remove("about-banner-loading");
-                aboutSection.classList.add("about-banner-loaded");
-                document.body.classList.add("hero-ready");
-            });
-        });
-    };
-    
-    if (!shouldAnimate) {
-        setBanner();
+      if (isBannerSet) return;
+      isBannerSet = true;
+
+      if (bannerImg && (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl))) {
+        bannerImg.src = bannerUrl;
+      }
+      aboutSection.style.removeProperty("background-image");
+
+      if (!shouldAnimate) {
+        aboutSection.classList.remove("about-banner-loading");
+        aboutSection.classList.add("about-banner-loaded");
+        document.body.classList.add("hero-ready");
         return;
+      }
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          aboutSection.classList.remove("about-banner-loading");
+          aboutSection.classList.add("about-banner-loaded");
+          document.body.classList.add("hero-ready");
+        });
+      });
+    };
+
+    if (!shouldAnimate) {
+      setBanner();
+      return;
     }
-    
+
     // For animated case, hide and show
     aboutSection.classList.remove("about-banner-loaded");
     aboutSection.classList.add("about-banner-loading");
     document.body.classList.remove("hero-ready");
-    
+
     if (bannerImg) {
-        // Use a new Image object for reliable onload/onerror events
-        const img = new Image();
-        img.onload = setBanner;
-        img.onerror = setBanner;
-        img.src = bannerUrl;
-        
-        // Update DOM element immediately to start loading
-        if (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl)) {
-            bannerImg.src = bannerUrl;
-        }
-        
-        // Fallback to ensure it never gets stuck invisible
-        setTimeout(setBanner, 1500);
+      // Use a new Image object for reliable onload/onerror events
+      const img = new Image();
+      img.onload = setBanner;
+      img.onerror = setBanner;
+      img.src = bannerUrl;
+
+      // Update DOM element immediately to start loading
+      if (!bannerImg.src || !bannerImg.src.endsWith(bannerUrl)) {
+        bannerImg.src = bannerUrl;
+      }
+
+      // Fallback to ensure it never gets stuck invisible
+      setTimeout(setBanner, 1500);
     } else {
-        setBanner();
+      setBanner();
     }
-}
+  }
 
   function applyTheme(theme) {
     if (theme) {
@@ -212,10 +243,10 @@ function applyAboutBanner(bannerPath, animate) {
 
     if (effectiveTheme === "dark") {
       body.classList.add("dark-theme");
-      toggleIcons.forEach(function(icon) { icon.className = "fa fa-sun-o"; });
+      toggleIcons.forEach(function (icon) { icon.className = "fa fa-sun-o"; });
     } else {
       body.classList.remove("dark-theme");
-      toggleIcons.forEach(function(icon) { icon.className = "fa fa-moon-o"; });
+      toggleIcons.forEach(function (icon) { icon.className = "fa fa-moon-o"; });
     }
     applyAboutBanner(currentBannerImage, false);
   }
@@ -496,6 +527,52 @@ function applyAboutBanner(bannerPath, animate) {
     if (socialContainer && about.socials) {
       socialContainer.innerHTML = renderAboutSocials(about.socials);
     }
+
+    // Languages
+    const langContainer = document.getElementById("about-languages-container");
+    if (langContainer && about.languages) {
+      const isMobile = window.innerWidth < 992;
+      const sectionLabel = currentLang === 'ar' ? 'اللغات' : currentLang === 'ru' ? 'Языки' : 'Languages';
+
+      if (isMobile) {
+        // ---- MOBILE: Creative stacked cards with progress bars ----
+        let mHtml = `<p class="lang-section-title-mobile">${sectionLabel}</p><div class="lang-cards-mobile">`;
+        about.languages.forEach(lang => {
+          const pct = lang.percent || 100;
+          mHtml += `
+            <div class="lang-card-mobile" data-lang="${lang.key || ''}">
+              <span class="lang-card-mobile__flag">${lang.flag}</span>
+              <div class="lang-card-mobile__body">
+                <div class="lang-card-mobile__name">${getLocValue(lang.name)}</div>
+                <div class="lang-card-mobile__level">${getLocValue(lang.level)}</div>
+              </div>
+              <div class="lang-card-mobile__right">
+                <span class="lang-card-mobile__pct">${pct}%</span>
+                <div class="lang-card-mobile__bar-track">
+                  <div class="lang-card-mobile__bar-fill" style="width:${pct}%;"></div>
+                </div>
+              </div>
+            </div>`;
+        });
+        mHtml += '</div>';
+        langContainer.innerHTML = mHtml;
+      } else {
+        // ---- DESKTOP: Compact horizontal pill cards ----
+        let dHtml = `<p class="lang-section-title-desktop">${sectionLabel}</p><div class="lang-cards-desktop">`;
+        about.languages.forEach(lang => {
+          dHtml += `
+            <div class="lang-card-desktop">
+              <span class="lang-card-desktop__flag">${lang.flag}</span>
+              <div class="lang-card-desktop__info">
+                <span class="lang-card-desktop__name">${getLocValue(lang.name)}</span>
+                <span class="lang-card-desktop__level">${getLocValue(lang.level)}</span>
+              </div>
+            </div>`;
+        });
+        dHtml += '</div>';
+        langContainer.innerHTML = dHtml;
+      }
+    }
   }
 
   // Render Experience section
@@ -534,7 +611,7 @@ function applyAboutBanner(bannerPath, animate) {
     if (!filePath) return false;
     var videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.mkv'];
     var lowerPath = filePath.toLowerCase();
-    return videoExtensions.some(function(ext) { return lowerPath.endsWith(ext); });
+    return videoExtensions.some(function (ext) { return lowerPath.endsWith(ext); });
   }
 
   // Helper to render a media element (image or video)
@@ -640,7 +717,7 @@ function applyAboutBanner(bannerPath, animate) {
 
       // Render Modal with Carousel and Delivery Time
       const imagesContainerHTML = renderPortfolioImagesHTML(item.id, item.images);
-      
+
       modalsHtml += `
         <div class="portfolio-modal modal fade" id="portfolioModal_${item.id}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -1221,7 +1298,7 @@ function applyAboutBanner(bannerPath, animate) {
     }
 
     const steps = workflow.steps || [];
-    
+
     const getStepIcon = (num) => {
       switch (num) {
         case 1: return "fa-comments-o";
@@ -1239,7 +1316,7 @@ function applyAboutBanner(bannerPath, animate) {
       const title = getLocValue(step.title);
       const desc = getLocValue(step.description);
       const icon = getStepIcon(step.stepNumber);
-      
+
       stepsHtml += `
         <div class="workflow-step-node" style="--i:${idx};">
           <!-- Connector line from hub to card (desktop only) -->
@@ -1326,7 +1403,7 @@ function applyAboutBanner(bannerPath, animate) {
       if (currentLang === "ar") {
         descTextEl.textContent = "مهندس برمجيات متخصص في بناء تطبيقات ومواقع إلكترونية حديثة بأفضل تجربة مستخدم.";
       } else if (currentLang === "ru") {
-        descTextEl.textContent = "Инженер-программиست, специализирующийся на создании современных веб- и мобильных приложений с отличным пользовательским опытом.";
+        descTextEl.textContent = "Инженер-программист, специализирующийся на создании современных веб- и мобильных приложений с отличным пользовательским опытом.";
       } else {
         descTextEl.textContent = "Software Engineer specializing in modern web and mobile applications with outstanding user experiences.";
       }
@@ -1388,10 +1465,10 @@ function applyAboutBanner(bannerPath, animate) {
         return hasSocialLink(about.socials, platform);
       }).forEach(function (platform) {
         const url = normalizeSocialUrl(about.socials[platform.key]);
-        const inner = platform.type === "fa" 
+        const inner = platform.type === "fa"
           ? `<i class="fa fa-${platform.icon}"></i>`
           : `<img src="${platform.image}" alt="${platform.label}">`;
-        
+
         socialHtml += `
           <a href="${url}" target="_blank" rel="noopener noreferrer" 
              class="footer-social-link" aria-label="${platform.label}"
@@ -1422,20 +1499,20 @@ function applyAboutBanner(bannerPath, animate) {
       const types = ["star", "sparkle", "gem"];
       const type = types[Math.floor(Math.random() * types.length)];
       shape.className = `award-shape ${type}`;
-      
+
       const size = Math.random() * 18 + 12; // 12px to 30px
       shape.style.width = `${size}px`;
       shape.style.height = `${size}px`;
       shape.style.left = `${Math.random() * 90 + 5}%`;
-      
+
       shape.style.animationDelay = `${Math.random() * 12}s`;
       shape.style.animationDuration = `${Math.random() * 12 + 18}s`; // 18s to 30s
-      
+
       const drift = Math.random() * 60 - 30; // -30px to 30px
       const maxOpacity = Math.random() * 0.15 + 0.15; // 0.15 to 0.30
       shape.style.setProperty("--drift", `${drift}px`);
       shape.style.setProperty("--max-opacity", maxOpacity);
-      
+
       bgContainer.appendChild(shape);
     }
 
@@ -1538,7 +1615,7 @@ function applyAboutBanner(bannerPath, animate) {
   var isOpen = false;
 
   function openPanel() {
-    var btn   = document.getElementById('mobile-controls-btn');
+    var btn = document.getElementById('mobile-controls-btn');
     var panel = document.getElementById('mobile-controls-panel');
     if (!btn || !panel) return;
     isOpen = true;
@@ -1549,11 +1626,11 @@ function applyAboutBanner(bannerPath, animate) {
     btn.classList.remove('ripple');
     void btn.offsetWidth; // reflow
     btn.classList.add('ripple');
-    setTimeout(function() { btn.classList.remove('ripple'); }, 500);
+    setTimeout(function () { btn.classList.remove('ripple'); }, 500);
   }
 
   function closePanel() {
-    var btn   = document.getElementById('mobile-controls-btn');
+    var btn = document.getElementById('mobile-controls-btn');
     var panel = document.getElementById('mobile-controls-panel');
     if (!btn || !panel) return;
     isOpen = false;
@@ -1598,7 +1675,7 @@ function applyAboutBanner(bannerPath, animate) {
   };
 
   // Backward compat: keep old toggleMobileLangDropdown as no-op
-  window.toggleMobileLangDropdown = function () {};
+  window.toggleMobileLangDropdown = function () { };
 
   // Sync chips on page load based on saved language
   document.addEventListener('DOMContentLoaded', function () {
@@ -1611,13 +1688,13 @@ function applyAboutBanner(bannerPath, animate) {
     // Always read the latest language from localStorage before rendering
     currentLang = localStorage.getItem('preferredLang') || 'ar';
     if (!data.tools) return;
-    
+
     const toolsHeading = document.getElementById('tools-heading');
     const toolsSubtitle = document.getElementById('tools-subtitle');
     const toolsContainer = document.getElementById('tools-container');
-    
+
     if (!toolsContainer) return;
-    
+
     // Update heading and subtitle
     if (toolsHeading && data.tools.heading) {
       toolsHeading.textContent = data.tools.heading[currentLang] || data.tools.heading.en;
@@ -1625,31 +1702,31 @@ function applyAboutBanner(bannerPath, animate) {
     if (toolsSubtitle && data.tools.subtitle) {
       toolsSubtitle.textContent = data.tools.subtitle[currentLang] || data.tools.subtitle.en;
     }
-    
+
     // Clear container
     toolsContainer.innerHTML = '';
-    
+
     // Render categories
     if (data.tools.categories && Array.isArray(data.tools.categories)) {
-      data.tools.categories.forEach(function(category) {
+      data.tools.categories.forEach(function (category) {
         const categoryDiv = document.createElement('div');
         categoryDiv.className = 'tools-category';
-        
+
         const categoryTitle = document.createElement('div');
         categoryTitle.className = 'tools-category-title';
         categoryTitle.textContent = category.title[currentLang] || category.title.en;
         categoryDiv.appendChild(categoryTitle);
-        
+
         // Render tool items
         if (category.items && Array.isArray(category.items)) {
-          category.items.forEach(function(tool) {
+          category.items.forEach(function (tool) {
             const toolDiv = document.createElement('div');
             toolDiv.className = 'tool-item';
             toolDiv.style.cursor = 'pointer';
-            
+
             const iconDiv = document.createElement('div');
             iconDiv.className = 'tool-icon';
-            
+
             // Check if it's a Font Awesome icon or a custom class
             if (tool.icon.includes('devicon')) {
               const i = document.createElement('i');
@@ -1660,7 +1737,7 @@ function applyAboutBanner(bannerPath, animate) {
               i.className = 'fa ' + tool.icon;
               iconDiv.appendChild(i);
             }
-            
+
             const nameDiv = document.createElement('div');
             nameDiv.className = 'tool-name';
             nameDiv.textContent = tool.name[currentLang] || tool.name.en;
@@ -1670,25 +1747,25 @@ function applyAboutBanner(bannerPath, animate) {
             const hintDiv = document.createElement('div');
             hintDiv.className = 'tool-item-hint';
             hintDiv.innerHTML = `<i class="fa fa-info-circle"></i> ${hintTexts[currentLang] || hintTexts.en}`;
-            
+
             toolDiv.appendChild(iconDiv);
             toolDiv.appendChild(nameDiv);
             toolDiv.appendChild(hintDiv);
-            
+
             // Add click event to show detail modal
-            toolDiv.addEventListener('click', function() {
+            toolDiv.addEventListener('click', function () {
               showToolDetail(tool);
             });
-            
+
             categoryDiv.appendChild(toolDiv);
           });
         }
-        
+
         toolsContainer.appendChild(categoryDiv);
       });
     }
   }
-  
+
   function showToolDetail(tool) {
     // Create or get modal
     let modal = document.getElementById('tool-detail-modal');
@@ -1708,23 +1785,23 @@ function applyAboutBanner(bannerPath, animate) {
         </div>
       `;
       document.body.appendChild(modal);
-      
+
       // Close on backdrop click
       modal.querySelector('.tool-detail-backdrop').addEventListener('click', closeToolDetail);
-      
+
       // Close on Escape key
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('is-open')) {
           closeToolDetail();
         }
       });
     }
-    
+
     // Populate modal content
     const icon = modal.querySelector('.tool-detail-icon');
     const title = modal.querySelector('.tool-detail-title');
     const content = modal.querySelector('.tool-detail-content');
-    
+
     icon.innerHTML = '';
     if (tool.icon.includes('devicon')) {
       const i = document.createElement('i');
@@ -1735,7 +1812,7 @@ function applyAboutBanner(bannerPath, animate) {
       i.className = 'fa ' + tool.icon;
       icon.appendChild(i);
     }
-    
+
     title.textContent = tool.name[currentLang] || tool.name.en;
 
     // Build modal content with "Why I prefer this" label
@@ -1743,18 +1820,18 @@ function applyAboutBanner(bannerPath, animate) {
     const whyLabel = whyLabels[currentLang] || whyLabels.en;
     const descText = tool.description[currentLang] || tool.description.en || '';
     content.innerHTML = `<div class="tool-why-label"><i class="fa fa-lightbulb-o"></i> ${whyLabel}</div><p>${descText}</p>`;
-    
+
     // Show modal with animation
     modal.classList.add('is-open');
   }
-  
-  window.closeToolDetail = function() {
+
+  window.closeToolDetail = function () {
     const modal = document.getElementById('tool-detail-modal');
     if (modal) {
       modal.classList.remove('is-open');
     }
   };
-  
+
   // Update footer link text for Tools
   function updateToolsFooterLink(data) {
     var d = data || {};
@@ -1773,12 +1850,12 @@ function applyAboutBanner(bannerPath, animate) {
       var navText = (d.ui && d.ui.navTools)
         ? (d.ui.navTools[currentLang] || d.ui.navTools.en)
         : (d.tools && d.tools.heading
-            ? (d.tools.heading[currentLang] || d.tools.heading.en)
-            : 'Tools');
+          ? (d.tools.heading[currentLang] || d.tools.heading.en)
+          : 'Tools');
       navLink.textContent = navText;
     }
   }
-  
+
   // Expose renderTools globally so the main DOMContentLoaded renderAll can call it
   window.renderTools = renderTools;
   window.updateToolsFooterLink = updateToolsFooterLink;
